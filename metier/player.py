@@ -1,5 +1,5 @@
 from metier.game import Game
-from history import Hystory
+from metier.history import History
 
 class Player:
     '''
@@ -48,6 +48,23 @@ class Player:
             score du joueur
         '''
         return History(self).score
+
+    def make_guess(self, guess):
+        '''
+        Méthode permettant de vérifier si la réponse proposée est correcte.
+
+        Paramètres :
+        ------------
+        guess : str
+            réponse proposée par le joueur
+        
+        Returns :
+        ----------
+        est_correct : bool
+            booléen valant True si la réponse est correcte, False sinon
+        '''
+        return (guess == Game(self).answer)
+
 
 
 

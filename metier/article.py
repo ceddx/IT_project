@@ -1,5 +1,5 @@
 from pyexpat import features
-from urllib.robotparser import RequestRate
+from bs4 import BeautifulSoup, SoupStrainer
 import wikipedia
 import requests
 
@@ -82,6 +82,5 @@ while t == False:
 
 print(a.clue)"""
 
-res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/10/15')
 
 

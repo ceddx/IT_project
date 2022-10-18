@@ -50,7 +50,7 @@ class Article(object):
         True si les conditions sont remplies
         False sinon
         '''
-#Mettre une variable pour la diffiulté à la place de <10
+#Mettre une variable pour la difficulté à la place de <10
         if len(self.links) < 10:
             return False
         else : 

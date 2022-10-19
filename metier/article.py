@@ -1,22 +1,20 @@
-from pyexpat import features
-from bs4 import BeautifulSoup, SoupStrainer
 import wikipedia
-import requests
-
-
+from article_generation import ArticleGeneration
 
 class Article(object):
     '''
     Classe permettant de générer les articles, les indices et leur validation.
     '''
     wikipedia.set_lang('fr')
-    rd = wikipedia.page(wikipedia.random(1))
-    titre = rd.title
-    liens = rd.links
-    nb_vues = 0
-    contenu = rd.summary
+    art = ArticleGeneration()
+    nom = art.get_title()
+    article_wikipedia = wikipedia.page(nom)
+    liens = article_wikipedia.links
+    nb_vues = art.get_views()
+    contenu = article_wikipedia.summary
 
-    def __init__(self, name_article = titre, links = liens, nb_views = nb_vues, content = contenu, clue = []) :
+
+    def __init__(self, name_article : str , links : list, nb_views : int, content : str, clue = []) :
         """
         Création de l'article.
 
@@ -74,13 +72,4 @@ class Article(object):
                 clue.append(sp[i])
             i += 1
         self.clue = clue
-
-"""t = False
-while t == False:
-    a = Article()
-    t = a.article_validation()
-
-print(a.clue)"""
-
-
-
+    

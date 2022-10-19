@@ -1,8 +1,15 @@
-import requests
+from article_generation import ArticleGeneration 
+from article import Article
+import wikipedia
 
+wikipedia.set_lang('fr')
+art = ArticleGeneration()
+nom = art.get_title()
+article_wikipedia = wikipedia.page(nom)
+liens = article_wikipedia.links
+nb_vues = art.get_views()
+contenu = article_wikipedia.summary
 
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+article = Article(nom, liens, nb_vues, contenu)
+print(article.name_article)
 
-res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/10/15'
-, headers=headers)
-print(res.status_code)

@@ -1,5 +1,5 @@
 from pyexpat import features
-from urllib.robotparser import RequestRate
+from bs4 import BeautifulSoup, SoupStrainer
 import wikipedia
 import requests
 
@@ -50,7 +50,7 @@ class Article(object):
         True si les conditions sont remplies
         False sinon
         '''
-#Mettre une variable pour la diffiulté à la place de <10
+#Mettre une variable pour la difficulté à la place de <10
         if len(self.links) < 10:
             return False
         else : 
@@ -82,6 +82,5 @@ while t == False:
 
 print(a.clue)"""
 
-res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/10/15')
 
 

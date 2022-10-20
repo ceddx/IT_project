@@ -41,7 +41,7 @@ class Article(object):
         True si les conditions sont remplies
         False sinon
         '''
-
+    
         
     
     def select_clue(self):
@@ -55,19 +55,21 @@ class Article(object):
         indices = []
         count = 0
 
-        while i < len(self.content) or len(indices)<=10:
-            if ((sp[i] in self.links) == True) and ((sp[i] in indices) == False) and (sp[i] != self.name_article):
+        while i < len(sp):
+            if ((sp[i] not in indices)) and (sp[i] != self.name_article):
                 if len(sp[i])<=4:
                     tester = self.is_date_or_number(sp[i])
                     if (tester == True) and len(sp[i])>2 and count <3: 
+                        #Faire en sorte d'avoir au maximum 3 dates pour ne pas avoir que ca en indice
                         indices.append(sp[i])
                         count += 1
-                        i += 1
+                       
                 else :
                     indices.append(sp[i])
-                    i += 1
+                    
+            i += 1
 
-        self.clue = indices
+        self.clue = [*set(indices)]
         return self.clue
     
     def is_date_or_number(self, smth):

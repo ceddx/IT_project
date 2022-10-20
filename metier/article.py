@@ -41,9 +41,7 @@ class Article(object):
         True si les conditions sont remplies
         False sinon
         '''
-#Mettre une variable pour la difficulté à la place de <10
-        if len(self.links) < 10:
-            return False
+
         
     
     def select_clue(self):
@@ -58,7 +56,7 @@ class Article(object):
         count = 0
 
         while i < len(self.content) or len(indices)<=10:
-            if ((sp[i] in self.links) == True) and ((sp[i] not in indices) == True) and (sp[i] != self.name_article):
+            if ((sp[i] in self.links) == True) and ((sp[i] in indices) == False) and (sp[i] != self.name_article):
                 if len(sp[i])<=4:
                     tester = self.is_date_or_number(sp[i])
                     if (tester == True) and len(sp[i])>2 and count <3: 

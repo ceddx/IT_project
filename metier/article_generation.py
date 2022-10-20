@@ -1,4 +1,3 @@
-from dataclasses import replace
 import requests
 import random
 
@@ -18,7 +17,6 @@ class ArticleGeneration(object):
     def get_title(self):
 
         titre = self.liste_article[self.num_article]['article']
-        titre = titre.replace('_',' ')
         return titre
 
     def get_views(self):

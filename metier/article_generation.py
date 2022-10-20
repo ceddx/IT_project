@@ -25,5 +25,3 @@ class ArticleGeneration(object):
 
         return self.liste_article[self.num_article]['views']
 
-test = ArticleGeneration()
-print(test.get_title())

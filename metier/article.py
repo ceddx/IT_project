@@ -1,20 +1,13 @@
-import wikipedia
-from article_generation import ArticleGeneration
+import re
 
 class Article(object):
+
     '''
     Classe permettant de générer les articles, les indices et leur validation.
     '''
-    wikipedia.set_lang('fr')
-    art = ArticleGeneration()
-    nom = art.get_title()
-    article_wikipedia = wikipedia.page(nom)
-    liens = article_wikipedia.links
-    nb_vues = art.get_views()
-    contenu = article_wikipedia.summary
-
 
     def __init__(self, name_article : str , links : list, nb_views : int, content : str, clue = []) :
+
         """
         Création de l'article.
 
@@ -51,12 +44,7 @@ class Article(object):
 #Mettre une variable pour la difficulté à la place de <10
         if len(self.links) < 10:
             return False
-        else : 
-            self.select_clue()
-            if len(self.clue)<5:
-                return False
-            else : 
-                return True
+        
     
     def select_clue(self):
 
@@ -66,10 +54,28 @@ class Article(object):
         summary = self.content
         sp = summary.split()
         i = 0
-        clue = []
-        while i < len(sp):
-            if ((sp[i] in self.links) == True) and ((sp[i] not in self.clue) == True):
-                clue.append(sp[i])
-            i += 1
-        self.clue = clue
+        indices = []
+        count = 0
+
+        while i < len(self.content) or len(indices)<=10:
+            if ((sp[i] in self.links) == True) and ((sp[i] not in indices) == True) and (sp[i] != self.name_article):
+                if len(sp[i])<=4:
+                    tester = self.is_date_or_number(sp[i])
+                    if (tester == True) and len(sp[i])>2 and count <3: 
+                        indices.append(sp[i])
+                        count += 1
+                        i += 1
+                else :
+                    indices.append(sp[i])
+                    i += 1
+
+        self.clue = indices
+        return self.clue
     
+    def is_date_or_number(self, smth):
+        
+        test = re.match("[0-9]",smth)
+        if test != None:
+            return True
+        else :
+            return False

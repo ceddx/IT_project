@@ -1,35 +1,67 @@
 import requests
 import random
 import wikipediaapi
+import re
 
 class ArticleGeneration(object):
+
+    """
+    Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
+    """
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/09/all-days',headers=headers)
     resj = (res.json())['items'][0]['articles']
     rdm = random.randint(0,len(resj)-1)
 
+
     def __init__(self, num_article = rdm, liste_article = resj):
+
+        '''
+        Génère un article.
+
+        Paramètres :
+        -------------
+        num_article : int
+            Le numéro de l'article dans la liste
+        liste_article : liste
+            La liste des articles disponibles
+        '''
 
         self.num_article = num_article
         self.liste_article = liste_article
     
+
     def get_title(self):
+
+        '''
+        Méthode permettant de récupérer le titre de la page.
+
+        Returns :
+        --------------------------------
+        titre : str
+        Le titre de la page
+        '''
 
         titre = self.liste_article[self.num_article]['article']
         if '_' in titre:
             titre  = titre.replace('_', ' ')
         return titre
 
+
     def get_views(self):
 
-        return self.liste_article[self.num_article]['views']
+        '''
+        Méthode permettant de récupérer le nombre de vues de la page
+        Returns :
+        --------------------------------
+        nb_vues : int
+        Le nombre de vue de la page
+        '''
+
+        nb_vues = self.liste_article[self.num_article]['views']
+        return nb_vues
     
-    def get_page(self):
-        
-        wiki_wiki = wikipediaapi.Wikipedia('fr')
-        page = wiki_wiki.page(self.get_title())
-        return page
 
     def validation(self):
         
@@ -40,14 +72,23 @@ class ArticleGeneration(object):
         --------------------------------
         True si les conditions sont remplies
         False sinon
-
         '''
+
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
         return page.exists()
 
+
     def get_links(self):
 
+        '''
+        Méthode permettant de récupérer une liste avec tous les liens hypertextes de la page.
+
+        Returns :
+        --------------------------------
+        liste : list
+        La liste de liens hypertextes de la page
+        '''
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
         links = page.links
@@ -56,19 +97,38 @@ class ArticleGeneration(object):
             liste.append(title)
         return liste
     
+
     def get_summary(self):
+
+        '''
+        Méthode permettant de récupérer le sommaire de la page
+        Returns :
+        --------------------------------
+        page.summary : str
+        Le sommaire de la page
+        '''
 
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
         return page.summary
 
+
     def get_categories(self):
+
+        '''
+        Méthode permettant de récupérer les catégories et portails de la page
+        Returns :
+        --------------------------------
+        liste : list
+        Les catégories de la page
+        '''
         
-            wiki_wiki = wikipediaapi.Wikipedia('fr')
-            page = wiki_wiki.page(self.get_title())
-            categories = page.categories
-            liste = []
-            for title in sorted(categories.keys()):
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        page = wiki_wiki.page(self.get_title())
+        categories = page.categories
+        liste = []
+        for title in sorted(categories.keys()):
+            if re.search('Catégorie:Page utilisant', title)==None:                   
                 liste.append(title)
-            return liste
+        return liste
 

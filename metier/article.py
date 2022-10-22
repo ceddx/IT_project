@@ -1,6 +1,6 @@
 import re
-import wikipediaapi
 from metier.article_generation import ArticleGeneration
+
 class Article(object):
 
     '''
@@ -39,7 +39,9 @@ class Article(object):
         self.clue = clue
         
     
-    def select_clue(self):
+    def select_clue(self): 
+    # Ne fonctionne pas encore mais ca ne serait tarder, le problème vient de la manière 
+    # dont sont nommés les liens hypertextes, ils prennent le nom de l'article vers lequel il dirige.
 
         """
         Méthode permettant de selectionner les indices
@@ -51,7 +53,7 @@ class Article(object):
         count = 0
 
         while i < len(sp):
-            if ((sp[i] not in indices)) and (sp[i] != self.name_article) and (sp[i] != self.name_article):
+            if ((sp[i] not in indices) == True) and (sp[i] != self.name_article):
                 if len(sp[i])<=4:
                     tester = self.is_date_or_number(sp[i])
                     if (tester == True) and len(sp[i])>2 and count <3: 
@@ -67,8 +69,20 @@ class Article(object):
         self.clue = [*set(indices)]
         return self.clue
 
+
     def is_date_or_number(self, smth):
         
+        """
+        Paramètres:
+        --------------------------------
+        smth: string
+            L'objet à tester
+
+        Returns:
+        --------------------------------   
+        bool : True or False
+        """
+        # Utilisation d'expression régulière pour faciliter la recherche
         test = re.match("[0-9]",smth)
         if test != None:
             return True

@@ -7,13 +7,6 @@ sys.path.append("C:/Users/lolom/Desktop/projet info/projet_info_2a/metier/articl
 '''
 
 
-test = Article()
-print(test.name_article)
-test.select_clue()
-print(test.clue)
-print(test.categories)
-
-
 
 
 

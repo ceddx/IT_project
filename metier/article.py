@@ -1,12 +1,13 @@
 import re
-
+import wikipediaapi
+from metier.article_generation import ArticleGeneration
 class Article(object):
 
     '''
     Classe permettant de générer les articles, les indices et leur validation.
     '''
-
-    def __init__(self, name_article : str , links : list, nb_views : int, content : str, clue = []) :
+    
+    def __init__(self, clue = []) :
 
         """
         Création de l'article.
@@ -24,24 +25,18 @@ class Article(object):
         Clue : liste
             Les indices pour trouver la page contenus dans une liste
         """
+        
+        t = False
+        while t == False:
+            article = ArticleGeneration()
+            t = article.validation()
 
-        self.name_article = name_article
-        self.links = links
-        self.nb_views = nb_views
-        self.content = content
+        self.name_article = article.get_title()
+        self.links = article.get_links()
+        self.nb_views = article.get_views()
+        self.content = article.get_summary()
+        self.categories = article.get_categories()
         self.clue = clue
-    
-    def article_validation(self):
-
-        '''
-        Méthode permettant de vérifier si l'article et jouable ou non'.
-
-        Returns :
-        --------------------------------
-        True si les conditions sont remplies
-        False sinon
-        '''
-    
         
     
     def select_clue(self):
@@ -56,7 +51,7 @@ class Article(object):
         count = 0
 
         while i < len(sp):
-            if ((sp[i] not in indices)) and (sp[i] != self.name_article):
+            if ((sp[i] not in indices)) and (sp[i] != self.name_article) and (sp[i] != self.name_article):
                 if len(sp[i])<=4:
                     tester = self.is_date_or_number(sp[i])
                     if (tester == True) and len(sp[i])>2 and count <3: 
@@ -71,7 +66,7 @@ class Article(object):
 
         self.clue = [*set(indices)]
         return self.clue
-    
+
     def is_date_or_number(self, smth):
         
         test = re.match("[0-9]",smth)
@@ -79,3 +74,4 @@ class Article(object):
             return True
         else :
             return False
+

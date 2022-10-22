@@ -1,6 +1,6 @@
 import requests
 import random
-
+import wikipediaapi
 
 class ArticleGeneration(object):
 
@@ -17,9 +17,58 @@ class ArticleGeneration(object):
     def get_title(self):
 
         titre = self.liste_article[self.num_article]['article']
+        if '_' in titre:
+            titre  = titre.replace('_', ' ')
         return titre
 
     def get_views(self):
 
         return self.liste_article[self.num_article]['views']
+    
+    def get_page(self):
+        
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        page = wiki_wiki.page(self.get_title())
+        return page
+
+    def validation(self):
+        
+        '''
+        Méthode permettant de vérifier si l'article et jouable ou non'.
+
+        Returns :
+        --------------------------------
+        True si les conditions sont remplies
+        False sinon
+
+        '''
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        page = wiki_wiki.page(self.get_title())
+        return page.exists()
+
+    def get_links(self):
+
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        page = wiki_wiki.page(self.get_title())
+        links = page.links
+        liste = []
+        for title in sorted(links.keys()):
+            liste.append(title)
+        return liste
+    
+    def get_summary(self):
+
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        page = wiki_wiki.page(self.get_title())
+        return page.summary
+
+    def get_categories(self):
+        
+            wiki_wiki = wikipediaapi.Wikipedia('fr')
+            page = wiki_wiki.page(self.get_title())
+            categories = page.categories
+            liste = []
+            for title in sorted(categories.keys()):
+                liste.append(title)
+            return liste
 

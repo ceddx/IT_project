@@ -129,6 +129,9 @@ class ArticleGeneration(object):
         liste = []
         for title in sorted(categories.keys()):
             if re.search('Catégorie:Page utilisant', title)==None:                   
-                liste.append(title)
+                cat = title[10:]
+                liste.append(cat)
+
+            
         return liste
 

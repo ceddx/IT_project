@@ -13,11 +13,11 @@ class HistoryDao:
     def add_history(history):
         connection = DBConnection().connection
         with connection.cursor() as cursor :
-            curseur.execute("SELECT id_player FROM History ORDER BY DESC")
+            cursor.execute("SELECT id_player FROM History ORDER BY DESC")
             last_id=cursor.fetchone()
             id_history+=last_id
         with connection.cursor() as cursor :
-            curseur.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
+            cursor.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
                             "VALUES (%(id_history)s, %(id_player)s, %(score)s),%(speed)s,%(difficulty)s,%(article_name)s"
                             ,{"id_history":History.id_history,
                               "id_player":History.id_player,
@@ -29,7 +29,7 @@ class HistoryDao:
             observation = cursor.fetchone()
         return history
     def get_best_vitesse(self):
-        connection = DBconnection().connection
+        connection = DBConnection().connection
         with connection.cursor() as cursor:
             
     def get_best_score(self):

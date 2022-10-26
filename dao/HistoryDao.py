@@ -15,16 +15,21 @@ class HistoryDao:
             last_id=cursor.fetchone()
             id_history+=last_id
         with connection.cursor() as cursor :
-            curseur.execute("INSERT into History (id_player,name,email,password)"
-                            "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
-                            ,{"id_player":Player.id,
-                              "name":Player.name,
-                              "email":Player.email,
-                              "password":Player.password
+            curseur.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
+                            "VALUES (%(id_history)s, %(id_player)s, %(score)s),%(speed)s,%(difficulty)s,%(article_name)s"
+                            ,{"id_history":History.id_history,
+                              "id_player":History.id_player,
+                              "score":History.score,
+                              "speed":History.speed,
+                              "difficulty":History.difficulty,
+                              "article_name":History.article_name
                             })
             observation = cursor.fetchone()
+        return history
     def get_best_vitesse(self):
-        pass
+        connection = DBconnection().connection
+        with connection.cursor() as cursor:
+            
     def get_best_score(self):
         pass
     def update_score(self):

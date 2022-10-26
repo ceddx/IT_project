@@ -1,12 +1,13 @@
-import unittest
+from unittest import TestCase
 from metier.game import Game
 from metier.player import Player
+from metier.history import History
 
 def test_ask_for_clue(self):
     '''
     Fonction testant la méthode "ask_for_clue", qui est censée renvoyer au joueur le premier élément de la liste d'indices.
     '''
-    #GIVEN
+    # GIVEN : initialisation du test
 
     langue = "français"
     difficulte = 1
@@ -14,10 +15,56 @@ def test_ask_for_clue(self):
     reponse = "cheval"
     partie = Game(langue, difficulte, indices, reponse)
 
-    #WHEN
+    # WHEN : méthode à tester
 
     indice_donne = partie.ask_for_clue()
 
-    #THEN
+    # THEN : ce qu'on veut tester
 
     self.assertEqual(indices[0], indice_donne)
+
+
+def test_make_guess(self):
+    '''
+    Fonction testant la méthode "make_guess", qui est censée renvoyer True si le joueur a fait une proposition correcte, False sinon.
+    '''
+    # GIVEN : initialisation du test
+
+    langue = "français"
+    difficulte = 1
+    indices = ["animal", "mammifère", "domestique", "équitation"]
+    reponse = "cheval"
+    partie = Game(langue, difficulte, indices, reponse)
+    proposition_joueur = "cheval"
+
+    # WHEN : méthode à tester
+
+    guess = partie.make_guess(proposition_joueur)
+
+    # THEN : ce qu'on veut tester
+
+    self.assertEqual(True, guess)
+
+
+def test_make_score(self):
+    '''
+    Fonction testant la méthode "make_score", qui est censée renvoyer le score d'un joueur.
+    '''
+    # GIVEN : initialisation du test
+
+    id_history = 28
+    id_player = 12
+    score = 50
+    speed = 2
+    difficulty = 1
+    classement = 150
+    article = "cheval"
+    historique = History(id_history, id_player, score, speed, difficulty, classement, article)
+
+    # WHEN : méthode à tester
+
+    affiche = historique.make_score()
+
+    # THEN : ce qu'on veut tester
+
+    self.assertEqual(50, affiche)

@@ -32,7 +32,7 @@ class SignInExample(AbstractView):
                 'message': 'What\'s your password. Your password should be '\
                     'at least 10 characters, with at least one capital letter ' \
                     'one number and one special character',
-                'validate': ??? créer un validateur de password
+                'validate': ###### créer un validateur de password
             }
         ]
 

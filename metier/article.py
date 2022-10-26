@@ -83,7 +83,7 @@ class Article(object):
         bool : True or False
         """
         # Utilisation d'expression régulière pour faciliter la recherche
-        test = re.match("[0-9]",smth)
+        test = re.search("\d+|janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre'", smth, re.IGNORECASE)
         if test != None:
             return True
         else :

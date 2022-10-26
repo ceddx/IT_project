@@ -1,4 +1,4 @@
-from util.singleton import Singleton
+from utils.singleton import Singleton
 
 
 class Session(metaclass=Singleton):

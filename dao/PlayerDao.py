@@ -1,3 +1,5 @@
+from db_connection import DBConnection
+
 class PlayerDao:
     def __init__(self):
         pass
@@ -23,6 +25,7 @@ class PlayerDao:
                     l.append(observation)
                     row = cursor.fetchone()
         return l
+    
     def get_emails(self):
         l=[]
         connection = DBConnection().connection
@@ -33,20 +36,24 @@ class PlayerDao:
                     l.append(observation)
                     observation = cursor.fetchone()
         return l
+    
     def find_player_by_id(self,id):
         connection = DBConnection().connection
         with connection.cursor() as cursor :
                 cursor.execute("SELECT id_player FROM Player where id_player=%(id)s",{"id":id})
                 observation = cursor.fetchone()
         return observation
+    
     def find_player_by_name(self,name):
         connection = DBConnection().connection
         with connection.cursor() as cursor :
                 cursor.execute("SELECT name FROM Player where name=%(name)s",{"name":name})
                 observation = cursor.fetchone()
         return observation
+    
     def update_player(self):
         pass
+    
     def add_player(self):
         connection = DBConnection().connection
         with connection.cursor() as cursor :

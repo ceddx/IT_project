@@ -51,3 +51,20 @@ def test_validation(self):
     self.assertEqual(True, val)
 
 
+def test_get_links(self):
+    '''
+    Fonction permettant de tester la méthode "get_links" qui renvoie les liens hypertextes contenus dans un article.
+    '''
+     # GIVEN : initialisation du test
+
+    article = ArticleGeneration(0, [{"article":"Lyon","views":44892,"rank":66}])
+
+    # WHEN : méthode à tester
+
+    liens = article.get_links()
+
+    # THEN : ce qu'on veut tester
+
+    self.assertEqual([], liens)
+
+

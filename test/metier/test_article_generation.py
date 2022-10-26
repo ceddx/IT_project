@@ -11,7 +11,7 @@ def test_get_title(self):
 
     # WHEN : méthode à tester
 
-    titre = article.get_title(self)
+    titre = article.get_title()
 
     # THEN : ce qu'on veut tester
 
@@ -28,9 +28,26 @@ def test_get_views(self):
 
     # WHEN : méthode à tester
 
-    vues = article.get_views(self)
+    vues = article.get_views()
 
     # THEN : ce qu'on veut tester
 
     self.assertEqual(177667567, vues)
+
+def test_validation(self):
+    '''
+    Fonction permettant de tester la méthode "validation" qui dit si un article est jouable.
+    '''
+     # GIVEN : initialisation du test
+
+    article = ArticleGeneration(0, [{"article":"Stephen_Hawking","views":47663,"rank":610}])
+
+    # WHEN : méthode à tester
+
+    val = article.validation()
+
+    # THEN : ce qu'on veut tester
+
+    self.assertEqual(True, val)
+
 

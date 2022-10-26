@@ -63,3 +63,29 @@ def test_get_links(self):
 
 
     # THEN : ce qu'on veut tester
+
+
+def test_get_summary(self):
+        '''
+        Fonction permettant de tester la méthode "get_summary" qui est censée renvoyer le résumé de la page.
+        '''
+    # GIVEN : initialisation du test
+
+
+    # WHEN : méthode à tester
+
+
+    # THEN : ce qu'on veut tester
+
+
+def test_get_categories(self):
+    '''
+    Fonction permettant de tester la méthode "get_categories" qui est censée récupérer les catégories et portails de la page.
+    '''
+   # GIVEN : initialisation du test
+
+
+    # WHEN : méthode à tester
+
+
+    # THEN : ce qu'on veut tester

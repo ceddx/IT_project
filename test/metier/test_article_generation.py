@@ -40,7 +40,7 @@ def test_validation(self):
     '''
      # GIVEN : initialisation du test
 
-    article = ArticleGeneration(0, [{"article":"Stephen_Hawking","views":47663,"rank":610}])
+    article = ArticleGeneration(0, [{"article":"Lyon","views":44892,"rank":664}])
 
     # WHEN : méthode à tester
 
@@ -51,18 +51,15 @@ def test_validation(self):
     self.assertEqual(True, val)
 
 
-#def test_get_links(self):
-#    '''
-#    Fonction permettant de tester la méthode "get_links" qui renvoie les liens hypertextes contenus dans un article.
-#    '''
-#     # GIVEN : initialisation du test
-#
-#    article = ArticleGeneration(0, [{"article":"Lyon","views":44892,"rank":66}])
-#
-#    # WHEN : méthode à tester
-#
-#    liens = article.get_links( )
-#
-#    # THEN : ce qu'on veut tester
-#
-#    self.assertEqual([], liens)
+def test_get_links(self):
+
+    '''
+    Fonction testant la méthode "get_links" qui est censée renvoyer la liste des liens hypertextes d'un article.
+    '''
+    # GIVEN : initialisation du test
+
+
+    # WHEN : méthode à tester
+
+
+    # THEN : ce qu'on veut tester

@@ -40,11 +40,11 @@ class Article(object):
         
     
     def select_clue(self): 
-    # Ne fonctionne pas encore mais ca ne serait tarder, le problème vient de la manière 
-    # dont sont nommés les liens hypertextes, ils prennent le nom de l'article vers lequel il dirige.
+    # Ne fonctionne pas encore mais ca ne saurait tarder, le problème vient de la manière 
+    # dont sont nommés les liens hypertextes, ils prennent le nom de l'article vers lequel ils dirigent.
 
         """
-        Méthode permettant de selectionner les indices
+        Méthode permettant de sélectionner les indices.
         """
         summary = self.content
         sp = summary.split()
@@ -88,4 +88,3 @@ class Article(object):
             return True
         else :
             return False
-

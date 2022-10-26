@@ -52,6 +52,7 @@ def test_validation(self):
 
 
 def test_get_links(self):
+    # À FAIRE
 
     '''
     Fonction testant la méthode "get_links" qui est censée renvoyer la liste des liens hypertextes d'un article.
@@ -66,6 +67,8 @@ def test_get_links(self):
 
 
 def test_get_summary(self):
+    # À FAIRE
+
         '''
         Fonction permettant de tester la méthode "get_summary" qui est censée renvoyer le résumé de la page.
         '''
@@ -79,6 +82,8 @@ def test_get_summary(self):
 
 
 def test_get_categories(self):
+    # À FAIRE
+
     '''
     Fonction permettant de tester la méthode "get_categories" qui est censée récupérer les catégories et portails de la page.
     '''

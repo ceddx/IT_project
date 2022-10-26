@@ -21,6 +21,7 @@ def test_is_date_or_number(self):
 
 
 def test_select_clue(self):
+    # À FAIRE
     '''
     Fonction testant la méthode "select_clue" qui est censée renvoyer la liste des indices à proposer pour faire deviner un article.
     '''
@@ -31,4 +32,3 @@ def test_select_clue(self):
 
 
     # THEN : ce qu'on veut tester
-    

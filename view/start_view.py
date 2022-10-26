@@ -13,11 +13,11 @@ class StartView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Bonjour {Session().user_name}',
+                'message': f'Bonjour {Session().player_name}',
                 'choices': [
-                    'Next'
-                    , 'Checkbox example'
-                    , 'Sign In example'
+                    'se créer un compte'
+                    , 'se connecter'
+                    , 'jouer sans se connecter'
 
                 ]
             }
@@ -29,12 +29,12 @@ class StartView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Next':
-            pass
-        elif reponse['choix'] == 'Checkbox example':
-            from view.checkbox_example_view import CheckBoxExampleView
-            return CheckBoxExampleView()
-        elif reponse['choix'] == 'Sign In example':
-            from view.sign_in_example import SignInExample
-            return SignInExample()
-
+        if reponse['choix'] == 'se créer un compte':
+            from view.signupview import SignupView
+            return SignupView()
+        elif reponse['choix'] == 'se connecter':
+            from view.loginview import loginView
+            return loginView()
+        elif reponse['choix'] == 'jouer sans se connecter':
+            from view.gameview import GameView
+            return GameView()

@@ -26,7 +26,7 @@ class HistoryDao:
                               "difficulty":History.difficulty,
                               "article_name":History.article_name
                             })
-        return history
+        
     
     def get_best_vitesse(self):
         connection = DBConnection().connection

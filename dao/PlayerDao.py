@@ -49,16 +49,16 @@ class PlayerDao:
         return observation
     def update_player(self):
         pass
-    def add_player(self):
+    def add_player(Player):
         connection = DBConnection().connection
         with connection.cursor() as cursor :
             curseur.execute("SELECT id_player FROM Player ORDER BY DESC")
             last_id=cursor.fetchone()
-            Player.id+=last_id
+            Player.id_player+=last_id
         with connection.cursor() as cursor :
             curseur.execute("INSERT into Player (id_player,name,email,password)"
                             "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
-                            ,{"id_player":Player.id,
+                            ,{"id_player":Player.id_player,
                               "name":Player.name,
                               "email":Player.email,
                               "password":Player.password

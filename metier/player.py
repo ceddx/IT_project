@@ -28,7 +28,7 @@ class Player:
 
     def ask_for_clue(self):
         '''
-        Méthode permettant au joueur d'avoir un indice supplémentaire.
+        Méthode permettant au joueur d'obtenir un indice supplémentaire.
 
         Returns:
         ------------
@@ -36,7 +36,6 @@ class Player:
             indice proposé au joueur
         '''
         return Game(self).clues.pop(0)
-
 
     def get_score(self):
         '''

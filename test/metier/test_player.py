@@ -1,6 +1,7 @@
 from unittest import TestCase
 from metier.game import Game
 from metier.player import Player
+from metier.history import History
 
 def test_ask_for_clue(self):
     '''
@@ -45,6 +46,25 @@ def test_make_guess(self):
     self.assertEqual(True, guess)
 
 
+def test_make_score(self):
+    '''
+    Fonction testant la méthode "make_score", qui est censée renvoyer le score d'un joueur.
+    '''
+    # GIVEN : initialisation du test
 
+    id_history = 28
+    id_player = 12
+    score = 50
+    speed = 2
+    difficulty = 1
+    classement = 150
+    article = "cheval"
+    historique = History(id_history, id_player, score, speed, difficulty, classement, article)
 
+    # WHEN : méthode à tester
 
+    affiche = historique.make_score()
+
+    # THEN : ce qu'on veut tester
+
+    self.assertEqual(50, affiche)

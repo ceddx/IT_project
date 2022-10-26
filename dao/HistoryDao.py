@@ -1,3 +1,5 @@
+from db_connection import DBConnection
+
 class HistoryDao:
     def __init__(self):
         pass

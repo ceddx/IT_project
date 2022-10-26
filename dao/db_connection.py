@@ -1,9 +1,8 @@
 import os
-
 import dotenv
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from utils.singleton import Singleton
+from util.singleton import Singleton
 
 
 class DBConnection(metaclass=Singleton):

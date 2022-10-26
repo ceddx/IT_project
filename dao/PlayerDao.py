@@ -21,7 +21,7 @@ class PlayerDao:
                 observation = cursor.fetchone()
                 while observation is not None:
                     l.append(observation)
-                    row = cursor.fetchone()
+                    observation = cursor.fetchone()
         return l
     def get_emails(self):
         l=[]

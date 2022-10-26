@@ -67,9 +67,5 @@ class PlayerDao:
                               "name":Player.name,
                               "email":Player.email,
                               "password":Player.password
-                            })
-            observation = cursor.fetchone()
-            
-        return Player
-
+                            })            
 

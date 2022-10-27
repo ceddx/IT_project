@@ -1,13 +1,18 @@
 from pprint import pprint
-
 import regex
 from PyInquirer import  prompt
-
-
+from prompt_toolkit.validation import ValidationError, Validator
 from view.abstract_view import AbstractView
 from view.session import Session
 
-
+class PasswordValidator(Validator):
+    def validate(self, document):
+        ok = regex.match(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{10,}$", document.text)
+        if not ok:
+            raise ValidationError(
+                message='Please enter a valid password',
+                cursor_position=len(document.text)) 
 class SignInExample(AbstractView):
     def __init__(self) -> None:
         self.__questions = [
@@ -32,7 +37,7 @@ class SignInExample(AbstractView):
                 'message': 'What\'s your password. Your password should be '\
                     'at least 10 characters, with at least one capital letter ' \
                     'one number and one special character',
-                'validate': ###### créer un validateur de password
+                'validate': PasswordValidator
             }
         ]
 

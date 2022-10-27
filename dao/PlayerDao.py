@@ -6,8 +6,8 @@ class PlayerDao:
    
     def find_all_players(self):
         l=[]
-        connection = DBConnection().connection
-        with connection.cursor() as cursor :
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
                 cursor.execute("SELECT * FROM Player")
                 observation = cursor.fetchone()
                 while observation is not None:
@@ -17,8 +17,8 @@ class PlayerDao:
 
     def get_names(self):
         l=[]
-        connection = DBConnection().connection
-        with connection.cursor() as cursor :
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
                 cursor.execute("SELECT name FROM Player")
                 observation = cursor.fetchone()
                 while observation is not None:

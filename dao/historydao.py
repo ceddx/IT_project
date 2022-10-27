@@ -1,15 +1,19 @@
 from db_connection import DBConnection
+from metier.history import History
 
 class HistoryDao:
     def __init__(self):
         pass
     
-    def find_player_history(self,id,name):
-        connection = DBConnection().connection
-        with connection.cursor() as cursor :
-                cursor.execute("SELECT id_player,name FROM History where id_player=%(id)s OR name=%(name)s",{"id":id,"name":name})
+    def find_player_history(self,id_player,name):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute("SELECT id_player FROM History where id_player=%(id)s",{"id":id_player})
                 observation = cursor.fetchone()
-        return observation
+                while observation is not None:
+                    history.append(observation)
+                    observation = cursor.fetchone()
+        return history
 
     def add_history(history):
         connection = DBConnection().connection

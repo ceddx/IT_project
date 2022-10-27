@@ -43,7 +43,7 @@ def test_make_guess(self):
 
     # THEN : ce qu'on veut tester
 
-    self.assertEqual(True, guess)
+    self.assertTrue( guess)
 
 
 def test_make_score(self):

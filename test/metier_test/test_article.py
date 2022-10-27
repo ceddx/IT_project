@@ -17,7 +17,7 @@ def test_is_date_or_number(self):
 
     # THEN : ce qu'on veut tester
 
-    self.assertEqual(True, sortie)
+    self.assertTrue(sortie)
 
 
 def test_select_clue(self):

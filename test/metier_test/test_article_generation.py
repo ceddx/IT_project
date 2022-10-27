@@ -48,7 +48,7 @@ def test_validation(self):
 
     # THEN : ce qu'on veut tester
 
-    self.assertEqual(True, val)
+    self.assertTrue(val)
 
 
 def test_get_links(self):

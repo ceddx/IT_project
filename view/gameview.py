@@ -4,11 +4,26 @@ from pprint import pprint
 from view.start_view import StartView
 import Article,article_generation
 class gameview(AbstractView):
-
+    def __init__(self):
+        self.__questions = [
+            {
+                'type': 'list',
+                'name': 'choix',
+                'message': f'Bonjour {Session().player_name}',
+                'choices': [
+                    'jouer'
+                    , 'retour'
+                ]
+            }
+    ]
     def display_info(self):
         print(f"Hello {Session().player.name}")
     def make_choice(self):
-        pass
+        reponse = prompt(self.__questions)
+        if reponse['choix'] == 'jouer':
+            play_game()
+        elif reponse['choix'] == 'retour':
+            return StartView()
     def play_game(self):
         begin,hint_message=false
         i=0

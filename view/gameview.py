@@ -8,9 +8,7 @@ class gameview(AbstractView):
     def display_info(self):
         print(f"Hello {Session().player.name}")
     def make_choice(self):
-        answers = prompt(self.__questions)
-        pprint(answers)
-        return StartView()
+        pass
     def play_game(self):
         begin,hint_message=false
         i=0

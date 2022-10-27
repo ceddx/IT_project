@@ -2,7 +2,14 @@ from view.abstract_view import AbstractView
 from PyInquirer import  prompt
 from pprint import pprint
 from view.start_view import StartView
+<<<<<<< HEAD
 import Article,article_generation
+=======
+from metier.article import Article
+from session import Session
+from PyInquirer import Inquirer, prompt, Validator, ValidationError
+
+>>>>>>> 55283c1ce7bb4b1e2d639ae142994f836e70cc08
 class gameview(AbstractView):
     def __init__(self):
         self.__questions = [

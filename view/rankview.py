@@ -9,9 +9,27 @@ class RankView(AbstractView):
     def __init__(self):
         self.classement = \
             HistoryService.find_classement() ;
+        self.__questions = [
+            {
+                'type': 'list',
+                'name': 'choice',
+                'message': 'Here is the top 100 best scores.',
+                'choices': [
+                    'return to menu'
+                    , 'try to do better'
+                ]
+            }
+        ]
 
     def display_info(self):
         pass
 
     def make_choice(self):
-        pass
+        reponse = prompt(self.__questions)
+        if reponse["choice"] == "return to menu":
+            from view.start_view import StartView
+            return StartView
+        elif reponse["choice"] == "try to do better":
+            from view.gameview import Gameview
+            return Gameview
+            

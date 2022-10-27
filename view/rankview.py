@@ -7,5 +7,5 @@ class RankView(AbstractView):
     Classe permettant d'afficher le classement des meilleurs scores.
     '''
     def __init__(self):
-        self. = \
-            HistoryService.find_player_history() ;
+        self.historique = \
+            HistoryService.find_classement() ;

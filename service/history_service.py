@@ -18,7 +18,7 @@ class HistoryService(metaclass=Singleton):
         History()
         HistoryDao.find_player_history(self, id, name)
         
-    def find_classement(self):
+    def find_rank(self):
         '''
         Méthode permettant de renvoyer le classement des 100 meilleurs joueurs ainsi que leur score.
         '''

@@ -33,6 +33,7 @@ class Gameview(AbstractView):
     def play_game(self):
         begin,hint_message=False
         i=0
+        score=20
         guess=""
         begin = Inquirer.confirm(message="Begin the game?", default=True).execute()
         if begin :
@@ -41,6 +42,7 @@ class Gameview(AbstractView):
             while i < len(list_of_hints):
                 hint_message = Inquirer.confirm(message="Get a hint?",default = True).execute()
                 if hint_message :
+                     score-=1
                      print(list_of_hints[i])
                 guess = Inquirer.text(message="Make a guess",multiline=True).execute()
                 if guess == game_article.name:
@@ -48,8 +50,13 @@ class Gameview(AbstractView):
                      break
                 else:
                     print("Try again")
+                    score-=2
                     i+=1
-                    
+                    if guess == game_article.name:
+                        print("Congratulation you won the game")
+                        break
+        Session().score=score
+        return score
             
 
 

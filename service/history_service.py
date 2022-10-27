@@ -16,5 +16,6 @@ class HistoryService(metaclass=Singleton):
         '''
         Méthode permettant de trouver l'historique d'un joueur.
         '''
+        return 
         
         

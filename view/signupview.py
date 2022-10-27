@@ -13,6 +13,7 @@ class PasswordValidator(Validator):
             raise ValidationError(
                 message='Please enter a valid password',
                 cursor_position=len(document.text)) 
+
 class SignInExample(AbstractView):
     def __init__(self) -> None:
         self.__questions = [

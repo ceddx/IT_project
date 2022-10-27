@@ -2,14 +2,10 @@ from view.abstract_view import AbstractView
 from PyInquirer import  prompt
 from pprint import pprint
 from view.start_view import StartView
-<<<<<<< HEAD
-import Article,article_generation
-=======
 from metier.article import Article
 from session import Session
 from PyInquirer import Inquirer, prompt, ValidationError
 
->>>>>>> 55283c1ce7bb4b1e2d639ae142994f836e70cc08
 class gameview(AbstractView):
     def __init__(self):
         self.__questions = [
@@ -37,6 +33,7 @@ class gameview(AbstractView):
     def play_game(self):
         begin,hint_message=false
         i=0
+        score=20
         guess=""
         begin = inquirer.confirm(message="Begin the game?", default=True).execute()
         if begin :
@@ -45,15 +42,18 @@ class gameview(AbstractView):
             while i < len(list_of_hints):
                 hint_message = inquirer.confirm(message="Get a hint?",default = True).execute()
                 if hint_message :
+                     score-=1
                      print(list_of_hints[i])
                 guess = inquirer.text(message="Make a guess",multiline=True).execute()
-                if guess == game_article.name:
-                     print("Congratulation you won the game")
-                     break
-                else:
+                while guess != game_article.name:
                     print("Try again")
+                    score-=2
                     i+=1
-                    
+                    if guess == game_article.name:
+                        print("Congratulation you won the game")
+                        break
+        Session().score=score
+        return score
             
 
 

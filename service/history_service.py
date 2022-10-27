@@ -11,7 +11,7 @@ class HistoryService(metaclass=Singleton):
     def __init__(self):
         pass
 
-    def find_player_history(self):
+    def get_find_player_history(self):
         '''
         Méthode permettant de trouver l'historique d'un joueur.
         '''

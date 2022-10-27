@@ -1,3 +1,5 @@
+from dao.historydao
+
 class HistoryService:
     '''
     Classe qui gère l'historique des joueurs.
@@ -9,7 +11,5 @@ class HistoryService:
         '''
         Méthode permettant de trouver l'historique d'un joueur.
         '''
-
-        # À FAIRE
 
 

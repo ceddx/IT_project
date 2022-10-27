@@ -3,6 +3,7 @@ from db_connection import DBConnection
 class HistoryDao:
     def __init__(self):
         pass
+    
     def find_player_history(self,id,name):
         connection = DBConnection().connection
         with connection.cursor() as cursor :
@@ -27,7 +28,6 @@ class HistoryDao:
                               "article_name":history.article_name
                             })
         
-    
     def get_best_vitesse(self):
         connection = DBConnection().connection
         with connection.cursor() as cursor:
@@ -41,5 +41,6 @@ class HistoryDao:
             cursor.execute("SELECT MAX(*) score FROM History")
             observation = cursor.fetchone()
         return observation
+    
     def update_score(self):
         pass

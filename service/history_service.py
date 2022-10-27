@@ -1,6 +1,11 @@
-from dao.historydao
+from dao.historydao import HistoryDao
+from metier.history import History
+from util.singleton import Singleton
 
-class HistoryService:
+
+
+
+class HistoryService(metaclass=Singleton):
     '''
     Classe qui gère l'historique des joueurs.
     '''
@@ -11,5 +16,6 @@ class HistoryService:
         '''
         Méthode permettant de trouver l'historique d'un joueur.
         '''
-
-
+        History()
+        HistoryDao.find_player_history(self,id,name)
+        

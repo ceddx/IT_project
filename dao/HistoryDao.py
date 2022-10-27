@@ -44,3 +44,4 @@ class HistoryDao:
     
     def update_score(self):
         pass
+    

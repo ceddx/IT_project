@@ -5,7 +5,7 @@ from pprint import pprint
 from view.start_view import StartView
 from metier.article import Article
 from session import Session
-from PyInquirer import Inquirer, Separator, prompt, Validator, ValidationError
+from PyInquirer import Inquirer, prompt, Validator, ValidationError
 
 class gameview(AbstractView):
     def __init__(self):

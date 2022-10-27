@@ -1,9 +1,11 @@
 import requests
 import random
 import wikipediaapi
+import wikipedia
 import re
+from util.singleton import Singleton
 
-class ArticleGeneration(object):
+class ArticleGeneration(metaclass = Singleton):
 
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
@@ -46,7 +48,7 @@ class ArticleGeneration(object):
         titre = self.liste_article[self.num_article]['article']
         if '_' in titre:
             titre  = titre.replace('_', ' ')
-        return titre
+        return str(titre)
 
 
     def get_views(self):
@@ -134,4 +136,19 @@ class ArticleGeneration(object):
 
             
         return liste
+
+    def get_content(self):
+        wiki_wiki = wikipediaapi.Wikipedia(
+        language='fr',
+        extract_format=wikipediaapi.ExtractFormat.WIKI)
+        p_wiki = wiki_wiki.page(self.get_title())
+        page_content = p_wiki.text
+
+        return page_content
+
+    def new_rdm(self):
+
+        nrdm = random.randint(0,999)
+        self.rdm = nrdm
+        
 

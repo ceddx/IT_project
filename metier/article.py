@@ -27,14 +27,16 @@ class Article(object):
         """
         
         t = False
+        article = ArticleGeneration()
         while t == False:
-            article = ArticleGeneration()
             t = article.validation()
+            article.new_rdm()
 
         self.name_article = article.get_title()
         self.links = article.get_links()
         self.nb_views = article.get_views()
-        self.content = article.get_summary()
+        self.summary = article.get_summary()
+        self.content = article.get_content()
         self.categories = article.get_categories()
         self.clue = clue
         

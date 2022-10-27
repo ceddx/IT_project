@@ -6,7 +6,7 @@ from metier.article import Article
 from session import Session
 from PyInquirer import Inquirer, prompt, ValidationError
 
-class gameview(AbstractView):
+class Gameview(AbstractView):
     def __init__(self):
         self.__questions = [
             {
@@ -25,27 +25,30 @@ class gameview(AbstractView):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'jouer':
-            play_game()
+            Gameview().play_game()
         elif reponse['choix'] == 'retour':
             return StartView()
         elif reponse['choix'] == 'instructions':
             print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
     def play_game(self):
-        begin,hint_message=false
+        begin,hint_message=False
         i=0
         score=20
         guess=""
-        begin = inquirer.confirm(message="Begin the game?", default=True).execute()
+        begin = Inquirer.confirm(message="Begin the game?", default=True).execute()
         if begin :
             game_article=Article()
             list_of_hints=game_article.select_clue()
             while i < len(list_of_hints):
-                hint_message = inquirer.confirm(message="Get a hint?",default = True).execute()
+                hint_message = Inquirer.confirm(message="Get a hint?",default = True).execute()
                 if hint_message :
                      score-=1
                      print(list_of_hints[i])
-                guess = inquirer.text(message="Make a guess",multiline=True).execute()
-                while guess != game_article.name:
+                guess = Inquirer.text(message="Make a guess",multiline=True).execute()
+                if guess == game_article.name:
+                     print("Congratulation you won the game")
+                     break
+                else:
                     print("Try again")
                     score-=2
                     i+=1

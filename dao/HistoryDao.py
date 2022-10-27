@@ -18,13 +18,13 @@ class HistoryDao:
             id_history+=last_id
         with connection.cursor() as cursor :
             cursor.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
-                            "VALUES (%(id_history)s, %(id_player)s, %(score)s),%(speed)s,%(difficulty)s,%(article_name)s"
-                            ,{"id_history":history.id_history,
-                              "id_player":history.id_player,
-                              "score":history.score,
-                              "speed":history.speed,
-                              "difficulty":history.difficulty,
-                              "article_name":history.article_name
+                            "VALUES (%(id_history)s, %(id_player)s, %(score)s,%(speed)s,%(difficulty)s,%(article_name)s",
+                            {"id_history":History.id_history,
+                              "id_player":History.id_player,
+                              "score":History.score,
+                              "speed":History.speed,
+                              "difficulty":History.difficulty,
+                              "article_name":History.article_name
                             })
         
     

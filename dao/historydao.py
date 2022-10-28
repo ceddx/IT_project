@@ -75,7 +75,7 @@ class HistoryDao:
         with DBConnection().connection as connection:
             history=[]
             with connection.cursor() as cursor:
-                cursor.execute("SELECT MAX(*) vitesse FROM History")
+                cursor.execute("SELECT * FROM History order by vitesse desc limit %(nbr_observation)s", {"nbr_observation":X})
                 observation = cursor.fetchone()
                 for i in range(len(X)):
                     history.append(observation)
@@ -99,7 +99,7 @@ class HistoryDao:
         with DBConnection().connection as connection:
             history=[]
             with connection.cursor() as cursor:
-                cursor.execute("SELECT MAX(*) score FROM History")
+                cursor.execute("SELECT * FROM History order by score desc limit %(nbr_observation)s", {"nbr_observation":X})
                 observation = cursor.fetchone()
                 for i in range(len(X)):
                     history.append(observation)

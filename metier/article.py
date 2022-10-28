@@ -90,3 +90,18 @@ class Article(object):
             return True
         else :
             return False
+
+    def frequents_words(self):
+
+        liste = self.content.split()
+        dico = {}
+        i = 0
+        while i < 100:
+
+                if liste[i] in dico.keys():                    
+                    dico[liste[i]] += 1
+                else :
+                    dico[liste[i]] = 1
+        i +=1
+        return dico
+                    

@@ -16,4 +16,5 @@ class Session(metaclass=Singleton):
         self.score: str=None
         self.difficulty: str = None
         self.clue: str = None
+        self.history : list = []
     

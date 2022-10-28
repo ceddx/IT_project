@@ -20,8 +20,9 @@ class HistoryService(metaclass=Singleton):
         
     def find_rank(self):
         '''
-        Méthode permettant de renvoyer le classement des 100 meilleurs joueurs ainsi que leur score.
+        Méthode permettant de renvoyer le classement des 100 meilleurs joueurs ainsi que leur score. 
         '''
+        # PAS ENCORE AU POINT !!
         players = PlayerDao.get_all_players(self).id_player
         classement = []
         scores = []

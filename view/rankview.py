@@ -1,14 +1,17 @@
 from view.abstract_view import AbstractView
 from PyInquirer import prompt, Separator
 from service.history_service import HistoryService
+from metier.history import History
 
 class RankView(AbstractView):
     '''
     Classe permettant d'afficher le classement des meilleurs scores.
     '''
     def __init__(self):
-        self.classement = \
-            HistoryService.find_rank() ;
+        self.classement_scores = \
+            HistoryService.find_rank_scores() ;
+        self.classement_vitesses = \
+            HistoryService.find_rank_speeds() ;
         self.__questions = [
             {
                 'type': 'list',

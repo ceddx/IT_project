@@ -41,57 +41,67 @@ class HistoryDao:
         -------------
         history : History
             historique à ajouter
-
         '''
-        connection = DBConnection().connection
-        with connection.cursor() as cursor :
-            cursor.execute("SELECT id_player FROM History ORDER BY DESC")
-            last_id=cursor.fetchone()
-            id_history+=last_id
-        with connection.cursor() as cursor :
-            cursor.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
-                            "VALUES (%(id_history)s, %(id_player)s, %(score)s,%(speed)s,%(difficulty)s,%(article_name)s",
-                            {"id_history":History.id_history,
-                              "id_player":History.id_player,
-                              "score":History.score,
-                              "speed":History.speed,
-                              "difficulty":History.difficulty,
-                              "article_name":History.article_name
-                            })
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute("SELECT id_player FROM History ORDER BY DESC")
+                last_id=cursor.fetchone()
+                id_history+=last_id
+            with connection.cursor() as cursor :
+                cursor.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
+                                "VALUES (%(id_history)s, %(id_player)s, %(score)s,%(speed)s,%(difficulty)s,%(article_name)s",
+                                {"id_history":History.id_history,
+                                "id_player":History.id_player,
+                                "score":History.score,
+                                "speed":History.speed,
+                                "difficulty":History.difficulty,
+                                "article_name":History.article_name
+                                })
         
-    def get_best_vitesse(self):
+    def get_best_vitesse(self,X):
         '''
-        Méthode permettant de renvoyer la meilleure vitesse avec laquelle un joueur a gagné une partie.
+        Méthode permettant de renvoyer les X meilleures vitesses avec laquelle un joueur a gagné une partie.
+
+        Parameters
+        ----------
+        X : int
+            nombre de meilleurs vitesses que l'on veut
 
         Return:
         ----------
         observation : float
             maximum de toutes les vitesses
         '''
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT MAX(*) vitesse FROM History")
-            observation = cursor.fetchone()
-        return observation
+        with DBConnection().connection as connection:
+            history=[]
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT MAX(*) vitesse FROM History")
+                observation = cursor.fetchone()
+                for i in range(len(X)):
+                    history.append(observation)
+                    observation = cursor.fetchone()
+        return history
 
-    def get_best_score(self):
+    def get_best_score(self,X):
         '''
-        Méthode permettant de renvoyer le meilleur des scores.
+        Méthode permettant de renvoyer les X meilleurs scores.
+
+        Parameters
+        ----------
+        X : int
+            nombre de meilleurs scores que l'on veut
 
         Return :
         ---------
-        observation : int
-            maximum de tous les scores
+        history : Hystory
+            les X meilleurs scores
         '''
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT MAX(*) score FROM History")
-            observation = cursor.fetchone()
-        return observation
-    
-    def update_score(self):
-        '''
-        Méthode permettant de mettre à jour un score.
-        '''
-        pass
-    
+        with DBConnection().connection as connection:
+            history=[]
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT MAX(*) score FROM History")
+                observation = cursor.fetchone()
+                for i in range(len(X)):
+                    history.append(observation)
+                    observation = cursor.fetchone()
+        return history

@@ -97,5 +97,10 @@ class Article(object):
         dico = {}
         for i in range (len(liste)):     
             dico[liste[i]]=liste.count(liste[i])
+        dico = dict(sorted(dico.items(), key=lambda item: item[1],reverse=True))
+        keys=list(dico.keys())
+        for j in range (len(keys)):
+            l=["le","la","les","de","des","et","lui","leur","leurs","il","elle","est","sont","son","sa","ses","ce","ces","de","en",":"]
+            if(keys[j] in l):
+                del dico[keys[j]]
         return dico
-                    

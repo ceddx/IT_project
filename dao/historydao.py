@@ -2,11 +2,29 @@ from db_connection import DBConnection
 from metier.history import History
 
 class HistoryDao:
+    '''
+    Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
+    '''
+
     def __init__(self):
         pass
     
-    def find_player_history(self,id_player,name):
+    def find_player_history(self,id_player):
+        '''
+        Méthode permettant de trouver l'historique d'un joueur à partir de son identifiant.
+
+        Paramètres :
+        -------------
+        id_player : int
+            identifiant unique du joueur dont on veut récupérer l'historique
+
+        Return :
+        ----------
+        history : list
+            Liste contenant toutes les informations de l'historique du joueur.
+        '''
         with DBConnection().connection as connection:
+            history = []
             with connection.cursor() as cursor :
                 cursor.execute("SELECT id_player FROM History where id_player=%(id)s",{"id":id_player})
                 observation = cursor.fetchone()
@@ -16,6 +34,15 @@ class HistoryDao:
         return history
 
     def add_history(history):
+        '''
+        Méthode qui ajoute un historique.
+
+        Paramètres :
+        -------------
+        history : History
+            historique à ajouter
+
+        '''
         connection = DBConnection().connection
         with connection.cursor() as cursor :
             cursor.execute("SELECT id_player FROM History ORDER BY DESC")
@@ -33,6 +60,14 @@ class HistoryDao:
                             })
         
     def get_best_vitesse(self):
+        '''
+        Méthode permettant de renvoyer la meilleure vitesse avec laquelle un joueur a gagné une partie.
+
+        Return:
+        ----------
+        observation : float
+            maximum de toutes les vitesses
+        '''
         connection = DBConnection().connection
         with connection.cursor() as cursor:
             cursor.execute("SELECT MAX(*) vitesse FROM History")
@@ -40,6 +75,14 @@ class HistoryDao:
         return observation
 
     def get_best_score(self):
+        '''
+        Méthode permettant de renvoyer le meilleur des scores.
+
+        Return :
+        ---------
+        observation : int
+            maximum de tous les scores
+        '''
         connection = DBConnection().connection
         with connection.cursor() as cursor:
             cursor.execute("SELECT MAX(*) score FROM History")
@@ -47,5 +90,8 @@ class HistoryDao:
         return observation
     
     def update_score(self):
+        '''
+        Méthode permettant de mettre à jour un score.
+        '''
         pass
     

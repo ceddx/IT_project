@@ -8,7 +8,7 @@ class RankView(AbstractView):
     '''
     def __init__(self):
         self.classement = \
-            HistoryService.find_classement() ;
+            HistoryService.find_rank() ;
         self.__questions = [
             {
                 'type': 'list',

@@ -95,13 +95,7 @@ class Article(object):
 
         liste = self.content.split()
         dico = {}
-        i = 0
-        while i < 100:
-
-                if liste[i] in dico.keys():                    
-                    dico[liste[i]] += 1
-                else :
-                    dico[liste[i]] = 1
-        i +=1
+        for i in range (len(liste)):     
+            dico[liste[i]]=liste.count(liste[i])
         return dico
                     

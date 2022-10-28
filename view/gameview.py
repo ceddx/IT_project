@@ -21,8 +21,15 @@ class Gameview(AbstractView):
             }
     ]
     def display_info(self):
+        """
+        Méthode qui va juste déterminer l'affichage en console.
+        """
         print(f"Hello {Session().player.name}")
+
     def make_choice(self):
+        """
+        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+        """
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'jouer':
             Gameview().play_game()
@@ -30,6 +37,7 @@ class Gameview(AbstractView):
             return StartView()
         elif reponse['choix'] == 'instructions':
             print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
+
     def play_game(self):
         begin,hint_message=False
         i=0

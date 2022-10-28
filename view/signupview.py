@@ -43,9 +43,15 @@ class SignInExample(AbstractView):
         ]
 
     def display_info(self):
+        """
+        Méthode qui va juste déterminer l'affichage en console.
+        """
         print(f"Hello {Session().player.name}")
 
     def make_choice(self):
+        """
+        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+        """
         answers = prompt(self.__questions)
         pprint(answers)
         from view.start_view import StartView

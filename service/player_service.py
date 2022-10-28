@@ -22,6 +22,7 @@ class PlayerService:
         login : Bool
             True si le mot de passe correspond à l'identifiant entré, False sinon.
         '''
+        if
         # À COMPLÉTER
 
     def sign_up(self):

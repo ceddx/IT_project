@@ -1,5 +1,6 @@
+from dataclasses import replace
 import re
-from metier.article_generation import ArticleGeneration
+from article_generation import ArticleGeneration
 
 class Article(object):
 
@@ -104,3 +105,18 @@ class Article(object):
             if(keys[j] in l):
                 del dico[keys[j]]
         return dico
+        
+    def get_paragraph(self):
+        summary= self.summary
+        pertinent=' '
+        for i in summary:
+            pertinent=pertinent+summary
+
+            if i == '/n':
+                break
+        return pertinent
+    @staticmethod
+    def blanked_paragraph(paragraph,title):
+        if title in paragraph:
+            paragraph = paragraph.replace(title,'X'*len(title))
+        

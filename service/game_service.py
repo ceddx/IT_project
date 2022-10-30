@@ -21,5 +21,6 @@ class GameService:
         Méthode permettant de mettre en oeuvre une partie.
         '''
         
+        
         # À FAIRE
         

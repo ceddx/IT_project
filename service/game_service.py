@@ -1,4 +1,5 @@
 from metier.game import Game
+from metier.player import ask_for_clue
 
 class GameService:
     '''

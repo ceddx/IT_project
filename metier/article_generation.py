@@ -138,6 +138,14 @@ class ArticleGeneration(metaclass = Singleton):
         return liste
 
     def get_content(self):
+
+        '''
+        Méthode permettant de récupérer le contenu de la page
+        Returns :
+        --------------------------------
+        page_content : str
+        Le contenu de la page
+        '''
         wiki_wiki = wikipediaapi.Wikipedia(
         language='fr',
         extract_format=wikipediaapi.ExtractFormat.WIKI)

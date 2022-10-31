@@ -5,7 +5,7 @@ import unittest
 import sys
 sys.path.append("C:/Users/lolom/OneDrive/Bureau/PI/projet_info_2a/metier/article_generation.py")
 """
-
+"""
 class Test(unittest.TestCase):
     def test_article_generation(self):
         print ( "Choose one of the following option:")
@@ -30,3 +30,7 @@ class Test(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+"""
+
+test = Article()
+print(test.summary)

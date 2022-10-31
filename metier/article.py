@@ -1,6 +1,8 @@
 from dataclasses import replace
 import re
-from article_generation import ArticleGeneration
+from metier.article_generation import ArticleGeneration
+
+
 
 class Article(object):
 

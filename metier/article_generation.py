@@ -1,9 +1,9 @@
 import requests
 import random
 import wikipediaapi
-import wikipedia
 import re
 from util.singleton import Singleton
+
 
 class ArticleGeneration(metaclass = Singleton):
 

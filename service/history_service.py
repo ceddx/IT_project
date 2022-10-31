@@ -1,7 +1,7 @@
 from dao.historydao import HistoryDao
 from metier.history import History
 from util.singleton import Singleton
-from dao.PlayerDao import PlayerDao
+from dao.playerdao import PlayerDao
 
 
 class HistoryService(metaclass=Singleton):

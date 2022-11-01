@@ -31,6 +31,7 @@ if __name__ == "__main__":
     unittest.main()
 
 """
-
 test = Article()
-print(test.summary)
+print(test.get_clue())    
+
+

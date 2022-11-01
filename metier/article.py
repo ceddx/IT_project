@@ -121,4 +121,16 @@ class Article(object):
     def blanked_paragraph(paragraph,title):
         if title in paragraph:
             paragraph = paragraph.replace(title,'X'*len(title))
-        
+    
+    def get_clue(self):
+        list_clues=[]
+        l=self.categories
+        list_categories = list(filter(lambda x: ('Article' not in x) and ('Catégorie' not in x) and ('Page' not in x) , l))
+        list_portail = list(filter(lambda x: 'Portail' in x, l))
+        for i in range(len(list_portail)):
+            a=len("Portail:")
+            b=len("/Articles liés")  
+            element=list_portail[i] 
+            list_portail[i]=element[a:-b] 
+        list_clues = list_categories + list_portail
+        return list_clues

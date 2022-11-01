@@ -5,7 +5,7 @@ class Game:
     '''
     Classe modélisant une partie du jeu.
     '''
-    def __init__(self, article, language, difficulty, clues, answer):
+    def __init__(self, article, language, difficulty, clues = [], answer = ""):
         '''
         Initialisation d'une partie.
 

@@ -1,6 +1,8 @@
 from dataclasses import replace
 import re
-from article_generation import ArticleGeneration
+from metier.article_generation import ArticleGeneration
+
+
 
 class Article(object):
 
@@ -101,7 +103,7 @@ class Article(object):
         dico = dict(sorted(dico.items(), key=lambda item: item[1],reverse=True))
         keys=list(dico.keys())
         for j in range (len(keys)):
-            l=["le","la","les","de","des","et","lui","leur","leurs","il","elle","est","sont","son","sa","ses","ce","ces","de","en",":"]
+            l=["le","la","les","de","des","et","lui","leur","leurs","il","elle","est","sont","son","sa","ses","ce","ces","de","en",":",'du','ou','par','pour','que','à','a','dans','ont','plus','qui','sur','une','au','même','se','ne','pas',]
             if(keys[j] in l):
                 del dico[keys[j]]
         return dico

@@ -147,7 +147,6 @@ class ArticleGeneration(metaclass = Singleton):
         return page_content
 
     def new_rdm(self):
-
         nrdm = random.randint(0,999)
         self.rdm = nrdm
         

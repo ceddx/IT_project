@@ -32,4 +32,6 @@ if __name__ == "__main__":
 
 """
 test = Article()
-print(test.get_clue())    
+print(test.frequents_words())    
+
+

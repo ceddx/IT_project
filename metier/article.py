@@ -128,7 +128,7 @@ class Article(object):
     def get_clue(self):
         list_clues=[]
         l=self.categories
-        list_categories = list(filter(lambda x: ('Article' not in x) and ('Catégorie' not in x) and ('Page' not in x) , l))
+        list_categories = list(filter(lambda x: ('Article' not in x) and ('Biographie/Articles liés/C' not in x) and ('article' not in x ) and ('Catégorie' not in x) and ('Biographie/Articles liés/C' not in x ) and ('wikipédia:' not in x) and ('Page' not in x) , l))
         list_portail = list(filter(lambda x: 'Portail' in x, l))
         for i in range(len(list_portail)):
             a=len("Portail:")
@@ -139,5 +139,5 @@ class Article(object):
             list_all_frequent_words=list(dict_freq_words.keys())
             list_frequent_words = list_all_frequent_words[:10]
             list_clues = list_categories + list_frequent_words +list_portail
-            list_clues = list(filter(lambda x : self.name_article not in x,list_clues))
+            list_clues = list(filter(lambda x : (self.name_article not in x),list_clues) )
         return list_clues

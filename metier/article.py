@@ -47,7 +47,6 @@ class Article(object):
     def select_clue(self): 
     # Ne fonctionne pas encore mais ca ne saurait tarder, le problème vient de la manière 
     # dont sont nommés les liens hypertextes, ils prennent le nom de l'article vers lequel ils dirigent.
-
         """
         Méthode permettant de sélectionner les indices.
         """

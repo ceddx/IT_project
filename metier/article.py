@@ -1,7 +1,7 @@
 from dataclasses import replace
 import re
 from metier.article_generation import ArticleGeneration
-
+import random 
 
 
 class Article(object):
@@ -140,4 +140,5 @@ class Article(object):
             list_frequent_words = list_all_frequent_words[:10]
             list_clues = list_categories + list_frequent_words +list_portail
             list_clues = list(filter(lambda x : (self.name_article not in x),list_clues) )
+            random.shuffle(list_clues)
         return list_clues

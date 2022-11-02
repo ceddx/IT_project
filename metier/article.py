@@ -134,7 +134,7 @@ class Article(object):
             a=len("Portail:")
             b=len("/Articles liés")  
             element=list_portail[i] 
-            list_portail[i]=element[a:-b] #reste un petit prob avec qql portails
+            list_portail[i]=element[a:-b] #reste à optimiser
             dict_freq_words = self.frequents_words()
             list_all_frequent_words=list(dict_freq_words.keys())
             list_frequent_words = list_all_frequent_words[:10]

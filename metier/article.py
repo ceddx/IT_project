@@ -103,7 +103,10 @@ class Article(object):
         dico = dict(sorted(dico.items(), key=lambda item: item[1],reverse=True))
         keys=list(dico.keys())
         for j in range (len(keys)):
-            l=["le","la","les","de","des","et","lui","leur","leurs","il","elle","est","sont","son","sa","ses","ce","ces","de","en",":",'du','ou','par','pour','que','à','a','dans','ont','plus','qui','sur','une','au','même','se','ne','pas',]
+            
+            if(len(keys[j])<5):
+                del dico[keys[j]]
+            l = ['comme','après',"qu'il","qu'elle",'avoir','Après','depuis','Depuis','plusieurs']
             if(keys[j] in l):
                 del dico[keys[j]]
         return dico

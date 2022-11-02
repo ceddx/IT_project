@@ -1,3 +1,6 @@
+from dao.playerdao import PlayerDao
+from metier.player import Player
+from view.signupview import SignIn
 class PlayerService:
     '''
     Classe gérant les informations relatives aux joueurs.
@@ -6,7 +9,7 @@ class PlayerService:
     def __init__(self):
         pass
 
-    def login_check(self, id_player, password):
+    def login_check(self,id,password):
         '''
         Méthode permettant de vérifier qu'un joueur a entré le bon mot de passe pour se connecter.
 
@@ -22,13 +25,15 @@ class PlayerService:
         login : Bool
             True si le mot de passe correspond à l'identifiant entré, False sinon.
         '''
-        # À COMPLÉTER
+        return(PlayerDao.find_player_by_id(id)[3]==password)
+        
 
     def sign_up(self):
         '''
         Méthode permettant à un joueur de se créer un compte.
         '''
-        # À COMPLÉTER
+        PlayerDao.add_player(Player(XXX,SignIn[0],SignIn[1],SignIn[2]))
+###comment récupérer id ?
 
     def update(self, id, new_email, new_name):
         '''
@@ -43,4 +48,4 @@ class PlayerService:
         new_name : str
             nouveau nom associé au joueur
         '''
-        # À COMPLÉTER
+        

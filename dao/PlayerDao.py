@@ -108,7 +108,7 @@ class PlayerDao:
         '''
         Méthode permettant de mettre à jour les informations d'un joueur déjà enregistré.
         '''
-        pass
+        pass### à faire
 
     def add_player(Player):
         '''

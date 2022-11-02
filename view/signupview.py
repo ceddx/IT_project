@@ -13,24 +13,20 @@ class PasswordValidator(Validator):
             raise ValidationError(
                 message='Please enter a valid password',
                 cursor_position=len(document.text)) 
+            ###vérif de majuscule et au moins 10 caractères pas vérifié
 
-class SignInExample(AbstractView):
-    def __init__(self) -> None:
+class SignIn(AbstractView):
+    def __init__(self):
         self.__questions = [
             {
                 'type': 'input',
-                'name': 'first_name',
-                'message': 'What\'s your first name',
+                'name': 'name',
+                'message': 'What\'s your name',
             },
             {
                 'type': 'input',
-                'name': 'last_name',
-                'message': 'What\'s your last name',
-            },
-            {
-                'type': 'input',
-                'name': 'pseudo',
-                'message': 'What\'s your pseudo',
+                'name': 'email',
+                'message': 'What\'s your email',
             },
             {
                 'type': 'password',

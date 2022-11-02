@@ -21,23 +21,17 @@ class UpdateView(AbstractView):
     '''
     Classe permettant à un joueur de modifier ses informations.
     '''
-
     def __init__(self):
         self.__questions = [
             {
                 'type': 'input',
-                'name': 'first_name',
-                'message': 'Enter your new first name',
+                'name': 'name',
+                'message': 'Enter your new name',
             },
             {
                 'type': 'input',
-                'name': 'last_name',
-                'message': 'Enter your new last name',
-            },
-            {
-                'type': 'input',
-                'name': 'pseudo',
-                'message': 'Enter your new pseudo',
+                'name': 'email',
+                'message': 'Enter your new email',
             },
             {
                 'type': 'password',

@@ -33,5 +33,3 @@ if __name__ == "__main__":
 """
 test = Article()
 print(test.get_clue())    
-
-

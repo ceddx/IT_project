@@ -41,7 +41,7 @@ class Gameview(AbstractView):
     def play_game(self):
         begin,hint_message=False
         i=0
-        score=20
+        score=20  ####score 
         guess=""
         begin = Inquirer.confirm(message="Begin the game?", default=True).execute()
         if begin :

@@ -32,7 +32,7 @@ class PlayerService:
         '''
         Méthode permettant à un joueur de se créer un compte.
         '''
-        PlayerDao.add_player(Player(XXX,SignIn[0],SignIn[1],SignIn[2]))
+        PlayerDao.add_player(Player(XXX,SignIn[0],SignIn[1],SignIn[2])) ### récupérer id à la place des XXX
 ###comment récupérer id ?
 
     def update(self, id, new_email, new_name):
@@ -48,4 +48,4 @@ class PlayerService:
         new_name : str
             nouveau nom associé au joueur
         '''
-        
+        #A faire

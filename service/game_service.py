@@ -20,4 +20,4 @@ class GameService:
         '''
         Méthode permettant de mettre en oeuvre une partie.
         '''
-        return Game()   
+        ###### on ne voit pas comment instancier cette classe

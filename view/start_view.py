@@ -15,7 +15,6 @@ class StartView(AbstractView):
                     'se créer un compte'
                     , 'se connecter'
                     , 'jouer sans se connecter'
-
                 ]
             }
         ]

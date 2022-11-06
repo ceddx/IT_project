@@ -7,6 +7,9 @@ from session import Session
 from PyInquirer import Inquirer, prompt, ValidationError
 
 class Gameview(AbstractView):
+    '''
+    Classe permettant d'afficher les parties du jeu.
+    '''
     def __init__(self):
         self.__questions = [
             {
@@ -39,6 +42,9 @@ class Gameview(AbstractView):
             print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
 
     def play_game(self):
+        '''
+        Méthode permettant de dérouler une partie.
+        '''
         begin,hint_message=False
         i=0
         score=20  ####score 

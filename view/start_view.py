@@ -4,6 +4,9 @@ from view.session import Session
 
 
 class StartView(AbstractView):
+    '''
+    Classe permettant d'afficher le menu principal de notre application.
+    '''
 
     def __init__(self):
         self.__questions = [

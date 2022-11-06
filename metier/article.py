@@ -86,7 +86,7 @@ class Article(object):
         --------------------------------   
         bool : True or False
         """
-        # Utilisation d'expression régulière pour faciliter la recherche
+        # Utilisation d'expressions régulières pour faciliter la recherche
         test = re.search("\d+|janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre'", smth, re.IGNORECASE)
         if test != None:
             return True
@@ -94,7 +94,15 @@ class Article(object):
             return False
 
     def frequents_words(self):
+        '''
+        Méthode permettant de trouver les mots pertinents les plus fréquents d'un article. On ne retient pas
+        les mots de 4 caractères et moins, ainsi que d'autres mots de liaison.
 
+        Returns :
+        -------------
+        dico : dict
+            dictionnaire contenant les mots les plus fréquents et leur nombre d'apparition
+        '''
         liste = self.content.split()
         dico = {}
         for i in range (len(liste)):     
@@ -111,6 +119,14 @@ class Article(object):
         return dico
         
     def get_paragraph(self):
+        '''
+        Méthode permettant de retourner le premier paragraphe du résumé d'un article.
+
+        Returns :
+        -----------
+        pertinent : str 
+            premier paragraphe de l'article
+        '''
         summary= self.summary
         pertinent=' '
         for i in summary:
@@ -119,12 +135,33 @@ class Article(object):
             if i == '/n':
                 break
         return pertinent
+
+
     @staticmethod
     def blanked_paragraph(paragraph,title):
+        '''
+        Méthode qui cache le titre de l'article dans le premier paragraphe.
+
+        Paramètres :
+        ------------
+        pargraph : str
+            le paragraphe où il faut masquer le titre
+        title : str
+            titre de l'article qui ne doit pas apparaître dans le paragraphe 
+        '''
         if title in paragraph:
             paragraph = paragraph.replace(title,'X'*len(title))
     
     def get_clue(self):
+        '''
+        Méthode permettant d'obtenir la listes des indices qui pourront être donnés à un joueur pour qu'il
+        devine le titre d'un article.
+
+        Returns :
+        ------------
+        list_clues : list
+            liste des indices à donner
+        '''
         list_clues=[]
         l=self.categories
         list_categories = list(filter(lambda x: ('Article' not in x) and ('Biographie/Articles liés/C' not in x) and ('article' not in x ) and ('Catégorie' not in x) and ('Biographie/Articles liés/C' not in x ) and ('wikipédia:' not in x) and ('Page' not in x) , l))

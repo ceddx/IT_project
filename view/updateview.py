@@ -9,6 +9,9 @@ from view.session import Session
 
 
 class PasswordValidator(Validator):
+    '''
+    Classe permettant de vérifier qu'un mot de passe est valide.
+    '''
     def validate(self, document):
         ok = regex.match(
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{10,}$", document.text)

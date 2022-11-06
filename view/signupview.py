@@ -6,6 +6,9 @@ from view.abstract_view import AbstractView
 from view.session import Session
 
 class PasswordValidator(Validator):
+    '''
+    Classe permettant de vérifier qu'un mot de passse est valide.
+    '''
     def validate(self, document):
         ok = regex.match(
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{10,}$", document.text)
@@ -16,6 +19,9 @@ class PasswordValidator(Validator):
             ###vérif de majuscule et au moins 10 caractères pas vérifié
 
 class SignIn(AbstractView):
+    '''
+    Classe permettant d'afficher le menu de notre application permettant à un joueur de se créer un compte.
+    '''
     def __init__(self):
         self.__questions = [
             {

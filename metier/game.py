@@ -5,7 +5,7 @@ class Game:
     '''
     Classe modélisant une partie du jeu.
     '''
-    def __init__(self, article, language, difficulty, clues = [], answer = ""):
+    def __init__(self, article):
         '''
         Initialisation d'une partie.
 
@@ -23,7 +23,7 @@ class Game:
             titre de l'article à trouver, correspond à la réponse que doit donner le joueur pour gagner
         '''
         self.article = Article()
-        self.language = language
-        self.difficulty = difficulty
-        self.clues = article.select_clue()
-        self.answer = article.get_title()
+        #self.language = ['French', 'English']
+        #self.difficulty = difficulty
+        self.clues = article.get_clue()
+        self.answer = article.name_article

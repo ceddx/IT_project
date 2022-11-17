@@ -102,14 +102,25 @@ class PlayerDao:
     
 
     def update_player(self, player : Player)->bool:
-        '''
-        Méthode permettant de mettre à jour les informations d'un joueur déjà enregistré.
-        '''
         updated = False
-        player2 = PlayerDao().find_player_by_id(player.id_player)
-        if player2 is None:
+        player1 = PlayerDao().find_player_by_id(player.id_player)
+        if player1 is None:
             return updated
-
+        connection = DBConnection().connection
+        with connection.cursor() as cursor :
+                cursor.execute(
+                    "UPDATE users SET" \
+                    " user_name = %(name)s"\
+                    ",email = %(email)s"\
+                    ",password = %(password)s"\
+                    " WHERE id_player = %(id_player)s;"
+                 ,{"name": player.name
+                  ,"email": player.email
+                  ,"password": player.password
+                  ,"id_player": player.id_player})
+                if cursor.rowcount :
+                    updated = True
+        return updated       
 
 
     def add_player(self, player : Player) -> bool:

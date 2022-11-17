@@ -1,6 +1,7 @@
 from db_connection import DBConnection
 from metier.history import History
-
+from metier.player import Player
+from dao.PlayerDao import PlayerDao
 class HistoryDao:
     '''
     Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
@@ -9,31 +10,38 @@ class HistoryDao:
     def __init__(self):
         pass
     
-    def find_player_history(self,id_player):
+    def find_player_history(self, player:Player):
         '''
         Méthode permettant de trouver l'historique d'un joueur à partir de son identifiant.
 
         Paramètres :
         -------------
-        id_player : int
-            identifiant unique du joueur dont on veut récupérer l'historique
+        player : Player
+            Le joueur dont on veut récupérer l'historique
 
         Return :
         ----------
-        history : list
+        history : list[history]
             Liste contenant toutes les informations de l'historique du joueur.
         '''
         with DBConnection().connection as connection:
-            history = []
             with connection.cursor() as cursor :
-                cursor.execute("SELECT id_player FROM History where id_player=%(id)s",{"id":id_player})
-                observation = cursor.fetchone()
-                while observation is not None:
-                    history.append(observation)
-                    observation = cursor.fetchone()
+                cursor.execute("SELECT * FROM History where id_player=%(id)s",{"id":player.id_player})
+                res = cursor.fetchall()
+                history = []
+                if res:
+                    for row in res:
+                        history1=History(
+                            row['id_history'],
+                            row["id_player"]
+                            ,row["score"]
+                            ,row["speed"]
+                            ,row["article"]
+                        )
+                        history.append(history1)
         return history
 
-    def add_history(history):
+    def add_history(history:History):
         '''
         Méthode qui ajoute un historique.
 
@@ -42,21 +50,28 @@ class HistoryDao:
         history : History
             historique à ajouter
         '''
+        created = False
+        player= PlayerDao().find_player_by_id(history.id_player)
+      
+        if player is None :
+            return created
         with DBConnection().connection as connection:
+           
             with connection.cursor() as cursor :
-                cursor.execute("SELECT id_player FROM History ORDER BY DESC")
-                last_id=cursor.fetchone()
-                id_history+=last_id
-            with connection.cursor() as cursor :
-                cursor.execute("INSERT into History (id_history,id_player,score,speed,difficulty,article_name)"
-                                "VALUES (%(id_history)s, %(id_player)s, %(score)s,%(speed)s,%(difficulty)s,%(article_name)s",
-                                {"id_history":History.id_history,
+                cursor.execute("INSERT INTO History (id_player,score,speed,article_name)"
+                                "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s"
+                                "RETURNING id_history",
+                                {
                                 "id_player":History.id_player,
                                 "score":History.score,
                                 "speed":History.speed,
-                                "difficulty":History.difficulty,
-                                "article_name":History.article_name
+                                "article":History.article
                                 })
+                res=cursor.fetchone()
+        if res:
+            history.id_history=res["id_history"]
+            created = True
+        return created
         
     def get_best_vitesse(self,X):
         '''

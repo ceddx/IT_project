@@ -7,7 +7,7 @@ class Player:
     Classe permettant d'identifier un joueur.
     '''
 
-    def __init__(self, id_player, name, email, password):
+    def __init__(self,*args):
         '''
         Initialisation des paramètres d'un joueur.
 
@@ -22,10 +22,22 @@ class Player:
         password: str
             mot de passe du joueur
         '''
-        self.id_player = id_player
-        self.name = name
-        self.email = email
-        self._password = password
+        if len(args)==5:
+            if isinstance(args[0],int):
+                self.id_player=args[0]
+            if isinstance(args[1],Text):
+                self.name=args[1]
+            if isinstance(args[2],Text):
+                self.email=args[2]
+            if isinstance(args[3],Text):
+                self.password=hash(args[3])
+        else :
+            if isinstance(args[0],Text):
+                self.name=args[0]
+            if isinstance(args[1],Text):
+                self.email=args[1]
+            if isinstance(args[2],Text):
+                self.password=hash(args[3])
     '''
     def ask_for_clue(self):
         

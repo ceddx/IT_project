@@ -1,4 +1,5 @@
-from db_connection import DBConnection
+from dao.db_connection import DBConnection
+from metier.player import Player
 
 class PlayerDao:
     '''
@@ -16,15 +17,22 @@ class PlayerDao:
         l : list
             liste contenant l'ensemble des informations des joueurs
         '''
-        l=[]
+        list_of_players=[]
+
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
-                cursor.execute("SELECT * FROM Player")
-                observation = cursor.fetchone()
-                while observation is not None:
-                    l.append(observation)
-                    observation = cursor.fetchone()
-        return l
+                cursor.execute("SELECT * FROM Players")
+                res= cursor.fetchall()
+            if res :
+                for row in res :
+                    player= Player(row['id_player']
+                    ,row["name"]
+                    ,row["email"]
+                    ,row['password']
+                    
+                )
+                list_of_players.append(player)
+        return list_of_players
 
     def get_names(self):
         '''
@@ -38,7 +46,7 @@ class PlayerDao:
         l=[]
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
-                cursor.execute("SELECT name FROM Player")
+                cursor.execute("SELECT name FROM Players")
                 observation = cursor.fetchone()
                 while observation is not None:
                     l.append(observation)
@@ -57,7 +65,7 @@ class PlayerDao:
         l=[]
         connection = DBConnection().connection
         with connection.cursor() as cursor :
-                cursor.execute("SELECT email FROM Player")
+                cursor.execute("SELECT email FROM Players")
                 observation = cursor.fetchone()
                 while observation is not None:
                     l.append(observation)
@@ -80,37 +88,31 @@ class PlayerDao:
         '''
         connection = DBConnection().connection
         with connection.cursor() as cursor :
-                cursor.execute("SELECT * FROM Player WHERE id_player=%(id)s",{"id":id})
+                cursor.execute("SELECT * FROM Players WHERE id_player=%(id)s",{"id":id})
                 observation = cursor.fetchone()
-        return observation
+        player=None
+        if observation:
+            player = Player(observation['id_player']
+                    ,observation["name"]
+                    ,observation["email"]
+                    ,observation['password'] 
+                )
+        return player
 
-    def find_player_by_name(self,name):
-        '''
-        Méthode renvoyant la liste des informations d'un joueur enregistré à partir de son nom.
+    
 
-        Paramètre :
-        ------------
-        name : str
-            nom du joueur en question
-
-        Return :
-        ---------
-        observation : list
-            liste des informations du joueur
-        '''
-        connection = DBConnection().connection
-        with connection.cursor() as cursor :
-                cursor.execute("SELECT * FROM Player WHERE name=%(name)s",{"name":name})
-                observation = cursor.fetchone()
-        return observation
-
-    def update_player(self):
+    def update_player(self, player : Player)->bool:
         '''
         Méthode permettant de mettre à jour les informations d'un joueur déjà enregistré.
         '''
-        pass### à faire
+        updated = False
+        player2 = PlayerDao().find_player_by_id(player.id_player)
+        if player2 is None:
+            return updated
 
-    def add_player(Player):
+
+
+    def add_player(self, player : Player) -> bool:
         '''
         Méthode permettant d'ajouter un joueur dans la base de données.
 
@@ -119,17 +121,20 @@ class PlayerDao:
         Player : Player
             joueur que l'on veut insérer dans la base de données
         '''
+        created = False
         connection = DBConnection().connection
         with connection.cursor() as cursor :
-            cursor.execute("SELECT id_player FROM Player ORDER BY DESC")
-            last_id=cursor.fetchone()
-            Player.id_player+=last_id
-        with connection.cursor() as cursor :
-            cursor.execute("INSERT into Player (id_player,name,email,password)"
-                            "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
-                            ,{"id_player":Player.id_player,
-                              "name":Player.name,
-                              "email":Player.email,
-                              "password":Player.password
-                            })            
+            cursor.execute("INSERT into Players (id_player,name,email,password)"\
+                            "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"\
+                            "RETURNING id_player"
+                            ,{
+                              "name":player.name,
+                              "email":player.email,
+                              "password":player.password
+                            })         
+            res=cursor.fetchone()
+        if res:
+            player.id_player = res["id_user"]
+            created= True
+        return created
 

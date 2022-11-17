@@ -1,7 +1,6 @@
 from metier.game import Game
 from metier.player import Player
 import random
-import staticmethod
 
 class GameService:
     '''
@@ -18,31 +17,26 @@ class GameService:
         '''
         self.game = Game
         self.score = score
-        self.clue = random.choice(self.game.clues)
+        self.clues = self.game.clues
+        self.first_clue= random.choice(self.clues)
+
+
     def first_instruction(self):
         '''
         Méthode permettant de mettre en oeuvre une partie.
         '''
-        return "Take this hint to guess the article: {} ".format(self.clue)
+        return ["Take this hint to guess the article: {} ".format(self.first_clue), self.first_clue]
         ###### on ne voit pas comment instancier cette classe
-    @staticmethod
-    def get_random_different_element(a,list):
-        #on suppose que a est dejà dans la liste
-        list.remove(a)
-        return random.choice(list)
-    def next_instructions(self, response_to_instruction = True):
-        first_clue=self.clue
-        instruction='Get a hint?'
-        print(instruction)
-        while response_to_instruction:
-            self.score=-1
-            a
-            first_clue= get_random_different_element(self.clue, self.game.clues)
-            print("take this hint {}".format)
-            print('Another hint?')
-        if self.score<0:
-            instruction='Game Over'
 
+
+    def next_instructions(self, previous_clue):
+        new_clues= self.clues.remove(previous_clue)
+        return ["Take this new hint to guess the article: {}".format(random.choice(new_clues)), random.choice(new_clues)]
+    
+    
+    
+        
+        
         
         
 

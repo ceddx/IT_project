@@ -15,7 +15,7 @@ class StartView(AbstractView):
                 'name': 'choix',
                 'message': f'Bonjour {Session().player_name}',
                 'choices': [
-                    'se créer un compte'
+                    'se créer un compte',
                     , 'se connecter'
                     , 'jouer sans se connecter'
                 ]

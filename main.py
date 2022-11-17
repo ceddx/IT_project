@@ -1,6 +1,14 @@
 from metier.article import Article
 from metier.article_generation import ArticleGeneration
 import unittest
+from view.abstract_view import AbstractView
+from view.gameview import Gameview
+from view.historyview import History
+from view.loginview import LoginView
+from view.session import Session
+from view.signupview import SignUp
+from view.startview import StartView
+from view.updateview import UpdateView
 """
 import sys
 sys.path.append("C:/Users/lolom/OneDrive/Bureau/PI/projet_info_2a/metier/article_generation.py")
@@ -31,6 +39,16 @@ class Test(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 """
+dict_view = {
+        "Start view" : StartView,
+        "login view" : 
+    }
+
+if __name__ == "__main__" :
+    view = StartView()
+    while view != None:
+        #view.display_info()
+        view = dict_view[view.make_choice()]()
 
 test = Article()
 print(test.get_clue())    

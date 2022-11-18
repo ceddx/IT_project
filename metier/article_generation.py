@@ -66,7 +66,7 @@ class ArticleGeneration(metaclass = Singleton):
     def validation(self):
         
         '''
-        Méthode permettant de vérifier si l'article et jouable ou non'.
+        Méthode permettant de vérifier si l'article et jouable ou non.
 
         Returns :
         --------------------------------

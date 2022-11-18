@@ -44,36 +44,7 @@ class Article(object):
         self.clue = clue
         
     
-    def select_clue(self): 
-    # Ne fonctionne pas encore mais ca ne saurait tarder, le problème vient de la manière 
-    # dont sont nommés les liens hypertextes, ils prennent le nom de l'article vers lequel ils dirigent.
-        """
-        Méthode permettant de sélectionner les indices.
-        """
-        summary = self.content
-        sp = summary.split()
-        i = 0
-        indices = []
-        count = 0
-
-        while i < len(sp):
-            if ((sp[i] not in indices) == True) and (sp[i] != self.name_article):
-                if len(sp[i])<=4:
-                    tester = self.is_date_or_number(sp[i])
-                    if (tester == True) and len(sp[i])>2 and count <3: 
-                        #Faire en sorte d'avoir au maximum 3 dates pour ne pas avoir que ca en indice
-                        indices.append(sp[i])
-                        count += 1
-                       
-                else :
-                    indices.append(sp[i])
-                    
-            i += 1
-
-        self.clue = [*set(indices)]
-        return self.clue
-
-
+   
     def is_date_or_number(self, smth):
         
         """
@@ -164,17 +135,25 @@ class Article(object):
         '''
         list_clues=[]
         l=self.categories
-        list_categories = list(filter(lambda x: ('Article' not in x) and ('Biographie/Articles liés/C' not in x) and ('article' not in x ) and ('Catégorie' not in x) and ('Biographie/Articles liés/C' not in x ) and ('wikipédia:' not in x) and ('Page' not in x) , l))
+        list_categories = list(filter(filtrer, l))
         list_portail = list(filter(lambda x: 'Portail' in x, l))
         for i in range(len(list_portail)):
             a=len("Portail:")
             b=len("/Articles liés")  
             element=list_portail[i] 
-            list_portail[i]=element[a:-b] #reste à optimiser
+            list_portail[i]=element[a:-b] 
             dict_freq_words = self.frequents_words()
             list_all_frequent_words=list(dict_freq_words.keys())
             list_frequent_words = list_all_frequent_words[:10]
             list_clues = list_categories + list_frequent_words +list_portail
-            list_clues = list(filter(lambda x : (self.name_article not in x),list_clues) )
+            list_clues=list(filter(lambda x : (self.name_article not in x),list_clues))
+            list_clues = list(filter(filtrer,list_clues) )
             random.shuffle(list_clues)
         return list_clues
+
+def filtrer(s):
+    del_words = ['article'.casefold(), 'biographie/articles liés/c'.casefold(),
+    'catégorie'.casefold(), 'wikipédia:'.casefold(), 'page'.casefold()]
+    s = s.casefold()
+    return all(del_w not in s for del_w in del_words)
+    

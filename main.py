@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 """
-dict_view = {
+"""dict_view = {
         "Start view" : StartView,
         "login view" : 
     }
@@ -49,7 +49,7 @@ if __name__ == "__main__" :
     while view != None:
         #view.display_info()
         view = dict_view[view.make_choice()]()
-
+"""
 test = Article()
 print(test.get_clue())    
 

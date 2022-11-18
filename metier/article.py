@@ -142,13 +142,16 @@ class Article(object):
             b=len("/Articles liés")  
             element=list_portail[i] 
             list_portail[i]=element[a:-b] 
-            dict_freq_words = self.frequents_words()
-            list_all_frequent_words=list(dict_freq_words.keys())
-            list_frequent_words = list_all_frequent_words[:10]
-            list_clues = list_categories + list_frequent_words +list_portail
-            list_clues=list(filter(lambda x : (self.name_article not in x),list_clues))
-            list_clues = list(filter(filtrer,list_clues) )
-            random.shuffle(list_clues)
+        dict_freq_words = self.frequents_words()
+        list_all_frequent_words=list(dict_freq_words.keys())
+        list_frequent_words = list_all_frequent_words[:10]
+        list_clues = list_categories + list_frequent_words + list_portail
+        article_name=self.name_article
+        article_name_list=article_name.split()
+        if len(article_name_list) >= 2:
+            list_clues=list(filter(lambda x : (article_name_list[0] not in x) and ( article_name_list[1] not in x),list_clues))
+        list_clues = list(filter(filtrer,list_clues) )
+        random.shuffle(list_clues)
         return list_clues
 
 def filtrer(s):

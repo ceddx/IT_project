@@ -9,7 +9,6 @@ class ArticleGeneration(metaclass = Singleton):
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """
-
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/09/all-days',headers=headers)
     resj = (res.json())['items'][0]['articles']

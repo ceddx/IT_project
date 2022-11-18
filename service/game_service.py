@@ -14,6 +14,8 @@ class GameService:
         -------------
         game : Game
             Une partie du jeu
+        score : int
+            Score du joueur
         '''
         self.game = Game
         self.score = score

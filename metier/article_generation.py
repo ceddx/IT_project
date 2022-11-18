@@ -5,18 +5,19 @@ import re
 from util.singleton import Singleton
 
 
-class ArticleGeneration(metaclass = Singleton):
+class ArticleGeneration(metaclass=Singleton):
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-    res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/09/all-days',headers=headers)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    res = requests.get(
+        'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/09/all-days',
+        headers=headers)
     resj = (res.json())['items'][0]['articles']
-    rdm = random.randint(0,len(resj)-1)
+    rdm = random.randint(0, len(resj) - 1)
 
-
-    def __init__(self, num_article = rdm, liste_article = resj):
-
+    def __init__(self, num_article=rdm, liste_article=resj):
         '''
         Génère un article.
 
@@ -30,10 +31,8 @@ class ArticleGeneration(metaclass = Singleton):
 
         self.num_article = num_article
         self.liste_article = liste_article
-    
 
     def get_title(self):
-
         '''
         Méthode permettant de récupérer le titre de la page.
 
@@ -45,12 +44,10 @@ class ArticleGeneration(metaclass = Singleton):
 
         titre = self.liste_article[self.num_article]['article']
         if '_' in titre:
-            titre  = titre.replace('_', ' ')
+            titre = titre.replace('_', ' ')
         return str(titre)
 
-
     def get_views(self):
-
         '''
         Méthode permettant de récupérer le nombre de vues de la page
         Returns :
@@ -58,13 +55,11 @@ class ArticleGeneration(metaclass = Singleton):
         nb_vues : int
         Le nombre de vue de la page
         '''
-
+        
         nb_vues = self.liste_article[self.num_article]['views']
         return nb_vues
-    
 
     def validation(self):
-        
         '''
         Méthode permettant de vérifier si l'article et jouable ou non.
 
@@ -78,9 +73,7 @@ class ArticleGeneration(metaclass = Singleton):
         page = wiki_wiki.page(self.get_title())
         return page.exists()
 
-
     def get_links(self):
-
         '''
         Méthode permettant de récupérer une liste avec tous les liens hypertextes de la page.
 
@@ -96,10 +89,8 @@ class ArticleGeneration(metaclass = Singleton):
         for title in sorted(links.keys()):
             liste.append(title)
         return liste
-    
 
     def get_summary(self):
-
         '''
         Méthode permettant de récupérer le sommaire de la page
         Returns :
@@ -112,9 +103,7 @@ class ArticleGeneration(metaclass = Singleton):
         page = wiki_wiki.page(self.get_title())
         return page.summary
 
-
     def get_categories(self):
-
         '''
         Méthode permettant de récupérer les catégories et portails de la page
         Returns :
@@ -122,21 +111,19 @@ class ArticleGeneration(metaclass = Singleton):
         liste : list
         Les catégories de la page
         '''
-        
+
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
         categories = page.categories
         liste = []
         for title in sorted(categories.keys()):
-            if re.search('Catégorie:Page utilisant', title)==None:                   
+            if re.search('Catégorie:Page utilisant', title) is None:
                 cat = title[10:]
                 liste.append(cat)
 
-            
         return liste
 
     def get_content(self):
-
         '''
         Méthode permettant de récupérer le contenu de la page
         Returns :
@@ -145,15 +132,13 @@ class ArticleGeneration(metaclass = Singleton):
         Le contenu de la page
         '''
         wiki_wiki = wikipediaapi.Wikipedia(
-        language='fr',
-        extract_format=wikipediaapi.ExtractFormat.WIKI)
+            language='fr',
+            extract_format=wikipediaapi.ExtractFormat.WIKI)
         p_wiki = wiki_wiki.page(self.get_title())
         page_content = p_wiki.text
 
         return page_content
 
     def new_rdm(self):
-        nrdm = random.randint(0,999)
+        nrdm = random.randint(0, 999)
         self.rdm = nrdm
-        
-

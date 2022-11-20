@@ -13,7 +13,7 @@ class HistoryService(metaclass=Singleton):
 
     def get_find_player_history(self):
         '''
-        Méthode permettant de trouver l'historique d'un joueur.
+        Méthode permettant de trouver l'historique d'un joueur dans la base de données.
         '''
         History()
         HistoryDao.find_player_history(self, id)

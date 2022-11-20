@@ -1,6 +1,7 @@
 from dao.playerdao import PlayerDao
 from metier.player import Player
 from view.signupview import SignIn
+
 class PlayerService:
     '''
     Classe gérant les informations relatives aux joueurs.

@@ -10,7 +10,7 @@ class Article(object):
     Classe permettant de générer les articles, les indices et leur validation.
     '''
     
-    def __init__(self, clue = []) :
+    def __init__(self, clue = [], generator = ArticleGeneration) :
 
         """
         Création de l'article.
@@ -30,7 +30,7 @@ class Article(object):
         """
         
         t = False
-        article = ArticleGeneration()
+        article = generator()
         while t == False:
             t = article.validation()
             article.new_rdm()

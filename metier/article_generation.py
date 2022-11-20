@@ -13,6 +13,7 @@ class ArticleGeneration(metaclass = Singleton):
     res = requests.get('https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/2022/09/all-days',headers=headers)
     resj = (res.json())['items'][0]['articles']
     rdm = random.randint(0,len(resj)-1)
+    iter = 0
 
 
     def __init__(self, num_article = rdm, liste_article = resj):

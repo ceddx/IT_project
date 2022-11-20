@@ -1,6 +1,15 @@
 from unittest import TestCase
 from metier.article_generation import ArticleGeneration
 
+class MockGenerator():
+    iter = 0
+
+    def next():
+        iter+=1
+
+    def getTitle():
+        return "Obama"
+
 def test_get_title(self):
     '''
     Fonction permettant de tester la méthode "get_title" qui donne le titre d'un article.
@@ -8,6 +17,8 @@ def test_get_title(self):
     # GIVEN : initialisation du test
     
     article = ArticleGeneration(0, [{"article":"Cookie_(informatique)","views":177667567,"rank":1}])
+
+     #article = Article(.., .., MockGenerator)
 
     # WHEN : méthode à tester
 

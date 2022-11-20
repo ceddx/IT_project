@@ -9,10 +9,11 @@ class DBConnection(metaclass=Singleton):
     """
     Technical class to open only one connection to the DB.
     """
+
     def __init__(self):
         dotenv.load_dotenv(override=True)
-        # Open the connection. 
-        self.__connection =psycopg2.connect(
+        # Open the connection.
+        self.__connection = psycopg2.connect(
             host=os.environ["HOST"],
             port=os.environ["PORT"],
             database=os.environ["DATABASE"],

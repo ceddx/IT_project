@@ -1,10 +1,11 @@
 from view.abstract_view import AbstractView
-from PyInquirer import  prompt
+from PyInquirer import  *
 from pprint import pprint
-from view.start_view import StartView
+from view.startview import StartView
 from metier.article import Article
-from session import Session
-from PyInquirer import Inquirer, prompt, ValidationError
+from view.session import Session
+from PyInquirer import *
+from service.game_service import *
 
 class Gameview(AbstractView):
     '''
@@ -51,8 +52,9 @@ class Gameview(AbstractView):
         guess=""
         begin = Inquirer.confirm(message="Begin the game?", default=True).execute()
         if begin :
+            
             game_article=Article()
-            list_of_hints=game_article.select_clue()
+            list_of_hints=game_article.get_clue()
             while i < len(list_of_hints):
                 hint_message = Inquirer.confirm(message="Get a hint?",default = True).execute()
                 if hint_message :

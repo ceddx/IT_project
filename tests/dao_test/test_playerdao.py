@@ -1,5 +1,5 @@
 from unittest import TestCase
-from dao.playerdao import PlayerDao
+from dao.PlayerDao import PlayerDao
 from metier.player import Player
 
 class TestPlayerDao(TestCase):

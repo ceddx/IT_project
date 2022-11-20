@@ -1,10 +1,12 @@
 from metier.article import Article
 from metier.article_generation import ArticleGeneration
 
+
 class Game:
     '''
     Classe modélisant une partie du jeu.
     '''
+
     def __init__(self, article):
         '''
         Initialisation d'une partie.

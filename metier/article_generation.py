@@ -16,7 +16,7 @@ class ArticleGeneration(metaclass=Singleton):
         headers=headers)
     resj = (res.json())['items'][0]['articles']
     rdm = random.randint(0,len(resj)-1)
-    iter = 0
+
 
     def __init__(self, num_article=rdm, liste_article=resj):
         '''
@@ -72,6 +72,8 @@ class ArticleGeneration(metaclass=Singleton):
 
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
+        if page.title == 'DROP' or 'SELECT':
+            return False
         return page.exists()
 
     def get_links(self):

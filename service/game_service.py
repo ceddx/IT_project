@@ -25,13 +25,30 @@ class GameService:
 
     def first_instruction(self):
         '''
-        Méthode permettant de mettre en oeuvre une partie.
+        Méthode permettant de donner le premier indice d'une partie.
+
+        Returns:
+        ----------
+        hint : str
+            Le premier indice que va recevoir le joueur
         '''
         return ["Take this hint to guess the article: {} ".format(self.first_clue), self.first_clue]
-        ###### on ne voit pas comment instancier cette classe
 
 
     def next_instructions(self, previous_clue):
+        '''
+        Méthode permettant de donner les indices autres que le tout premier au joueur.
+
+        Paramètres :
+        ------------
+        previous_clue : str
+            Le précédent indice qui a été donné
+
+        Returns :
+        ----------
+        hint : str
+            Un indice donné au joueur
+        '''
         new_clues= self.clues.remove(previous_clue)
         return ["Take this new hint to guess the article: {}".format(random.choice(new_clues)), random.choice(new_clues)]
     

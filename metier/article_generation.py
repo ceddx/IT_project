@@ -74,36 +74,6 @@ class ArticleGeneration(metaclass=Singleton):
         page = wiki_wiki.page(self.get_title())
         return page.exists()
 
-    def get_links(self):
-        '''
-        Méthode permettant de récupérer une liste avec tous les liens hypertextes de la page.
-
-        Returns :
-        --------------------------------
-        liste : list
-        La liste de liens hypertextes de la page
-        '''
-        wiki_wiki = wikipediaapi.Wikipedia('fr')
-        page = wiki_wiki.page(self.get_title())
-        links = page.links
-        liste = []
-        for title in sorted(links.keys()):
-            liste.append(title)
-        return liste
-
-    def get_summary(self):
-        '''
-        Méthode permettant de récupérer le sommaire de la page
-        Returns :
-        --------------------------------
-        page.summary : str
-        Le sommaire de la page
-        '''
-
-        wiki_wiki = wikipediaapi.Wikipedia('fr')
-        page = wiki_wiki.page(self.get_title())
-        return page.summary
-
     def get_categories(self):
         '''
         Méthode permettant de récupérer les catégories et portails de la page

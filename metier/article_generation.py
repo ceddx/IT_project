@@ -7,7 +7,7 @@ from util.singleton import Singleton
 
 
 class ArticleGeneration(metaclass=Singleton):
-    random.seed(69)
+    #random.seed(69)
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """

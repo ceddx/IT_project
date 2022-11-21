@@ -101,6 +101,8 @@ class Article(object):
                 'Ainsi',
                 'alors',
                 'Alors',
+                'avait',
+                'revient',
                 "s'est",
                 'devient',
                 'était',
@@ -112,7 +114,13 @@ class Article(object):
                 'parfois',
                 "d'autres",
                 'envers',
-                'également']
+                'également',
+                'aussi',
+                'peuvent',
+                'selon',
+                'ainsi',
+                '(ISBN',
+                'moins']
             if (keys[j] in l):
                 del dico[keys[j]]
         return dico

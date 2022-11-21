@@ -4,7 +4,7 @@ from pprint import pprint
 from view.startview import StartView
 from metier.article import Article
 from view.session import Session
-from PyInquirer import *
+import PyInquirer
 from service.game_service import *
 
 class Gameview(AbstractView):
@@ -46,7 +46,7 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        begin,hint_message=False
+        begin=False
         i=0
         score=20  ####score 
         guess=""

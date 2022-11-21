@@ -1,6 +1,4 @@
 from view.abstract_view import AbstractView
-from PyInquirer import  *
-from pprint import pprint
 from view.startview import StartView
 from metier.article import Article
 from view.session import Session
@@ -16,13 +14,14 @@ class Gameview(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Bonjour {Session().player_name}',
+                'message': f'Hello {Session().player_name}',
                 'choices': [
                     'jouer'
                     , 'retour',
                     'instructions'
                 ]
             }
+
     ]
     def display_info(self):
         """
@@ -46,7 +45,7 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        begin=False
+        begin,hint_message=False
         i=0
         score=20  ####score 
         guess=""
@@ -72,7 +71,11 @@ class Gameview(AbstractView):
                         print("Congratulation you won the game")
                         break
         Session().score=score
-        return score
+        return score'''
+
+    
+
+
             
 
 

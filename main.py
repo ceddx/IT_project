@@ -9,6 +9,7 @@ from view.session import Session
 from view.signupview import SignUp
 from view.startview import StartView
 from view.updateview import UpdateView
+import requests
 """
 import sys
 sys.path.append("C:/Users/lolom/OneDrive/Bureau/PI/projet_info_2a/metier/article_generation.py")
@@ -50,7 +51,6 @@ if __name__ == "__main__" :
         #view.display_info()
         view = dict_view[view.make_choice()]()
 """
-test = Article()
-print(test.get_clue())    
+
 
 

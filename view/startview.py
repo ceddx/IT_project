@@ -1,6 +1,10 @@
 from PyInquirer import prompt
 from view.abstract_view import AbstractView
 from view.session import Session
+from view.signupview import SignupView
+from view.loginview import loginView
+from view.gameview import GameView
+
 
 
 class StartView(AbstractView):
@@ -13,33 +17,31 @@ class StartView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Bonjour {Session().player_name}',
+                'message': f'Hello {Session().player_name}',
                 'choices': [
-                    'se créer un compte'
-                    , 'se connecter'
-                    , 'jouer sans se connecter'
+                    'Sign Up'
+                    , 'Log In'
+                    , 'Play Without Logging In'
                 ]
             }
         ]
 
     def display_info(self):
-        """
-        Méthode qui va juste déterminer l'affichage en console.
-        """
-        with open('graphical_assets/banner.txt', 'r', encoding="utf-8") as asset:
-            print(asset.read())
+        
+        print("Welcome to Pyramid and the Philosopher game")
 
     def make_choice(self):
         """
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+
         """
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'se créer un compte':
-            from view.signupview import SignupView
-            return SignupView()
-        elif reponse['choix'] == 'se connecter':
-            from view.loginview import loginView
-            return loginView()
-        elif reponse['choix'] == 'jouer sans se connecter':
-            from view.gameview import GameView
-            return GameView()
+        if reponse['choix'] == 'Sign Up':
+            next_view="Sign up"
+        elif reponse['choix'] == 'Log In':
+            next_view="Login"
+        elif reponse['choix'] == 'Play Without Logging In':
+            next_view="Play Game"
+        else:
+            next_view="Quit"
+        return next_view

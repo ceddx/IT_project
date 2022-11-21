@@ -4,6 +4,7 @@ from PyInquirer import  prompt
 from prompt_toolkit.validation import ValidationError, Validator
 from view.abstract_view import AbstractView
 from view.session import Session
+from werkzeug.security import generate_password_hash
 
 class PasswordValidator(Validator):
     '''
@@ -18,7 +19,7 @@ class PasswordValidator(Validator):
                 cursor_position=len(document.text)) 
             ###vérif de majuscule et au moins 10 caractères pas vérifié
 
-class SignIn(AbstractView):
+class SignupView(AbstractView):
     '''
     Classe permettant d'afficher le menu de notre application permettant à un joueur de se créer un compte.
     '''
@@ -26,8 +27,8 @@ class SignIn(AbstractView):
         self.__questions = [
             {
                 'type': 'input',
-                'name': 'name',
-                'message': 'What\'s your name',
+                'name': 'PlayerName',
+                'message': 'What\'s your ID',
             },
             {
                 'type': 'input',
@@ -41,7 +42,12 @@ class SignIn(AbstractView):
                     'at least 10 characters, with at least one capital letter ' \
                     'one number and one special character',
                 'validate': PasswordValidator
-            }
+            },
+            {
+                'type': 'input',
+                'name': 'Quit',
+                'message': 'Return to the main menu?',
+            },
         ]
 
     def display_info(self):
@@ -52,10 +58,25 @@ class SignIn(AbstractView):
 
     def make_choice(self):
         """
-        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+        On vérifie que l'identifiant choisi et que l'adresse mail entrée sont uniques
+        On oblige l'utilisateur à remplir tout les champs
         """
-        answers = prompt(self.__questions)
-        pprint(answers)
-        from view.start_view import StartView
-        return StartView()
-
+        reponse = prompt(self.questions)
+        if reponse['Quit']:
+            return "Start"
+        if reponse['PlayerName'] in PlayerDao().find_all_players(): 
+            print("Player name already used, try a different one")
+            return "Sign Up"
+        if reponse['email'] in PlayerDao().get_emails() : 
+            print("email adress already used, try a different one")
+            return "Sign Up"
+        if  reponse['id']=="" or  reponse['mail']=="" or reponse['mdp']=="":
+            print("Fill in all the fields")
+            next_view = "Sign Up"
+        else:
+            new_player = Player(reponse['PlayerName'], reponse['email'],generate_password_hash(reponse['mdp']))
+            PlayerDao().add_user(new_user)
+            Session().is_connected = True
+            Session().player_name = reponse['PlayerName']
+            next_view = "Start"
+        return next_view

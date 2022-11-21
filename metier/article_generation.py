@@ -72,8 +72,6 @@ class ArticleGeneration(metaclass=Singleton):
 
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         page = wiki_wiki.page(self.get_title())
-        if page.title == 'DROP' or 'SELECT':
-            return False
         return page.exists()
 
     def get_links(self):

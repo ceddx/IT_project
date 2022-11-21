@@ -10,7 +10,7 @@ class Article(object):
     Classe permettant de générer les articles, les indices et leur validation.
     '''
     
-    def __init__(self, clue = [], generator = ArticleGeneration) :
+    def __init__(self, clue = [], generator = ArticleGeneration()) :
 
         """
         Création de l'article.
@@ -30,7 +30,7 @@ class Article(object):
         """
 
         t = False
-        article = generator()
+        article = generator
         while t == False:
             t = article.validation()
             article.new_rdm()
@@ -181,3 +181,4 @@ def filtrer(s):
         'page'.casefold()]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
+

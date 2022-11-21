@@ -53,7 +53,7 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        game=GameService()
+        game = GameService()
         secret_article = game.article
         guess = ''
         guess_count = 0

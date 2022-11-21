@@ -2,8 +2,8 @@ import unittest
 from view.gameview import Gameview
 class Test(unittest.TestCase):
     def test_gameview(self):
-        game= Gameview()
-        game.play_game()
+        game1= Gameview()
+        game1.play_game()
         
 
 

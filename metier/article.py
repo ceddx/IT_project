@@ -95,7 +95,24 @@ class Article(object):
                 'Après',
                 'depuis',
                 'Depuis',
-                'plusieurs']
+                'plusieurs',
+                "d'une",
+                'contre',
+                'Ainsi',
+                'alors',
+                'Alors',
+                "s'est",
+                'devient',
+                'était',
+                'cette',
+                'leurs',
+                'aurait',
+                'entre',
+                'notamment',
+                'parfois',
+                "d'autres",
+                'envers',
+                'également']
             if (keys[j] in l):
                 del dico[keys[j]]
         return dico

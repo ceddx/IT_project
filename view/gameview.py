@@ -52,7 +52,7 @@ class Gameview(AbstractView):
         first_clue= game.first_clue
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while guess!= secret_article.name_article and guess_count<=5:
+        while guess!= secret_article.name_article and guess_count<10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = game.next_task(first_clue)[1]
@@ -71,7 +71,10 @@ class Gameview(AbstractView):
                 Session.score=0
                 return "Your score is 0"  
             guess_count+=1
-        print("You Win With A Score Of ",score)
+        if score!=0 :
+            print("You Win With A Score Of ",score)
+        else :
+            print("Game over")
         Session.score=score
         
         

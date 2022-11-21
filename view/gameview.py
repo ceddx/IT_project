@@ -14,11 +14,20 @@ class Gameview(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Bonjour {Session().player_name}',
+                'message': f'Hello {Session().player_name}',
                 'choices': [
                     'jouer'
                     , 'retour',
                     'instructions'
+                ]
+            },
+            {
+                'type': 'list',
+                'name': 'help',
+                'message': 'Get a hint?',
+                'choices': [
+                    'Yes'
+                    , 'No'
                 ]
             }
     ]
@@ -44,7 +53,26 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        begin=False
+        game=GameService()
+        secret_article = game.article
+        guess = ''
+        guess_count = 0
+        reponse = prompt(self.__questions[0][-1])
+        first_clue= game.first_clue()
+        score = Session().score
+        while guess!= secret_article:
+            guess = input(game.first_task()[0])
+            if reponse['Get a hint']== 'Yes':
+                first_clue = game.next_task(first_clue)[1]
+                print(first_clue)
+            guess_count+=1
+            
+
+
+        print('You win')
+
+        '''begin=False
+
         i=0
         score=20  ####score 
         guess=""
@@ -70,7 +98,11 @@ class Gameview(AbstractView):
                         print("Congratulation you won the game")
                         break
         Session().score=score
-        return score
+        return score'''
+
+    
+
+
             
 
 

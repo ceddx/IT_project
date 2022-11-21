@@ -1,6 +1,4 @@
 from view.abstract_view import AbstractView
-from PyInquirer import  *
-from pprint import pprint
 from view.startview import StartView
 from metier.article import Article
 from view.session import Session
@@ -46,7 +44,7 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        begin,hint_message=False
+        begin=False
         i=0
         score=20  ####score 
         guess=""

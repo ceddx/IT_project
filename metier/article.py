@@ -36,9 +36,7 @@ class Article(object):
             article.new_rdm()
 
         self.name_article = article.get_title()
-        self.links = article.get_links()
         self.nb_views = article.get_views()
-        self.summary = article.get_summary()
         self.content = article.get_content()
         self.categories = article.get_categories()
         self.clue = clue
@@ -167,6 +165,7 @@ class Article(object):
                         article_name_list[0] not in x) and (
                         article_name_list[1] not in x),
                     list_clues))
+        list_clues = list(filter(lambda x: self.name_article not in x,list_clues))
         list_clues = list(filter(filtrer, list_clues))
         random.shuffle(list_clues)
         return list_clues
@@ -178,7 +177,10 @@ def filtrer(s):
         'biographie/articles liés/c'.casefold(),
         'catégorie'.casefold(),
         'wikipédia:'.casefold(),
-        'page'.casefold()]
+        'page'.casefold(),
+        'Biographie/Artic'.casefold(),
+        'alors'.casefold(),
+        'cette'.casefold()]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
 

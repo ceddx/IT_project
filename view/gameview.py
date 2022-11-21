@@ -2,7 +2,7 @@ from view.abstract_view import AbstractView
 from view.startview import StartView
 from metier.article import Article
 from view.session import Session
-import PyInquirer
+from PyInquirer import *
 from service.game_service import *
 
 class Gameview(AbstractView):
@@ -45,33 +45,24 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        begin,hint_message=False
-        i=0
-        score=20  ####score 
-        guess=""
-        begin = Inquirer.confirm(message="Begin the game?", default=True).execute()
-        if begin :
-            
-            game_article=Article()
-            list_of_hints=game_article.get_clue()
-            while i < len(list_of_hints):
-                hint_message = Inquirer.confirm(message="Get a hint?",default = True).execute()
-                if hint_message :
-                     score-=1
-                     print(list_of_hints[i])
-                guess = Inquirer.text(message="Make a guess",multiline=True).execute()
-                if guess == game_article.name:
-                     print("Congratulation you won the game")
-                     break
-                else:
-                    print("Try again")
-                    score-=2
-                    i+=1
-                    if guess == game_article.name:
-                        print("Congratulation you won the game")
-                        break
-        Session().score=score
-        return score'''
+        game = GameService()
+        secret_article = game.article
+        guess_count = 0
+        hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no']}]
+        first_clue= game.first_clue()
+        guess = input("Use this hint to guess the article: {} .".format(first_clue))
+        score = Session().score
+        while guess!= secret_article:
+            reponse = prompt(hint_question)
+            if reponse['Get a hint']== 'Yes':
+                first_clue = game.next_task(first_clue)[1]
+                guess = input("Use this new hint to guess the article: {}".format(first_clue))
+                print(first_clue)
+            guess_count+=1
+        
+        print('You win')
+        
+        
 
     
 

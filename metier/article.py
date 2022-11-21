@@ -180,7 +180,8 @@ def filtrer(s):
         'page'.casefold(),
         'Biographie/Artic'.casefold(),
         'alors'.casefold(),
-        'cette'.casefold()]
+        'cette'.casefold(),
+        "d'une".casefold()]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
 

@@ -36,9 +36,7 @@ class Article(object):
             article.new_rdm()
 
         self.name_article = article.get_title()
-        self.links = article.get_links()
         self.nb_views = article.get_views()
-        self.summary = article.get_summary()
         self.content = article.get_content()
         self.categories = article.get_categories()
         self.clue = clue

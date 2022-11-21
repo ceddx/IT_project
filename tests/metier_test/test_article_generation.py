@@ -67,7 +67,7 @@ class MockGenerator(object):
         page = wiki_wiki.page(self.get_title())
         return page.exists()
 
-    def get_links(self):
+
         '''
         Méthode permettant de récupérer une liste avec tous les liens hypertextes de la page.
 
@@ -84,7 +84,7 @@ class MockGenerator(object):
             liste.append(title)
         return liste
 
-    def get_summary(self):
+
         '''
         Méthode permettant de récupérer le sommaire de la page
         Returns :

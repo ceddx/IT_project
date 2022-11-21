@@ -1,13 +1,11 @@
 from metier.article import Article
 from metier.article_generation import ArticleGeneration
 
-
 class Game:
     '''
     Classe modélisant une partie du jeu.
     '''
-
-    def __init__(self, article):
+    def __init__(self, article = Article()):
         '''
         Initialisation d'une partie.
 
@@ -24,8 +22,8 @@ class Game:
         answer : str
             titre de l'article à trouver, correspond à la réponse que doit donner le joueur pour gagner
         '''
-        self.article = Article()
+        self.article = article
         #self.language = ['French', 'English']
         #self.difficulty = difficulty
-        self.clues = article.get_clue()
-        self.answer = article.name_article
+        self.clues = self.article.get_clue()
+        self.answer = self.article.name_article

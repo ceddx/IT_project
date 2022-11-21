@@ -20,16 +20,8 @@ class Gameview(AbstractView):
                     , 'retour',
                     'instructions'
                 ]
-            },
-            {
-                'type': 'list',
-                'name': 'help',
-                'message': 'Get a hint?',
-                'choices': [
-                    'Yes'
-                    , 'No'
-                ]
             }
+
     ]
     def display_info(self):
         """
@@ -55,20 +47,19 @@ class Gameview(AbstractView):
         '''
         game = GameService()
         secret_article = game.article
-        guess = ''
         guess_count = 0
-        reponse = prompt(self.__questions[0][-1])
+        hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no']}]
         first_clue= game.first_clue()
+        guess = input("Use this hint to guess the article: {} .".format(first_clue))
         score = Session().score
         while guess!= secret_article:
-            guess = input(game.first_task()[0])
+            reponse = prompt(hint_question)
             if reponse['Get a hint']== 'Yes':
                 first_clue = game.next_task(first_clue)[1]
+                guess = input("Use this new hint to guess the article: {}".format(first_clue))
                 print(first_clue)
             guess_count+=1
-            
-
-
+        
         print('You win')
 
         '''begin=False

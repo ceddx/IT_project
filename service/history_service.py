@@ -1,7 +1,7 @@
 from dao.historydao import HistoryDao
 from metier.history import History
 from util.singleton import Singleton
-from dao.playerdao import PlayerDao
+from dao.PlayerDao import PlayerDao
 
 
 class HistoryService(metaclass=Singleton):
@@ -13,7 +13,7 @@ class HistoryService(metaclass=Singleton):
 
     def get_find_player_history(self):
         '''
-        Méthode permettant de trouver l'historique d'un joueur dans la base de données.
+        Méthode permettant de trouver l'historique d'un joueur.
         '''
         History()
         HistoryDao.find_player_history(self, id)

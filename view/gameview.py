@@ -50,14 +50,16 @@ class Gameview(AbstractView):
         guess_count = 0
         hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no']}]
         first_clue= game.first_clue
-        guess = input("Use this hint to guess the article: {} .".format(first_clue))
+        guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = Session().score
         while guess!= secret_article:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = game.next_task(first_clue)[1]
-                guess = input("Use this new hint to guess the article: {}".format(first_clue))
-                print(first_clue)
+                guess = input("Use this new hint to guess the article: {} \n".format(first_clue))
+                #print(first_clue)
+            if reponse['help'] == 'no':
+                guess = input("Another chance!")
             guess_count+=1
         
         print('You win')

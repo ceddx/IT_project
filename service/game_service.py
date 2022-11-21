@@ -15,7 +15,7 @@ class GameService:
         self.game = game
         self.article = self.game.article
         self.clues = self.game.clues
-        self.first_clue= random.choice(self.clues)
+        self.first_clue= self.clues[-1]
 
 
     def first_task(self):
@@ -25,8 +25,8 @@ class GameService:
 
 
     def next_task(self, previous_clue):
-        new_clues= self.clues.remove(previous_clue)
-        return ["Use this new hint to guess the article: {}".format(random.choice(new_clues)), random.choice(new_clues)]
+        index= self.clues.index(previous_clue)
+        return ["Use this new hint to guess the article: {}".format(self.clues[index-1]), self.clues[index-1]]
     
     
     

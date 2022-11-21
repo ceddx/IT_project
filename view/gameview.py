@@ -48,11 +48,11 @@ class Gameview(AbstractView):
         game = GameService()
         secret_article = game.article
         guess_count = 0
-        hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no']}]
+        hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
         first_clue= game.first_clue
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = Session().score
-        while guess!= secret_article:
+        while guess!= secret_article.name_article:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = game.next_task(first_clue)[1]
@@ -60,6 +60,9 @@ class Gameview(AbstractView):
                 #print(first_clue)
             if reponse['help'] == 'no':
                 guess = input("Another chance!")
+            if reponse['help'] == 'give up':
+                print('Game over, the right answer is {}'.format(secret_article.name_article))
+                return "Your score is 0"
             guess_count+=1
         
         print('You win')

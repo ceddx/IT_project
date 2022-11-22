@@ -35,7 +35,7 @@ class PlayerDao:
                 list_of_players.append(player)
         return list_of_players
 
-    def get_names(self):
+    def get_all_players_name(self):
         '''
         Méthode renvoyant la liste des noms de tous les joueurs enregistrés.
 
@@ -54,7 +54,7 @@ class PlayerDao:
                     observation = cursor.fetchone()
         return l
 
-    def get_emails(self):
+    def get_all_emails(self):
         '''
         Méthode renvoyant la liste des adresses email de tous les joueurs enregistrés.
 

@@ -13,7 +13,7 @@ class StartView(AbstractView):
     '''
 
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'list',
                 'name': 'choix',
@@ -35,13 +35,13 @@ class StartView(AbstractView):
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
 
         """
-        reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Sign Up':
-            next_view="Sign up"
-        elif reponse['choix'] == 'Log In':
+        answer = prompt(self.questions)
+        if answer['choix'] == 'Sign Up':
+            next_view="SignUp"
+        elif answer['choix'] == 'Log In':
             next_view="Login"
-        elif reponse['choix'] == 'Play Without Logging In':
-            next_view="Play Game"
+        elif answer['choix'] == 'Play Without Logging In':
+            next_view="PlayGame"
         else:
             next_view="Quit"
         return next_view

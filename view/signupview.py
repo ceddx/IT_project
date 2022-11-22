@@ -1,52 +1,42 @@
 from pprint import pprint
-import regex
 from PyInquirer import  prompt
-from prompt_toolkit.validation import ValidationError, Validator
 from view.abstract_view import AbstractView
 from view.session import Session
+from dao.PlayerDao import PlayerDao
+from metier.player import Player
 from werkzeug.security import generate_password_hash
 
-class PasswordValidator(Validator):
-    '''
-    Classe permettant de vérifier qu'un mot de passse est valide.
-    '''
-    def validate(self, document):
-        ok = regex.match(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{10,}$", document.text)
-        if not ok:
-            raise ValidationError(
-                message='Please enter a valid password',
-                cursor_position=len(document.text)) 
-            ###vérif de majuscule et au moins 10 caractères pas vérifié
 
 class SignupView(AbstractView):
     '''
     Classe permettant d'afficher le menu de notre application permettant à un joueur de se créer un compte.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'input',
                 'name': 'PlayerName',
-                'message': 'What\'s your ID',
+                'message': 'What\'s your PlayerName',
+                'when': lambda answers: not answers['quit']
             },
             {
                 'type': 'input',
                 'name': 'email',
                 'message': 'What\'s your email',
+                'when': lambda answers: not answers['quit']
             },
             {
                 'type': 'password',
                 'name': 'password',
-                'message': 'What\'s your password. Your password should be '\
-                    'at least 10 characters, with at least one capital letter ' \
-                    'one number and one special character',
-                'validate': PasswordValidator
+                'message': 'What\'s your password.',
+                'when': lambda answers: not answers['quit']
             },
             {
-                'type': 'input',
-                'name': 'Quit',
-                'message': 'Return to the main menu?',
+                'type': 'confirm',
+                'name': 'quit',
+                'message': 'Turn Back ?',
+                'default': False
+
             },
         ]
 
@@ -64,19 +54,19 @@ class SignupView(AbstractView):
         reponse = prompt(self.questions)
         if reponse['Quit']:
             return "Start"
-        if reponse['PlayerName'] in PlayerDao().find_all_players(): 
+        if reponse['PlayerName'] in PlayerDao().get_all_players_name(): 
             print("Player name already used, try a different one")
-            return "Sign Up"
-        if reponse['email'] in PlayerDao().get_emails() : 
+            return "SignUp"
+        if reponse['email'] in PlayerDao().get_all_emails() : 
             print("email adress already used, try a different one")
-            return "Sign Up"
+            return "SignUp"
         if  reponse['id']=="" or  reponse['mail']=="" or reponse['mdp']=="":
             print("Fill in all the fields")
-            next_view = "Sign Up"
+            next_view = "SignUp"
         else:
-            new_player = Player(reponse['PlayerName'], reponse['email'],generate_password_hash(reponse['mdp']))
-            PlayerDao().add_user(new_user)
-            Session().is_connected = True
+            new_player = PlayerDao(reponse['PlayerName'], reponse['email'],generate_password_hash(reponse['mdp']))
+            PlayerDao().add_player(new_player)
+            Session().login_check = True
             Session().player_name = reponse['PlayerName']
-            next_view = "Start"
+            next_view = "Menu"
         return next_view

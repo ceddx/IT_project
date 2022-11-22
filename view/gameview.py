@@ -1,5 +1,5 @@
 from view.abstract_view import AbstractView
-#from view.startview import StartView
+from view.startview import StartView
 from metier.article import Article
 from view.session import Session
 from PyInquirer import *
@@ -10,7 +10,7 @@ class Gameview(AbstractView):
     Classe permettant d'afficher les parties du jeu.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'list',
                 'name': 'choix',
@@ -27,13 +27,13 @@ class Gameview(AbstractView):
         """
         Méthode qui va juste déterminer l'affichage en console.
         """
-        print(f"Hello {Session().player.name}")
+        print(f"Hello {Session().player_name}")
 
     def make_choice(self):
         """
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
-        reponse = prompt(self.__questions)
+        reponse = prompt(self.questions)
         if reponse['choix'] == 'jouer':
             Gameview().play_game()
         elif reponse['choix'] == 'retour':

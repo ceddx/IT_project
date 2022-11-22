@@ -29,12 +29,12 @@ class Article(object):
         Clue : liste
             Les indices pour trouver la page contenus dans une liste
         """
-
-        t = False
-        article = generator
-        while t == False:
-            t = article.validation()
-            article.new_rdm()
+        if generator is ArticleGeneration():
+            t = False
+            article = generator
+            while t == False:
+                t = article.validation()
+                article.new_rdm()
 
         self.name_article = article.get_title()
         self.nb_views = article.get_views()
@@ -73,6 +73,7 @@ class Article(object):
         dico : dict
             dictionnaire contenant les mots les plus fréquents et leur nombre d'apparition
         '''
+
         liste = self.content.split()
         dico = {}
         for i in range(len(liste)):

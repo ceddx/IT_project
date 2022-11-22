@@ -134,7 +134,7 @@ class MockGenerator(object):
 
         return page_content
 
-class Test_Ag(unittest.TestCase):   
+class Test_ArticleGeneration(unittest.TestCase):   
     
     def test_get_title(self):
 

@@ -2,6 +2,7 @@ from dataclasses import replace
 import re
 import random
 from metier.article_generation import ArticleGeneration
+from difflib import SequenceMatcher
 
 
 class Article(object):
@@ -210,3 +211,29 @@ def filtrer(s):
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
 
+
+
+def similar(a, b, seuil = 0.85):
+    '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
+    renvoie True, sinon False
+    
+    Paramètres
+    ----------
+    a
+        La première chaîne
+    b
+        La seconde
+    seuil
+        Le minimum de score à atteindre.
+    
+    Returns
+    -------
+        True 
+            si le score est plus élevé que le seuil.
+        False 
+            sinon
+    
+    '''
+
+    score =  SequenceMatcher(None, a, b).ratio()
+    return score >= seuil

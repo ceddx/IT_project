@@ -3,6 +3,7 @@ import random
 import wikipediaapi
 import re
 from util.singleton import Singleton
+import unidecode
 
 
 
@@ -113,5 +114,28 @@ class ArticleGeneration(metaclass=Singleton):
         return page_content
 
     def new_rdm(self):
+
         nrdm = random.randint(0, 999)
         self.rdm = nrdm
+
+    def normalize_string(self, string):
+        '''Enlève les accents et ç en les remplacants par les caractères associés
+    
+        Parameters
+        ----------
+        string : str
+            La chaîne à normaliser
+        
+        Returns
+        -------
+        string : str
+            La chaîne de caractère normalisée.
+        
+        '''
+        
+        string = unidecode.unidecode(string)
+        string = string.lower()
+        
+        return string
+
+    

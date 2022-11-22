@@ -1,62 +1,60 @@
 from view.abstract_view import AbstractView
 from PyInquirer import prompt, Separator
 from service.history_service import HistoryService
-from metier.history import History
-import regex
-from prompt_toolkit.validation import ValidationError, Validator
+from metier.history import History 
 from pprint import pprint
+from werkzeug.security import generate_password_hash
+from dao.PlayerDao import PlayerDao
+from metier.player import Player
 from view.session import Session
-
-
-class PasswordValidator(Validator):
-    '''
-    Classe permettant de vérifier qu'un mot de passe est valide.
-    '''
-    def validate(self, document):
-        ok = regex.match(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{10,}$", document.text)
-        if not ok:
-            raise ValidationError(
-                message='Please enter a valid password',
-                cursor_position=len(document.text)) 
 
 class UpdateView(AbstractView):
     '''
-    Classe permettant à un joueur de modifier ses informations.
+    Classe permettant à un joueur de modifier son mot de passe.
     '''
     def __init__(self):
         self.__questions = [
             {
-                'type': 'input',
-                'name': 'name',
-                'message': 'Enter your new name',
+                'type': 'confirm',
+                'name': 'cancel',
+                'message': 'cancel the operation',
+                'default': False
             },
             {
                 'type': 'input',
-                'name': 'email',
-                'message': 'Enter your new email',
+                'name': 'PlayerName',
+                'message': 'Enter your PlayerName',
+                'when': lambda answers: not answers['cancel']
             },
             {
                 'type': 'password',
                 'name': 'password',
-                'message': 'Enter your new password. Your password should be '\
-                    'at least 10 characters, with at least one capital letter ' \
-                    'one number and one special character',
-                'validate': PasswordValidator
+                'message': 'Enter your new password.',
+                'when' : lambda answers: not answers['cancel']
             }
         ]
 
     def display_info(self):
-        """
-        Méthode qui va juste déterminer l'affichage en console.
-        """
-        print(f"Hello {Session().player.name}")
+        pass
 
     def make_choice(self):
         """
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
-        answers = prompt(self.__questions)
-        pprint(answers)
-        from view.start_view import StartView
-        return StartView()
+        answer=prompt(self.questions)
+        player = PlayerDao().find_player_by_playername(answer['PlayerName'])
+        if answer['cancel']:
+            return "Start"
+        if answer['PlayerName'] =="" or answer['password'] =="":
+            print("Fill in all the fields")
+            return "Update"
+        else:
+            player_updated=Player(player.id_player,player.name,player.email,generate_password_hash(player.password))
+            if PlayerDao().update_player(player_updated):
+                print("Your password is updated")
+                
+        return "Login"
+        
+    
+        
+        

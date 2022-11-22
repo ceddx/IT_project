@@ -44,15 +44,11 @@ class PlayerDao:
         l : list
             liste de noms
         '''
-        l = []
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT name FROM Players")
-                observation = cursor.fetchone()
-                while observation is not None:
-                    l.append(observation)
-                    observation = cursor.fetchone()
-        return l
+        list_of_players_name = []
+        l=self.find_all_players()
+        for x in l:
+            list_of_players_names+=x.name
+        return list_of_players_name
 
     def get_all_emails(self):
         '''
@@ -63,15 +59,12 @@ class PlayerDao:
         l : list
             liste d'emails
         '''
-        l = []
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT email FROM Players")
-            observation = cursor.fetchone()
-            while observation is not None:
-                l.append(observation)
-                observation = cursor.fetchone()
-        return l
+        list_of_players_email = []
+        l = self.find_all_players()
+        for x in l:
+            list_of_players_email+=x.emails
+        return list_of_players_email
+        
 
     def find_player_by_id(self, id):
         '''

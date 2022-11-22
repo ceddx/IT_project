@@ -137,5 +137,25 @@ class ArticleGeneration(metaclass=Singleton):
         string = string.lower()
         
         return string
+    
+    def find_sql(string):
+        '''Repère les commandes SQL
+    
+        Parameters
+        ----------
+        string : str
+            La chaîne à vérifier
+        
+        Returns
+        -------
+        string : str
+            La chaîne de caractère normalisée.
+        
+        '''
+        sql = []
+        for word in string.split():
+            if word.lower() == 'select' or word.lower() == 'from' or word.lower() == 'where' or word.lower() == 'drop':
+                sql.append(word)
+        return sql
 
     

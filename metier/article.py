@@ -207,7 +207,12 @@ def filtrer(s):
         'Biographie/Artic'.casefold(),
         'alors'.casefold(),
         'cette'.casefold(),
-        "d'une".casefold()]
+        "d'une".casefold(),
+        "drop".casefold(),
+        "from".casefold(),
+        "select".casefold(),
+        "where".casefold()
+        ]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
 

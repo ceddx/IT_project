@@ -1,35 +1,29 @@
-from unittest import TestCase
-import re
-from metier.article_generation import ArticleGeneration
+import unittest
+from test_article_generation import *
 from metier.article import Article
+import re
 
-def test_is_date_or_number(self):
-    '''
-    Fonction testant la méthode "is_date_or_number" qui est censée renvoyer si un objet est une date ou un nombre.
-    '''
-    # GIVEN : initialisation du test
-
-    smth = 25
-
-    # WHEN : méthode à tester
-
-    sortie = self.is_date_or_number(smth)
-
-    # THEN : ce qu'on veut tester
-
-    self.assertTrue(sortie)
+class Test_Article(unittest.TestCase):
 
 
-def test_select_clue(self):
-    # À FAIRE
-    '''
-    Fonction testant la méthode "select_clue" qui est censée renvoyer la liste des indices à proposer pour faire deviner un article.
-    '''
-    # GIVEN : initialisation du test
-
-
-    # WHEN : méthode à tester
-
-
-    # THEN : ce qu'on veut tester
+    def test_frequent_words(self):
+        Art = Article(MockGenerator())
+        test = "Je suis en train d'écrire un texte lambda en regroupant plusieurs fois le même mot aléatoirement, ainsi selon comme par exmple Friends parce que Friends c'est une série vraiment cool et comme ca on va voir si Friends apparaît bien comme mot le plus fréquent je le redis quelques fois au cas ou Friends Friends Friends Friends Friends"
+        Art.content = test
+        l = Art.frequents_words()
+        liste_frequent =[]
+        for valeur in l.keys():
+            liste_frequent.append(valeur)
+        reversed(liste_frequent)
+        self.assertEqual(liste_frequent[0],'Friends')
+        self.assertEqual('ainsi' in liste_frequent,False)
     
+    def test_get_clue(self):
+        Art = Article(MockGenerator())
+        clue = Art.get_clue()
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+

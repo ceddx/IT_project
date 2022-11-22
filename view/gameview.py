@@ -1,5 +1,5 @@
 from view.abstract_view import AbstractView
-from view.startview import StartView
+#from view.startview import StartView
 from metier.article import Article
 from view.session import Session
 from PyInquirer import *

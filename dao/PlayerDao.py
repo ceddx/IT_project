@@ -29,7 +29,7 @@ class PlayerDao:
                 for row in res:
                     player = Player(
                         row['id_player'],
-                        row["name"],
+                        row["player_name"],
                         row["email"],
                         row['password'])
                 list_of_players.append(player)
@@ -96,10 +96,29 @@ class PlayerDao:
         if observation:
             player = Player(
                 observation['id_player'],
-                observation["name"],
+                observation["player_name"],
                 observation["email"],
                 observation['password'])
         return player
+    
+    def find_player_by_playername(self, player_name :str):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "SELECT * from Players WHERE player_namer=%(player_name)s ;"
+                , {"player_name" : player_name})
+                res = cursor.fetchone()
+       
+        player1=None
+        
+        if res :
+            
+            player1=Player(res["id_player"],
+            res["player_name"],
+            res["email"],
+            res['password'])
+           
+        return player1
 
     def update_player(self, player: Player) -> bool:
         updated = False
@@ -108,12 +127,12 @@ class PlayerDao:
             return updated
         connection = DBConnection().connection
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE users SET"
-                           " user_name = %(name)s"
+            cursor.execute("UPDATE Players SET"
+                           " player_name = %(player_name)s"
                            ",email = %(email)s"
                            ",password = %(password)s"
                            " WHERE id_player = %(id_player)s;",
-                           {"name": player.name,
+                           {"player_name": player.name,
                             "email": player.email,
                             "password": player.password,
                             "id_player": player.id_player})
@@ -134,10 +153,10 @@ class PlayerDao:
         connection = DBConnection().connection
         with connection.cursor() as cursor:
             cursor.execute(
-                "INSERT into Players (id_player,name,email,password)"
+                "INSERT into Players (id_player,player_name,email,password)"
                 "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
                 "RETURNING id_player", {
-                    "name": player.name, "email": player.email, "password": player.password})
+                    "player_name": player.name, "email": player.email, "password": player.password})
             res = cursor.fetchone()
         if res:
             player.id_player = res["id_user"]

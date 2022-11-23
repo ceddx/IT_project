@@ -143,15 +143,15 @@ class PlayerDao:
             joueur que l'on veut insérer dans la base de données
         '''
         created = False
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "INSERT into Players(id_player,player_name,email,pass_word)"
-                "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
-                "RETURNING id_player", {
-                    "player_name": player.name, "email": player.email, "password": player.password})
-            res = cursor.fetchone()
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "INSERT into Players(player_name,email,pass_word)"\
+                    "VALUES (%(player_name)s, %(email)s,%(password)s)"\
+                    "RETURNING id_player", {
+                        "player_name": player.name, "email": player.email, "password": player.password})
+                res = cursor.fetchone()
         if res:
-            player.id_player = res["id_user"]
+            player.id_player = res["id_player"]
             created = True
         return created

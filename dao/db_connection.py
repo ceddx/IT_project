@@ -5,6 +5,7 @@ from psycopg2.extras import RealDictCursor
 from util.singleton import Singleton
 
 
+
 class DBConnection(metaclass=Singleton):
     """
     Technical class to open only one connection to the DB.

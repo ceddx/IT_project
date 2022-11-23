@@ -23,7 +23,7 @@ class Player:
         password: str
             mot de passe du joueur
         '''
-        if len(args) == 5:
+        if len(args) == 4:
             if isinstance(args[0], int):
                 self.id_player = args[0]
             if isinstance(args[1], Text):
@@ -38,5 +38,5 @@ class Player:
             if isinstance(args[1], Text):
                 self.email = args[1]
             if isinstance(args[2], Text):
-                self.password = hash(args[3])
+                self.password = args[2]
 

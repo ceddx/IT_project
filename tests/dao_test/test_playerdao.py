@@ -1,12 +1,13 @@
-from unittest import TestCase
 from dao.PlayerDao import PlayerDao
 from metier.player import Player
+import unittest
+from unittest import TestCase
 
 class TestPlayerDao(TestCase):
     def test_add_player(self):
         # GIVEN
         player_dao = PlayerDao()
-        player=Player("Mohamed","mohamedassili2@gmail.com","test")
+        player=Player("Mohamed","mohamedassili2@gmail.com","12345")
         # WHEN
         created = player_dao.add_player(player)
         # THEN
@@ -19,3 +20,5 @@ class TestPlayerDao(TestCase):
         pass
     def test_update_player(self):
         pass
+    if __name__ == '__main__':
+        unittest.main()

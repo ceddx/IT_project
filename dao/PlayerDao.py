@@ -80,12 +80,12 @@ class PlayerDao:
         observation : list
             liste des informations du joueur
         '''
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT * FROM Players WHERE id_player=%(id)s", {"id": id})
-            observation = cursor.fetchone()
-        player = None
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * FROM Players WHERE id_player=%(id)s", {"id": id})
+                observation = cursor.fetchone()
+            player = None
         if observation:
             player = Player(
                 observation['id_player'],

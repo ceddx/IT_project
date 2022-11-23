@@ -31,16 +31,16 @@ class HistoryDao:
                 cursor.execute(
                     "SELECT * FROM History where id_player=%(id)s", {"id": player.id_player})
                 res = cursor.fetchall()
-                history = []
-                if res:
-                    for row in res:
-                        history1 = History(
-                            row['id_history'],
-                            row["id_player"],
-                            row["score"],
-                            row["attempts"],
-                            row["article"])
-                        history.append(history1)
+        history = []
+        if res:
+            for row in res:
+                history1 = History(
+                    row['id_history'],
+                    row["id_player"],
+                    row["score"],
+                    row["attempts"],
+                    row["article"])
+                history.append(history1)
         return history
 
     def add_history(self,history: History):

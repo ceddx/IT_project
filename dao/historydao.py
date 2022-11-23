@@ -77,7 +77,20 @@ class HistoryDao:
 
 
     def get_best_score(self, player:Player):
+        '''
+        Méthode permettant d'obtenir le meilleur score d'un joueur. Si le joueur n'a jamais joué et n'a donc
+        pas d'historique, un message d'erreur est envoyé.
 
+        Paramètres :
+        --------------
+        player : Player
+            le joueur dont on veut afficher le meilleur score.
+
+        Returns :
+        ---------
+        best_score : int
+            score maximal parmi tous les scores du joeueur
+        '''
         list_of_scores=[]
         l=self.find_player_history(player)
         for x in l:
@@ -89,6 +102,21 @@ class HistoryDao:
 
 
     def get_lowest_number_of_attempts(self, player:Player):
+        '''
+        Méthode permettant de récupérer le nombre minimal d'essais qui ont été réalisés par un joueur avant de 
+        gagner une partie. Si le joueur n'a jamais joué et n'a donc pas d'historique, un message d'erreur
+        est envoyé.
+
+        Paramètres :
+        ------------
+        player : Player
+            joueur dont on veut le nombre minimal d'essais
+
+        Returns :
+        ---------
+        lowest_number_of_attempts : int
+            Minimum parmi les nombres d'essais qu'a effectués un joueur
+        '''
         list_numbers=[]
         list=self.find_player_history(player)
         for history in list:

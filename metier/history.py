@@ -1,3 +1,4 @@
+from typing import Text
 class History:
     '''
     Classe permettant de définir l'historique d'un joueur sur une partie jouée.
@@ -32,8 +33,8 @@ class History:
             if isinstance(args[2], int):
                 self.score = args[2]
             if isinstance(args[3], int):
-                self.speed = args[3]
-            if isinstance(args[4], int):
+                self.number_of_attempts = args[3]
+            if isinstance(args[4], Text):
                 self.article = args[4]
         else:
             if isinstance(args[0], int):
@@ -41,6 +42,6 @@ class History:
             if isinstance(args[1], int):
                 self.score = args[1]
             if isinstance(args[2], int):
-                self.speed = args[2]
-            if isinstance(args[3], int):
+                self.number_of_attempts = args[2]
+            if isinstance(args[3], Text):
                 self.article = args[3]

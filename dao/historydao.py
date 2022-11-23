@@ -38,12 +38,12 @@ class HistoryDao:
                             row['id_history'],
                             row["id_player"],
                             row["score"],
-                            row["speed"],
+                            row["attempts"],
                             row["article"])
                         history.append(history1)
         return history
 
-    def add_history(history: History):
+    def add_history(self,history: History):
         '''
         Méthode qui ajoute un historique.
 
@@ -65,63 +65,30 @@ class HistoryDao:
                     "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s"
                     "RETURNING id_history",
                     {
-                        "id_player": History.id_player,
-                        "score": History.score,
-                        "speed": History.speed,
-                        "article": History.article})
+                        "id_player": history.id_player,
+                        "score": history.score,
+                        "attempts": history.number_of_attempts,
+                        "article": history.article})
                 res = cursor.fetchone()
         if res:
             history.id_history = res["id_history"]
             created = True
         return created
 
-    def get_best_vitesse(self, X):
-        '''
-        Méthode permettant de renvoyer les X meilleures vitesses avec laquelle un joueur a gagné une partie.
 
-        Parameters
-        ----------
-        X : int
-            nombre de meilleurs vitesses que l'on veut
+    def get_best_score(self, player:Player):
 
-        Return:
-        ----------
-        observation : float
-            maximum de toutes les vitesses
-        '''
-        with DBConnection().connection as connection:
-            history = []
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT * FROM History order by vitesse desc limit %(nbr_observation)s", {
-                        "nbr_observation": X})
-                observation = cursor.fetchone()
-                for i in range(len(X)):
-                    history.append(observation)
-                    observation = cursor.fetchone()
-        return history
+        list_of_scores=[]
+        l=self.find_player_history(player)
+        for x in l:
+            list_of_scores+=x.score
+        if len(list_of_scores):
+            return max(list_of_scores)
+        else:
+            print("You don't have a history yet")
 
-    def get_best_score(self, X):
-        '''
-        Méthode permettant de renvoyer les X meilleurs scores.
 
-        Parameters
-        ----------
-        X : int
-            nombre de meilleurs scores que l'on veut
+    def get_lowest_number_of_attempts(self):
+        pass
 
-        Return :
-        ---------
-        history : Hystory
-            les X meilleurs scores
-        '''
-        with DBConnection().connection as connection:
-            history = []
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT * FROM History order by score desc limit %(nbr_observation)s", {"nbr_observation": X})
-                observation = cursor.fetchone()
-                for i in range(len(X)):
-                    history.append(observation)
-                    observation = cursor.fetchone()
-        return history
+        

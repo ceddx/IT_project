@@ -36,10 +36,12 @@ class Gameview(AbstractView):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'jouer':
             Gameview().play_game()
+            return "SaveHistory"
         elif reponse['choix'] == 'retour':
-            return StartView()
+            return "Menu"
         elif reponse['choix'] == 'instructions':
             print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
+            return "PlayGame"
 
     def play_game(self):
         '''
@@ -47,12 +49,13 @@ class Gameview(AbstractView):
         '''
         game = GameService()
         secret_article = game.article
-        guess_count = 0
+        Session().article=secret_article
+        attempts = 0
         hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
         first_clue= game.first_clue
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while guess!= secret_article.name_article and guess_count<10:
+        while guess!= secret_article.name_article and attempts<10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = game.next_task(first_clue)[1]
@@ -67,15 +70,18 @@ class Gameview(AbstractView):
                 if guess == secret_article.name_article:
                     break
             if reponse['help'] == 'give up':
-                print('Game over, the right answer is {}'.format(secret_article.name_article))
-                Session.score=0
-                return "Your score is 0"  
-            guess_count+=1
+                score=0
+                print("Your score is 0")
+                break
+            attempts+=1
         if score!=0 :
             print("You Win With A Score Of ",score)
         else :
             print('Game over, the right answer is {}'.format(secret_article.name_article))
-        Session.score=score
+        Session().score=score
+        Session().number_of_attempts = attempts
+        
+
         
         
 

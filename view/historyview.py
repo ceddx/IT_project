@@ -8,32 +8,23 @@ class HistoryView(AbstractView):
     Classe permettant d'afficher l'historique d'un joueur.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'list',
-                'name': 'choice',
+                'name': 'history',
                 'message': 'Here is your history.',
                 'choices': [
-                    'return to menu'
-                    , 'try to improve my stats'
+                    'history',
+                    Separator(),
+                     'Statistics'
                 ]
             }
         ]
 
     def display_info(self):
-        """
-        Méthode qui va juste déterminer l'affichage en console.
-        """
-        print(AbstractView.session.history)
+        pass
 
     def make_choice(self):
-        """
-        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
-        """
-        reponse = prompt(self.__questions)
-        if reponse["choice"] == "return to menu":
-            from view.start_view import StartView
-            return StartView
-        elif reponse["choice"] == "try to improve my stats":
-            from view.gameview import Gameview
-            return Gameview
+        answer=prompt(self.__questions)
+
+        

@@ -8,13 +8,11 @@ class Session(metaclass=Singleton):
         ref:type = valeur
         permet de donner le type des variables. Utile pour l'autocompletion.
         """
-        self.player_name: str = None
-        self.email: str = None
-        self.user_mdp: str = None
-        self.language: str=None
-        self.login_check: str = None
-        self.score: int=None
-        self.difficulty: str = None
-        self.clue: str = None
-        self.history : list = []
+        self.login_check = False
+        self.player_name= None
+        #self.language: str=None
+        self.score=0
+        self.number_of_attempts= 0
+        self.article= None
+        self.history= []
     

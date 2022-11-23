@@ -7,6 +7,7 @@ import unidecode
 
 
 
+
 class ArticleGeneration(metaclass=Singleton):
  
     """

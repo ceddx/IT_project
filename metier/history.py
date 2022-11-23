@@ -16,7 +16,7 @@ class History:
             identifiant du joueur correspondant à l'historique
         score : int
             score du joueur
-        speed : float
+        number_of_attempts : float
             vitesse du joueur pour trouver la bonne réponse
         difficulty : int
             difficulté de l'article à trouver

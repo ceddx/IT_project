@@ -55,19 +55,19 @@ class Gameview(AbstractView):
         first_clue= game.first_clue
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while guess!= secret_article.name_article and attempts<10:
+        while not (similar(guess, secret_article.name_article)) and attempts<10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = game.next_task(first_clue)[1]
                 score-=10
                 print("your current score is ", score)
                 guess = input("Use this new hint to guess the article: {} \n".format(first_clue))
-                if guess == secret_article.name_article:
+                if similar(guess, secret_article.name_article):
                     break
 
             if reponse['help'] == 'no':
                 guess = input("Another chance!")
-                if guess == secret_article.name_article:
+                if similar(guess, secret_article.name_article):
                     break
             if reponse['help'] == 'give up':
                 score=0
@@ -82,15 +82,27 @@ class Gameview(AbstractView):
         Session().number_of_attempts = attempts
         
 
-        
-        
-
+def similar(a, b, seuil = 0.85):
+    '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
+    renvoie True, sinon False
     
+    Paramètres
+    ----------
+    a
+        La première chaîne
+    b
+        La seconde
+    seuil
+        Le minimum de score à atteindre.
+    
+    Returns
+    -------
+        True 
+            si le score est plus élevé que le seuil.
+        False 
+            sinon
+    
+    '''
 
-
-            
-
-
-
-
-
+    score =  SequenceMatcher(None, a, b).ratio()
+    return score >= seuil

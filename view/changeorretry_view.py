@@ -23,10 +23,10 @@ class ChangeOrRetryView(AbstractView):
 
     def make_choice(self):
         answer = prompt(self.questions)
-        if answer['change'] == 'Abandonner':
+        if answer['change'] == 'Back to Menu?':
             next_view = "Start"
-        if answer['change'] == "Réessayer":
+        elif answer['change'] == "Try again":
             next_view = "Login"
-        if answer['change']== "New password?":
+        elif answer['change']== "New password?":
             next_view = "Update"
         return next_view

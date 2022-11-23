@@ -1,9 +1,7 @@
-from pprint import pprint
 from PyInquirer import  prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 from dao.PlayerDao import PlayerDao
-from metier.player import Player
 from werkzeug.security import generate_password_hash
 
 
@@ -41,10 +39,7 @@ class SignupView(AbstractView):
         ]
 
     def display_info(self):
-        """
-        Méthode qui va juste déterminer l'affichage en console.
-        """
-        print(f"Hello {Session().player.name}")
+        pass
 
     def make_choice(self):
         """

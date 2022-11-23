@@ -12,10 +12,10 @@ class Gameview(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Hello {Session().player_name}',
+                'message': 'Are you sure?',
                 'choices': [
-                    'jouer'
-                    , 'retour',
+                    'play'
+                    , 'return',
                     'instructions'
                 ]
             }
@@ -32,11 +32,11 @@ class Gameview(AbstractView):
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
         reponse = prompt(self.questions)
-        if reponse['choix'] == 'jouer':
+        if reponse['choix'] == 'play':
             Gameview().play_game()
             return "SaveHistory"
-        elif reponse['choix'] == 'retour':
-            return "Menu"
+        elif reponse['choix'] == 'return':
+            return "Start"
         elif reponse['choix'] == 'instructions':
             print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
             return "PlayGame"

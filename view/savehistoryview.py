@@ -41,7 +41,7 @@ class SaveHistoryView(AbstractView):
 
         answer=prompt(self.questions)
         if answer['saving']=='Replay':
-            next_view= "Play"
+            next_view= "PlayGame"
         if answer['saving']=='Back to menu':
             if Session().login_check==True:
                 next_view="Menu"

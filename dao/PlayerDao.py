@@ -25,14 +25,14 @@ class PlayerDao:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT * FROM Players")
                 res = cursor.fetchall()
-            if res:
-                for row in res:
-                    player = Player(
-                        row['id_player'],
-                        row["player_name"],
-                        row["email"],
-                        row['pass_word'])
-                    list_of_players.append(player)
+        if res:
+            for row in res:
+                player = Player(
+                    row['id_player'],
+                    row["player_name"],
+                    row["email"],
+                    row['pass_word'])
+                list_of_players.append(player)
         return list_of_players
 
     def get_all_players_name(self):
@@ -47,7 +47,7 @@ class PlayerDao:
         list_of_players_name = []
         l=self.find_all_players()
         for x in l:
-            list_of_players_names+=x.name
+            list_of_players_name+=x.name
         return list_of_players_name
 
     def get_all_emails(self):

@@ -62,7 +62,7 @@ class HistoryDao:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "INSERT INTO History (id_player,score,speed,article_name)"
-                    "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s"
+                    "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s)"
                     "RETURNING id_history",
                     {
                         "id_player": history.id_player,

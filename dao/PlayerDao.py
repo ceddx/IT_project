@@ -3,6 +3,7 @@ from metier.player import Player
 
 
 class PlayerDao:
+    
     '''
     Classe qui gère le lien avec la base de données stockant les informations relatives aux joueurs.
     '''

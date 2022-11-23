@@ -5,6 +5,7 @@ from dao.PlayerDao import PlayerDao
 
 
 class HistoryDao:
+
     '''
     Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
     '''
@@ -16,7 +17,7 @@ class HistoryDao:
         '''
         Méthode permettant de trouver l'historique d'un joueur à partir de son identifiant.
 
-        Paramètres :
+        Paramètre :
         -------------
         player : Player
             Le joueur dont on veut récupérer l'historique
@@ -47,10 +48,15 @@ class HistoryDao:
         '''
         Méthode qui ajoute un historique.
 
-        Paramètres :
+        Paramètre :
         -------------
         history : History
             historique à ajouter
+
+        Return :
+        --------
+        created : Bool
+            booléen précisant si l'historique a bien été ajouté ; il vaut False si l'historique n'existe pas
         '''
         created = False
         player = PlayerDao().find_player_by_id(history.id_player)
@@ -81,12 +87,12 @@ class HistoryDao:
         Méthode permettant d'obtenir le meilleur score d'un joueur. Si le joueur n'a jamais joué et n'a donc
         pas d'historique, un message d'erreur est envoyé.
 
-        Paramètres :
+        Paramètre :
         --------------
         player : Player
             le joueur dont on veut afficher le meilleur score.
 
-        Returns :
+        Return :
         ---------
         best_score : int
             score maximal parmi tous les scores du joeueur
@@ -107,12 +113,12 @@ class HistoryDao:
         gagner une partie. Si le joueur n'a jamais joué et n'a donc pas d'historique, un message d'erreur
         est envoyé.
 
-        Paramètres :
+        Paramètre :
         ------------
         player : Player
             joueur dont on veut le nombre minimal d'essais
 
-        Returns :
+        Return :
         ---------
         lowest_number_of_attempts : int
             Minimum parmi les nombres d'essais qu'a effectués un joueur

@@ -2,6 +2,7 @@ from view.abstract_view import AbstractView
 from view.session import Session
 from PyInquirer import *
 from service.game_service import *
+from difflib import SequenceMatcher
 
 class Gameview(AbstractView):
     '''

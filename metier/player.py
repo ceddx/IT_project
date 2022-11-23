@@ -31,7 +31,7 @@ class Player:
             if isinstance(args[2], Text):
                 self.email = args[2]
             if isinstance(args[3], Text):
-                self.password = hash(args[3])
+                self.password = args[3]
         else:
             if isinstance(args[0], Text):
                 self.name = args[0]

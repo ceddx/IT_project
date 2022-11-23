@@ -20,9 +20,13 @@ class TestPlayerDao(TestCase):
         self.assertEqual(1,player.id_player)
     def test_find_all_players(self):
         player_dao=PlayerDao()
-        list_of_players=player_dao.find_all_players
+        list_of_players=player_dao.find_all_players()
         print(len(list_of_players))
     def test_update_player(self):
-        pass
+        player_dao=PlayerDao()
+        player_update = Player(1,"Simo","Assili@ensai.fr","5679KK")
+        updated=player_dao.update_player(player_update)
+        print(updated)
+        self.assertTrue(updated)
     if __name__ == '__main__':
         unittest.main()

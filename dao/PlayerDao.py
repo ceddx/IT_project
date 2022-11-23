@@ -118,19 +118,19 @@ class PlayerDao:
         player1 = PlayerDao().find_player_by_id(player.id_player)
         if player1 is None:
             return updated
-        connection = DBConnection().connection
-        with connection.cursor() as cursor:
-            cursor.execute("UPDATE Players SET"
-                           " player_name = %(player_name)s"
-                           ",email = %(email)s"
-                           ",pass_word = %(password)s"
-                           " WHERE id_player = %(id_player)s;",
-                           {"player_name": player.name,
-                            "email": player.email,
-                            "password": player.password,
-                            "id_player": player.id_player})
-            if cursor.rowcount:
-                updated = True
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute("UPDATE Players SET"
+                            " player_name = %(player_name)s"
+                            ",email = %(email)s"
+                            ",pass_word = %(password)s"
+                            " WHERE id_player = %(id_player)s;",
+                            {"player_name": player.name,
+                                "email": player.email,
+                                "password": player.password,
+                                "id_player": player.id_player})
+                if cursor.rowcount:
+                    updated = True
         return updated
 
     def add_player(self, player: Player) -> bool:

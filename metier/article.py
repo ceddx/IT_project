@@ -159,6 +159,7 @@ class Article(object):
         '''
         if title in paragraph:
             paragraph = paragraph.replace(title, 'X' * len(title))
+        #return paragraph
 
     def get_clue(self):
         '''
@@ -216,8 +217,6 @@ def filtrer(s):
         ]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
-
-
 
 def similar(a, b, seuil = 0.85):
     '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil

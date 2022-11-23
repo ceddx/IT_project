@@ -9,7 +9,7 @@ class UpdateView(AbstractView):
     Classe permettant à un joueur de modifier son mot de passe.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'confirm',
                 'name': 'cancel',

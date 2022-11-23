@@ -12,6 +12,6 @@ CREATE TABLE History (
     id_history SERIAL PRIMARY KEY ,
     id_player integer REFERENCES Players(id_player),
     score integer,
-    attempts  float,
+    attempts  integer,
     article text
     );

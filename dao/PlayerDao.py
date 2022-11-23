@@ -1,8 +1,10 @@
 from dao.db_connection import DBConnection
 from metier.player import Player
+from util.singleton import Singleton
 
 
-class PlayerDao:
+
+class PlayerDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant les informations relatives aux joueurs.
     '''

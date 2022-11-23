@@ -2,9 +2,11 @@ from dao.db_connection import DBConnection
 from metier.history import History
 from metier.player import Player
 from dao.PlayerDao import PlayerDao
+from util.singleton import Singleton
 
 
-class HistoryDao:
+
+class HistoryDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
     '''

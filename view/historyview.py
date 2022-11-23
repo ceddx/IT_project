@@ -1,7 +1,5 @@
 from view.abstract_view import AbstractView
 from PyInquirer import *
-from service.history_service import HistoryService
-from metier.history import History
 from dao.historydao import HistoryDao
 from dao.PlayerDao import PlayerDao
 from view.session import Session

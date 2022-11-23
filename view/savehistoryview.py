@@ -1,10 +1,10 @@
 from view.abstract_view import AbstractView
-from PyInquirer import prompt, Separator
-from service.history_service import HistoryService
+from PyInquirer import *
 from metier.history import History
 from view.session import Session
 from dao.PlayerDao import PlayerDao
 from dao.historydao import HistoryDao
+
 class SaveHistoryView(AbstractView):
     def __init__(self):
         self.questions = [
@@ -25,10 +25,11 @@ class SaveHistoryView(AbstractView):
         pass
 
     def make_choice(self):
+        
         score= Session().score
         attempts= Session().number_of_attempts
         secret_article=Session().article
-
+        #on sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité)
         if Session().login_check==True:
             player= PlayerDao().find_player_by_playername(Session)
             history= History(player.id_player,score,attempts,secret_article)

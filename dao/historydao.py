@@ -88,7 +88,14 @@ class HistoryDao:
             print("You don't have a history yet")
 
 
-    def get_lowest_number_of_attempts(self):
-        pass
+    def get_lowest_number_of_attempts(self, player:Player):
+        list_numbers=[]
+        list=self.find_player_history(player)
+        for history in list:
+            list_numbers.append(history.number_of_attempts)
+        if len(list_numbers):
+            return min(list_numbers)
+        else:
+            print("You don't have a history yet")
 
         

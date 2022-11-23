@@ -1,24 +1,24 @@
-from metier.article import Article
-from metier.article_generation import ArticleGeneration
-import unittest
-from view.abstract_view import AbstractView
+from view.menuview import MenuView
 from view.gameview import Gameview
-from view.historyview import History
+from view.historyview import HistoryView
 from view.loginview import LoginView
-from view.session import Session
-from view.signupview import SignUp
+from view.signupview import SignupView
 from view.startview import StartView
 from view.updateview import UpdateView
-import requests
+from view.savehistoryview import SaveHistoryView
+from view.changeorretry_view import ChangeOrRetryView
 
 dict_view = {
-        "Start " : StartView,
-        "Login " : LoginView,
-        "Sign Up": SignupView,
-        "history": HistoryView,
-        "update":UpdateView,
-        "Play Game":Gameview,
-        "Rank":RankView
+        "Start": StartView,
+        "Login": LoginView,
+        "Menu": MenuView,
+        "SignUp": SignupView,
+        "History": HistoryView,
+        "Update":UpdateView,
+        "PlayGame":Gameview,
+        "SaveHistory":SaveHistoryView,
+        "Update":UpdateView,
+        "RetryOrChange":ChangeOrRetryView
     }
 
 if __name__ == "__main__" :

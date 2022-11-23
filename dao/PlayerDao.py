@@ -1,8 +1,10 @@
 from dao.db_connection import DBConnection
 from metier.player import Player
+from util.singleton import Singleton
 
 
-class PlayerDao:
+
+class PlayerDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant les informations relatives aux joueurs.
     '''
@@ -68,7 +70,7 @@ class PlayerDao:
 
     def find_player_by_id(self, id):
         '''
-        Méthode renvoyant la liste des informations d'un joueur enregistré à partir de son identifiant.
+        Méthode renvoyant les informations d'un joueur enregistré à partir de son identifiant.
 
         Paramètre :
         ------------
@@ -77,8 +79,8 @@ class PlayerDao:
 
         Return :
         ---------
-        observation : list
-            liste des informations du joueur
+        player : Player
+            joueur correspondant à l'identifiant donné
         '''
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -95,6 +97,19 @@ class PlayerDao:
         return player
     
     def find_player_by_playername(self, player_name :str):
+        '''
+        Méthode renvoyant la liste des informations d'un joueur enregistré à partir de son nom.
+
+        Paramètre :
+        ------------
+        player_name : str
+            nom du joueur en question
+
+        Return :
+        ---------
+        player : Player
+            joueur correspondant au nom donné
+        '''
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
                 cursor.execute(
@@ -114,6 +129,19 @@ class PlayerDao:
         return player1
 
     def update_player(self, player: Player) -> bool:
+        '''
+        Méthode permettant de modifier les informations d'un joueur.
+
+        Paramètre :
+        ------------
+        player : Player
+            joueur dont on veut modifier les informations
+
+        Return :
+        ---------
+        updated : Bool
+            booléen valant True si la modification a bien été effectuée, False si le joueur n'est pas enregistré
+        '''
         updated = False
         player1 = PlayerDao().find_player_by_id(player.id_player)
         if player1 is None:
@@ -141,6 +169,12 @@ class PlayerDao:
         ------------
         Player : Player
             joueur que l'on veut insérer dans la base de données
+
+        Return :
+        ---------
+        created : bool
+            booléen valant Tru si le joueur a bien été créé 
+
         '''
         created = False
         with DBConnection().connection as connection:

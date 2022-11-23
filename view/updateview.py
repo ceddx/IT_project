@@ -1,19 +1,15 @@
 from view.abstract_view import AbstractView
-from PyInquirer import prompt, Separator
-from service.history_service import HistoryService
-from metier.history import History 
-from pprint import pprint
+from PyInquirer import *
 from werkzeug.security import generate_password_hash
 from dao.PlayerDao import PlayerDao
 from metier.player import Player
-from view.session import Session
 
 class UpdateView(AbstractView):
     '''
     Classe permettant à un joueur de modifier son mot de passe.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'confirm',
                 'name': 'cancel',

@@ -1,10 +1,5 @@
 from PyInquirer import prompt
 from view.abstract_view import AbstractView
-from view.session import Session
-from view.signupview import SignupView
-from view.loginview import loginView
-from view.gameview import GameView
-
 
 
 class StartView(AbstractView):
@@ -17,7 +12,7 @@ class StartView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Hello {Session().player_name}',
+                'message': 'Menu',
                 'choices': [
                     'Sign Up'
                     , 'Log In'

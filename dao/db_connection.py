@@ -5,13 +5,16 @@ from psycopg2.extras import RealDictCursor
 from util.singleton import Singleton
 
 
-
 class DBConnection(metaclass=Singleton):
+
     """
-    Technical class to open only one connection to the DB.
+    Classe technique permettant de n'ouvrir qu'une seule connection avec la base de données.
     """
 
     def __init__(self):
+        '''
+        Initialisation des paramètres et ouverture de la connexion.
+        '''
         dotenv.load_dotenv(override=True)
         # Open the connection.
         self.__connection = psycopg2.connect(
@@ -25,8 +28,11 @@ class DBConnection(metaclass=Singleton):
     @property
     def connection(self):
         """
-        return the opened connection.
+        Méthode renvoyant la connexion ouverte avec la base de données.
 
-        :return: the opened connection.
+        Return :
+        ---------
+        connection : connection
+            la connexion ouverte
         """
         return self.__connection

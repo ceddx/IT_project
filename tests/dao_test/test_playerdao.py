@@ -15,9 +15,13 @@ class TestPlayerDao(TestCase):
         self.assertIsNotNone(player.id_player)
         print(player.id_player)
     def test_find_player_by_id(self):
-        pass
+        player_dao=PlayerDao()
+        player=player_dao.find_player_by_id(1)
+        self.assertEqual(1,player.id_player)
     def test_find_all_players(self):
-        pass
+        player_dao=PlayerDao()
+        list_of_players=player_dao.find_all_players
+        print(len(list_of_players))
     def test_update_player(self):
         pass
     if __name__ == '__main__':

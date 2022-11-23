@@ -32,7 +32,7 @@ class PlayerDao:
                         row["player_name"],
                         row["email"],
                         row['pass_word'])
-                list_of_players.append(player)
+                    list_of_players.append(player)
         return list_of_players
 
     def get_all_players_name(self):

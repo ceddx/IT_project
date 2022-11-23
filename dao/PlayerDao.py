@@ -31,7 +31,7 @@ class PlayerDao:
                         row['id_player'],
                         row["player_name"],
                         row["email"],
-                        row['password'])
+                        row['pass_word'])
                 list_of_players.append(player)
         return list_of_players
 
@@ -91,7 +91,7 @@ class PlayerDao:
                 observation['id_player'],
                 observation["player_name"],
                 observation["email"],
-                observation['password'])
+                observation['pass_word'])
         return player
     
     def find_player_by_playername(self, player_name :str):
@@ -109,7 +109,7 @@ class PlayerDao:
             player1=Player(res["id_player"],
             res["player_name"],
             res["email"],
-            res['password'])
+            res['pass_word'])
            
         return player1
 
@@ -123,7 +123,7 @@ class PlayerDao:
             cursor.execute("UPDATE Players SET"
                            " player_name = %(player_name)s"
                            ",email = %(email)s"
-                           ",password = %(password)s"
+                           ",pass_word = %(password)s"
                            " WHERE id_player = %(id_player)s;",
                            {"player_name": player.name,
                             "email": player.email,
@@ -146,7 +146,7 @@ class PlayerDao:
         connection = DBConnection().connection
         with connection.cursor() as cursor:
             cursor.execute(
-                "INSERT into Players (id_player,player_name,email,password)"
+                "INSERT into Players(id_player,player_name,email,pass_word)"
                 "VALUES (%(id_player)s, %(name)s, %(email)s),%(password)s"
                 "RETURNING id_player", {
                     "player_name": player.name, "email": player.email, "password": player.password})

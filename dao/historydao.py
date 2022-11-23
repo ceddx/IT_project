@@ -1,4 +1,4 @@
-from db_connection import DBConnection
+from dao.db_connection import DBConnection
 from metier.history import History
 from metier.player import Player
 from dao.PlayerDao import PlayerDao
@@ -61,8 +61,8 @@ class HistoryDao:
 
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT INTO History (id_player,score,speed,article_name)"
-                    "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s)"
+                    "INSERT INTO History (id_player,score,attempts,article)"
+                    "VALUES (%(id_player)s, %(score)s,%(attempts)s,%(article)s)"
                     "RETURNING id_history",
                     {
                         "id_player": history.id_player,

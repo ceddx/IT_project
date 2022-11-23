@@ -14,5 +14,4 @@ class Session(metaclass=Singleton):
         self.score=0
         self.number_of_attempts= 0
         self.article= None
-        self.history= []
     

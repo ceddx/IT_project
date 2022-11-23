@@ -1,7 +1,10 @@
 from view.abstract_view import AbstractView
-from PyInquirer import prompt, Separator
+from PyInquirer import *
 from service.history_service import HistoryService
 from metier.history import History
+from dao.historydao import HistoryDao
+from dao.PlayerDao import PlayerDao
+from view.session import Session
 
 class HistoryView(AbstractView):
     '''
@@ -14,7 +17,7 @@ class HistoryView(AbstractView):
                 'name': 'history',
                 'message': 'Here is your history.',
                 'choices': [
-                    'history',
+                    'History',
                     Separator(),
                      'Statistics'
                 ]
@@ -26,5 +29,31 @@ class HistoryView(AbstractView):
 
     def make_choice(self):
         answer=prompt(self.__questions)
+        player=PlayerDao().find_player_by_playername(Session().player_name)
+        if answer['history']=='history':
+            history=HistoryDao().find_player_history(player)
+            if history==[]:
+                print("You don't have a history yet")
+            else:
+                for x in history:
+                    
+                    dict_history={}
+                    dict_history["score"]= x.score
+                    dict_history["attempts"]=x.number_of_attempts
+                    dict_history["article"]=x.article
+                    print(dict_history)
+
+        if answer['history']=='Statistics':
+            best_score= HistoryDao().get_best_score(player)
+            if best_score:
+                print("Your best score is: ", best_score)
+            lowest_number_of_attempts= HistoryDao().get_lowest_number_of_attempts(player)
+            if lowest_number_of_attempts:
+                print("Your lowest number of attempts is: ", lowest_number_of_attempts)
+        return "Menu"
+                    
+                
+                
+
 
         

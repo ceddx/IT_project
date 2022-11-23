@@ -41,7 +41,6 @@ class LoginView(AbstractView):
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
         answer= prompt(self.__questions)
-        player = PlayerDao().find_player_by_playername
         playername_inputed= answer['PlayerName']
         password_inputed = answer['password']
         if answer['cancel'] == 'Yes':

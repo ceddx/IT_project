@@ -4,6 +4,7 @@ from service.history_service import HistoryService
 from metier.history import History
 from view.session import Session
 from dao.PlayerDao import PlayerDao
+from dao.historydao import HistoryDao
 class SaveHistoryView(AbstractView):
     def __init__(self):
         self.questions = [
@@ -26,9 +27,34 @@ class SaveHistoryView(AbstractView):
     def make_choice(self):
         score= Session().score
         attempts= Session().number_of_attempts
-        if Session().login_check=True:
+        secret_article=Session().article
+
+        if Session().login_check==True:
             player= PlayerDao().find_player_by_playername(Session)
-            history= History(player.id_player,score,)
+            history= History(player.id_player,score,attempts,secret_article)
+            HistoryDao().add_history(history)
+
+        Session().score=0
+        Session().number_of_attempts=0
+        Session().article= None
+
+        answer=prompt(self.questions)
+        if answer['saving']=='Replay':
+            next_view= "Play"
+        if answer['saving']=='Back to menu':
+            if Session().login_check==True:
+                next_view="Menu"
+            else:
+                next_view="Start"
+        else:
+            next_view="Quit"
+        return next_view
+
+        
+
+
+
+        
 
 
             

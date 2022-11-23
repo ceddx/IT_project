@@ -220,7 +220,7 @@ def filtrer(s):
     return all(del_w not in s for del_w in del_words)
 
 def similar(a, b, seuil = 0.85):
-    '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
+    '''Méthode qui prend en entrée deux chaînes de caractères et si la similarité est au dessus du seuil
     renvoie True, sinon False
     
     Paramètres

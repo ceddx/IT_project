@@ -1,7 +1,5 @@
 from view.abstract_view import AbstractView
 from PyInquirer import *
-from service.history_service import HistoryService
-from metier.history import History
 from dao.historydao import HistoryDao
 from dao.PlayerDao import PlayerDao
 from view.session import Session
@@ -28,7 +26,7 @@ class HistoryView(AbstractView):
         pass
 
     def make_choice(self):
-        answer=prompt(self.__questions)
+        answer=prompt(self.questions)
         player=PlayerDao().find_player_by_playername(Session().player_name)
         if answer['history']=='history':
             history=HistoryDao().find_player_history(player)

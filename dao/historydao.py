@@ -1,10 +1,12 @@
-from db_connection import DBConnection
+from dao.db_connection import DBConnection
 from metier.history import History
 from metier.player import Player
 from dao.PlayerDao import PlayerDao
+from util.singleton import Singleton
 
 
-class HistoryDao:
+
+class HistoryDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
     '''
@@ -16,7 +18,7 @@ class HistoryDao:
         '''
         Méthode permettant de trouver l'historique d'un joueur à partir de son identifiant.
 
-        Paramètres :
+        Paramètre :
         -------------
         player : Player
             Le joueur dont on veut récupérer l'historique
@@ -31,26 +33,31 @@ class HistoryDao:
                 cursor.execute(
                     "SELECT * FROM History where id_player=%(id)s", {"id": player.id_player})
                 res = cursor.fetchall()
-                history = []
-                if res:
-                    for row in res:
-                        history1 = History(
-                            row['id_history'],
-                            row["id_player"],
-                            row["score"],
-                            row["attempts"],
-                            row["article"])
-                        history.append(history1)
+        history = []
+        if res:
+            for row in res:
+                history1 = History(
+                    row['id_history'],
+                    row["id_player"],
+                    row["score"],
+                    row["attempts"],
+                    row["article"])
+                history.append(history1)
         return history
 
     def add_history(self,history: History):
         '''
         Méthode qui ajoute un historique.
 
-        Paramètres :
+        Paramètre :
         -------------
         history : History
             historique à ajouter
+
+        Return :
+        --------
+        created : Bool
+            booléen précisant si l'historique a bien été ajouté ; il vaut False si l'historique n'existe pas
         '''
         created = False
         player = PlayerDao().find_player_by_id(history.id_player)
@@ -61,8 +68,8 @@ class HistoryDao:
 
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT INTO History (id_player,score,speed,article_name)"
-                    "VALUES (%(id_player)s, %(score)s,%(speed)s,%(article)s"
+                    "INSERT INTO History (id_player,score,attempts,article)"
+                    "VALUES (%(id_player)s, %(score)s,%(attempts)s,%(article)s)"
                     "RETURNING id_history",
                     {
                         "id_player": history.id_player,
@@ -77,7 +84,20 @@ class HistoryDao:
 
 
     def get_best_score(self, player:Player):
+        '''
+        Méthode permettant d'obtenir le meilleur score d'un joueur. Si le joueur n'a jamais joué et n'a donc
+        pas d'historique, un message d'erreur est envoyé.
 
+        Paramètre :
+        --------------
+        player : Player
+            le joueur dont on veut afficher le meilleur score.
+
+        Return :
+        ---------
+        best_score : int
+            score maximal parmi tous les scores du joeueur
+        '''
         list_of_scores=[]
         l=self.find_player_history(player)
         for x in l:
@@ -89,6 +109,21 @@ class HistoryDao:
 
 
     def get_lowest_number_of_attempts(self, player:Player):
+        '''
+        Méthode permettant de récupérer le nombre minimal d'essais qui ont été réalisés par un joueur avant de 
+        gagner une partie. Si le joueur n'a jamais joué et n'a donc pas d'historique, un message d'erreur
+        est envoyé.
+
+        Paramètre :
+        ------------
+        player : Player
+            joueur dont on veut le nombre minimal d'essais
+
+        Return :
+        ---------
+        lowest_number_of_attempts : int
+            Minimum parmi les nombres d'essais qu'a effectués un joueur
+        '''
         list_numbers=[]
         list=self.find_player_history(player)
         for history in list:

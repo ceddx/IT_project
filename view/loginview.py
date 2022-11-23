@@ -1,9 +1,7 @@
 from view.abstract_view import AbstractView
 from PyInquirer import *
 from view.session import Session
-from metier.player import Player
 from dao.PlayerDao import PlayerDao
-from pprint import pprint
 from werkzeug.security import check_password_hash
 
 
@@ -12,7 +10,7 @@ class LoginView(AbstractView):
     Classe permettant à un joueur enregistré de se connecter.
     '''
     def __init__(self):
-        self.__questions = [
+        self.questions = [
             {
                 'type': 'list',
                 'name': 'cancel',
@@ -40,7 +38,7 @@ class LoginView(AbstractView):
         """
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
-        answer= prompt(self.__questions)
+        answer= prompt(self.questions)
         playername_inputed= answer['PlayerName']
         password_inputed = answer['password']
         if answer['cancel'] == 'Yes':

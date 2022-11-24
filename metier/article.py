@@ -198,10 +198,7 @@ class Article(object):
                     list_clues))
         list_clues = list(filter(lambda x: self.name_article not in x,list_clues))
         list_clues = list(filter(filtrer, list_clues))
-        for i in list_clues:
-            for j in list_clus:
-                if similar(i,j, 0.85):
-                    list_clues.remove(i)
+        list_clues = list(dict.fromkeys(list_clues))
         random.shuffle(list_clues)
         return list_clues
 

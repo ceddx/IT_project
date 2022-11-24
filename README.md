@@ -38,11 +38,11 @@ You have to executated file main.py and everything will be done in command promp
 ## Made with
 
 * [Python](https://www.python.org/) - programming language
-* [PostgreSQL](https://www.postgresql.org/) - mise en relation de base de données
+* [PostgreSQL](https://www.postgresql.org/) - service linking our programme and database
 
 ## Author
 * **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
+* **Lorenzo MATHIEU** _pseudo_ [@Stenaxo](https://gitlab.com/Stenaxo)
+* **Mohamed ASSILI** _pseudo_ [@meda6li](https://gitlab.com/meda6li)
+* **Tissine PICHON** _pseudo_ [@Tissine](https://gitlab.com/Tissine)
+* **Wajih HAMMOUDA** _pseudo_ [@W_101001](https://gitlab.com/W_101001)

@@ -42,5 +42,7 @@ You have to executated file main.py and everything will be done in command promp
 
 ## Author
 * **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-
-
+* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
+* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
+* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
+* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)

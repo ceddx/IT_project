@@ -31,7 +31,7 @@ class SaveHistoryView(AbstractView):
         secret_article=Session().article
         #on sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité)
         if Session().login_check==True:
-            player= PlayerDao().find_player_by_playername(Session)
+            player= PlayerDao().find_player_by_playername(Session().player_name)
             history= History(player.id_player,score,attempts,secret_article)
             HistoryDao().add_history(history)
 

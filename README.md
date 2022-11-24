@@ -1,6 +1,6 @@
 # Cherche la page Wikipedia
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](https://img.shields.io/badge/Build%20by-%20ENSAIEN-blue)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) (https://img.shields.io/badge/Build%20by-%20ENSAIEN-blue)
 
 This application is Informatic project of groupe 17. This is a game called "cherche la page Wikipedia", it is a mix between two famous game : "Le phylosophe" and "La Pyramide".
 It is a simple game you choose the language and the difficulty you want played. Then you get a several clue to guess which is the title of the Wikipedia sheet randomly selected. You can ask other clue if you cannot find the title.

@@ -14,10 +14,19 @@ You will obtain a score according to your number of try and number of clue you r
 You have to find somes steps before to play to this beautiful game.
 ### Prerequisite 
 
-You have to download these packages
-- Programme 1
-- Programme 2
-- etc...
+You have to download these packages in this version
+- InquirerPy==0.3.4
+- prompt_toolkit==1.0.14
+- psycopg2==2.9.5
+- psycopg2_binary==2.9.4
+- PyInquirer==1.0.3
+- python-dotenv==0.21.0
+- regex==2022.9.13
+- requests==2.28.1
+- Unidecode==1.3.6
+- Werkzeug==2.2.2
+- Wikipedia_API==0.5.4
+
 
 ### Installation
 

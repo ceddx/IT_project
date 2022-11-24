@@ -7,7 +7,6 @@ class Chrono(tkinter.Label):
     '''
     Classe permettant d'obtenir la vitesse avec laquelle un joueur gagne une partie.
     '''
-
     def __init__(self, root, startTime=0):
         tkinter.Label.__init__(self, root, text='Starting...')
 

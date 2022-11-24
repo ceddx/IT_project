@@ -8,8 +8,7 @@ import unidecode
 
 
 
-class ArticleGeneration(metaclass=Singleton):
- 
+class ArticleGeneration(metaclass=Singleton): 
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """

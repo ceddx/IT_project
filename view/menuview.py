@@ -18,7 +18,7 @@ class MenuView(AbstractView):
                     Separator(),
                     'Play',
                     Separator(),
-                    'Logout',
+                    'LogOut',
                     Separator(),
                     'Quit'
                 ]

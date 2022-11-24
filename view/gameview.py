@@ -27,7 +27,9 @@ class Gameview(AbstractView):
         """
         Méthode qui va juste déterminer l'affichage en console.
         """
-        print(f"Hello {Session().player_name}")
+        if Session().player_name!=None:
+            print(f"Hello {Session().player_name}")
+        print("Hello")
 
     def make_choice(self):
         """
@@ -40,7 +42,7 @@ class Gameview(AbstractView):
         elif reponse['choix'] == 'return':
             return "Start"
         elif reponse['choix'] == 'instructions':
-            print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c")
+            print("Guess the random wikipedia Article, you can use hints but for each hint used you lower your score :c \nYou have only 11 attempts")
             return "PlayGame"
 
     def play_game(self):
@@ -50,24 +52,24 @@ class Gameview(AbstractView):
         secret_article=Article()
         #game = GameService()
         #secret_article = game.article
-        Session().article=secret_article
-        attempts = 0
+        Session().article=secret_article.name_article
+        attempts = 1 #le joueur est obligé à faire une première tentative
         hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
         first_clue= GameService().first_task(secret_article)[1]
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while not (similar(guess, secret_article.name_article, seuil = 0.7)) and attempts<10:
+        while not (similar(guess, secret_article.name_article, seuil = 0.7)) and attempts<=10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = GameService().next_task(secret_article,first_clue)[1]
                 score-=10
                 print("your current score is ", score)
                 guess = input("Use this new hint to guess the article: {} \n".format(first_clue))
-                if similar(guess, secret_article.name_article):
+                if similar(guess, secret_article.name_article) :
                     break
 
             if reponse['help'] == 'no':
-                guess = input("Another chance!")
+                guess = input("Another chance! \n")
                 if similar(guess, secret_article.name_article):
                     break
             if reponse['help'] == 'give up':
@@ -79,7 +81,11 @@ class Gameview(AbstractView):
             score=0
             print("Your score is 0")
         if score!=0 :
-            print("You win with A Score Of ",score)
+            if similar(guess, secret_article.name_article, seuil = 0.7):
+                print("You win with A Score Of ",score)
+            else:
+                score=0
+                print('Game over, the right answer is {}'.format(secret_article.name_article))
         elif score==0 :
             print('Game over, the right answer is {}'.format(secret_article.name_article))
 

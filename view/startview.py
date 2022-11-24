@@ -11,12 +11,13 @@ class StartView(AbstractView):
         self.questions = [
             {
                 'type': 'list',
-                'name': 'choix',
+                'name': 'choices',
                 'message': 'Menu',
                 'choices': [
                     'Sign Up'
                     , 'Log In'
-                    , 'Play Without Logging In'
+                    , 'Play Without Logging In',
+                    'Quit'
                 ]
             }
         ]
@@ -31,12 +32,12 @@ class StartView(AbstractView):
 
         """
         answer = prompt(self.questions)
-        if answer['choix'] == 'Sign Up':
+        if answer['choices'] == 'Sign Up':
             next_view="SignUp"
-        elif answer['choix'] == 'Log In':
+        elif answer['choices'] == 'Log In':
             next_view="Login"
-        elif answer['choix'] == 'Play Without Logging In':
+        elif answer['choices'] == 'Play Without Logging In':
             next_view="PlayGame"
-        else:
+        elif answer['choices'] == 'Quit':
             next_view="Quit"
         return next_view

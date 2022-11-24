@@ -26,13 +26,13 @@ class SaveHistoryView(AbstractView):
 
     def make_choice(self):
         
-        score= Session().score
-        attempts= Session().number_of_attempts
-        secret_article=Session().article
+        #score= Session().score
+        #attempts= Session().number_of_attempts
+        #secret_article=Session().article
         #on sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité)
         if Session().login_check==True:
             player= PlayerDao().find_player_by_playername(Session().player_name)
-            history= History(player.id_player,score,attempts,secret_article)
+            history= History(player.id_player,Session().score,Session().number_of_attempts,Session().article)
             HistoryDao().add_history(history)
 
         Session().score=0
@@ -50,6 +50,11 @@ class SaveHistoryView(AbstractView):
         elif answer['saving']=='Quit':
             next_view="Quit"
         return next_view
+
+'''if __name__ == "__main__":
+    history= History(2,40,10,"Session().article")
+    HistoryDao().add_history(history)'''
+
 
         
 

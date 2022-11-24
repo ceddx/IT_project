@@ -56,7 +56,7 @@ class Gameview(AbstractView):
         first_clue= GameService().first_task(secret_article)[1]
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while not (similar(guess, secret_article.name_article)) and attempts<10:
+        while not (similar(guess, secret_article.name_article, seuil = 0.7)) and attempts<10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = GameService().next_task(secret_article,first_clue)[1]
@@ -83,7 +83,7 @@ class Gameview(AbstractView):
         Session().number_of_attempts = attempts
         
 
-def similar(a, b, seuil = 0.85):
+def similar(a, b, seuil = 0.7):
     '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
     renvoie True, sinon False
     

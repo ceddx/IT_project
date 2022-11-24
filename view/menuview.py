@@ -3,6 +3,10 @@ from PyInquirer import *
 from  view.session import Session
 
 class MenuView(AbstractView):
+    '''
+    Classe permettant l'affichage du menu principal du jeu. À partir de ce menu, le joueur peut commencer une partie,
+    consulter son historique, de déconnecter ou bien quitter le jeu.
+    '''
     def __init__(self):
         self.questions = [
             {

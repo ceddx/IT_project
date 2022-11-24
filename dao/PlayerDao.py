@@ -64,7 +64,7 @@ class PlayerDao(metaclass=Singleton):
         list_of_players_email = []
         l = self.find_all_players()
         for x in l:
-            list_of_players_email+=x.emails
+            list_of_players_email+=x.email
         return list_of_players_email
         
 
@@ -113,7 +113,7 @@ class PlayerDao(metaclass=Singleton):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
                 cursor.execute(
-                    "SELECT * from Players WHERE player_namer=%(player_name)s ;"
+                    "SELECT * from Players WHERE player_name=%(player_name)s ;"
                 , {"player_name" : player_name})
                 res = cursor.fetchone()
        

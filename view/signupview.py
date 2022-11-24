@@ -2,6 +2,7 @@ from PyInquirer import  prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 from dao.PlayerDao import PlayerDao
+from metier.player import Player
 from werkzeug.security import generate_password_hash
 
 
@@ -47,7 +48,7 @@ class SignupView(AbstractView):
         On oblige l'utilisateur à remplir tout les champs
         """
         reponse = prompt(self.questions)
-        if reponse['Quit']:
+        if reponse['quit']:
             return "Start"
         if reponse['PlayerName'] in PlayerDao().get_all_players_name(): 
             print("Player name already used, try a different one")
@@ -55,13 +56,14 @@ class SignupView(AbstractView):
         if reponse['email'] in PlayerDao().get_all_emails() : 
             print("email adress already used, try a different one")
             return "SignUp"
-        if  reponse['id']=="" or  reponse['mail']=="" or reponse['mdp']=="":
+        if  reponse['PlayerName']=="" or  reponse['email']=="" or reponse['password']=="":
             print("Fill in all the fields")
             next_view = "SignUp"
         else:
-            new_player = PlayerDao(reponse['PlayerName'], reponse['email'],generate_password_hash(reponse['mdp']))
+            new_player = Player(reponse['PlayerName'], reponse['email'],generate_password_hash(reponse['password']))
             PlayerDao().add_player(new_player)
             Session().login_check = True
             Session().player_name = reponse['PlayerName']
             next_view = "Menu"
         return next_view
+

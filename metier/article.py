@@ -263,3 +263,11 @@ def normalize_string(string):
         
     string = unidecode.unidecode(string)
     string = string.lower()
+
+if __name__ == '__main__':
+    ag = ArticleGeneration()
+    article = Article()
+    print(article.name_article)
+    ag.new_rdm()
+    article2 = Article()
+    print(article2.name_article)

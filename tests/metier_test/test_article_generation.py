@@ -5,7 +5,6 @@ import random
 
 class MockGenerator(object):
     iter = 0
-    random.seed(69)
     dico = [
         {'article': 'Cookie_(informatique)', 'views': 177667567, 'rank': 1}, 
         {'article': 'Wikipédia:Accueil_principal', 'views': 18276169, 'rank': 2}, 
@@ -134,6 +133,15 @@ class MockGenerator(object):
 
         return page_content
 
+    def new_rdm(self):
+        '''
+        Méthode renvoyant un nouveau nombre aléatoire.
+        '''
+        nrdm = 0
+        while nrdm == self.num_article:
+            nrdm = random.randint(0, 999)
+        self.num_article = nrdm
+
 class Test_ArticleGeneration(unittest.TestCase):   
     
     def test_get_title(self):
@@ -204,7 +212,15 @@ class Test_ArticleGeneration(unittest.TestCase):
         val = article.validation()
         self.assertEqual(True, val)
     
-    
+    def test_new_rdm(self):
+
+        article = MockGenerator()
+        rd = article.num_article
+        article.new_rdm()
+        rd1 = article.num_article
+        self.assertNotEqual(rd,rd1)
+        
+
 
 if __name__ == '__main__':
     unittest.main()

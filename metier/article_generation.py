@@ -118,8 +118,11 @@ class ArticleGeneration(metaclass=Singleton):
         '''
         Méthode renvoyant un nouveau nombre aléatoire.
         '''
-        nrdm = random.randint(0, 999)
-        self.rdm = nrdm
+
+        nrdm = 0
+        while nrdm == self.num_article:
+            nrdm = random.randint(0, 999)
+        self.num_article = nrdm
 
     def normalize_string(self, string):
         '''

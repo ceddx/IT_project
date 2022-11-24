@@ -22,6 +22,7 @@ class Game:
         answer : str
             titre de l'article à trouver, correspond à la réponse que doit donner le joueur pour gagner
         '''
+
         self.article = article
         #self.language = ['French', 'English']
         #self.difficulty = difficulty

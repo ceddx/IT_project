@@ -12,14 +12,14 @@ class LoginView(AbstractView):
     def __init__(self):
         self.questions = [
             {
-                'type': 'list',
+                'type': 'confirm',
                 'name': 'cancel',
                 'message': 'Do you want to cancel the operation?',
-                'choices':['Yes','No']
+                'default': False
             },
             {
                 'type': 'input',
-                'name': 'Playername',
+                'name': 'playername',
                 'message': 'Enter your player_name',
                 'when': lambda answers: not answers['cancel']
             },
@@ -39,17 +39,13 @@ class LoginView(AbstractView):
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
         answer= prompt(self.questions)
-        playername_inputed= answer['PlayerName']
-        password_inputed = answer['password']
-        if answer['cancel'] == 'Yes':
+        if answer['cancel']:
             return "Start"
-        player= PlayerDao().find_player_by_playername(playername_inputed)
-        if player and playername_inputed==player.name and check_password_hash(player.password,password_inputed):
+        player= PlayerDao().find_player_by_playername(answer['playername'])
+        if player and (answer['playername']==player.name) and (check_password_hash(player.password,answer['password'])):
             Session().login_check=True
-            Session().player_name =playername_inputed
+            Session().player_name =answer['playername']
             next_view = "Menu"
         else:
             next_view = 'RetryOrChange'
         return next_view
-        
-

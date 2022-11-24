@@ -3,6 +3,7 @@ import re
 import random
 from metier.article_generation import ArticleGeneration
 from difflib import SequenceMatcher
+import unidecode
 
 
 class Article(object):
@@ -44,6 +45,8 @@ class Article(object):
 
     def is_date_or_number(self, smth):
         """
+        Spécifie si une chaîne de caractères est une date ou un nombre.
+        
         Paramètres:
         --------------------------------
         smth: string
@@ -242,3 +245,21 @@ def similar(a, b, seuil = 0.85):
 
     score =  SequenceMatcher(None, a, b).ratio()
     return score >= seuil
+
+def normalize_string(string):
+    '''Enlève les accents et ç en les remplacants par les caractères associés
+    
+        Parameters
+        ----------
+        string : str
+            La chaîne à normaliser
+        
+        Returns
+        -------
+        string : str
+            La chaîne de caractère normalisée.
+        
+    '''
+        
+    string = unidecode.unidecode(string)
+    string = string.lower()

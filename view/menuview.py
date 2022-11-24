@@ -3,6 +3,10 @@ from PyInquirer import *
 from  view.session import Session
 
 class MenuView(AbstractView):
+    '''
+    Classe permettant l'affichage du menu principal du jeu. À partir de ce menu, le joueur peut commencer une partie,
+    consulter son historique, de déconnecter ou bien quitter le jeu.
+    '''
     def __init__(self):
         self.questions = [
             {
@@ -28,11 +32,11 @@ class MenuView(AbstractView):
         answer = prompt(self.questions)
         if answer['menu'] == 'My history':
             next_view= "History"
-        if answer['menu'] == 'Play':
+        elif answer['menu'] == 'Play':
             next_view = "PlayGame"
-        if answer['menu'] == 'Quit':
+        elif answer['menu'] == 'Quit':
             next_view = "Quit"
-        if answer['menu']=='LogOut':
+        elif answer['menu']=='LogOut':
             Session().login_check = False
             Session().player_name = None
             next_view = "StartView"

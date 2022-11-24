@@ -3,6 +3,7 @@ from view.session import Session
 from PyInquirer import *
 from service.game_service import *
 from difflib import SequenceMatcher
+from metier.article import Article
 
 class Gameview(AbstractView):
     '''
@@ -46,18 +47,19 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        game = GameService()
-        secret_article = game.article
+        secret_article=Article()
+        #game = GameService()
+        #secret_article = game.article
         Session().article=secret_article
         attempts = 0
         hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
-        first_clue= game.first_clue
+        first_clue= GameService().first_task(secret_article)[1]
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
         while not (similar(guess, secret_article.name_article)) and attempts<10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
-                first_clue = game.next_task(first_clue)[1]
+                first_clue = GameService().next_task(secret_article,first_clue)[1]
                 score-=10
                 print("your current score is ", score)
                 guess = input("Use this new hint to guess the article: {} \n".format(first_clue))

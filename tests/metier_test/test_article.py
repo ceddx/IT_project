@@ -22,7 +22,8 @@ class Test_Article(unittest.TestCase):
         Art = Article(MockGenerator())
         clue = Art.get_clue()
         self.assertEqual(len(clue)>9,True)
-    
+        
+
 #    def test_blank_paragraph(self):
 
 

@@ -1,32 +1,33 @@
 from metier.game import Game
 from metier.player import Player
 import random
+from metier.article import Article
 
 class GameService:
     '''
     Classe permettant de gérer le jeu.
     '''
-    def __init__(self,game = Game()):
+    def __init__(self):
         '''
         Initialisation des attributs.
 
         
         '''
-        self.game = game
-        self.article = self.game.article
-        self.clues = self.game.clues
-        self.first_clue= self.clues[-1]
+        #self.game = Game()
+        #self.article = self.game.article
+        #self.clues = self.game.clues
+        #self.first_clue= self.clues[-1]
+        pass
 
 
-    def first_task(self):
-       
-        return ["Use this hint to guess the article: {} ".format(self.first_clue),self.first_clue]
-        ###### on ne voit pas comment instancier cette classe
+    def first_task(self,article:Article):
+        
+        return ["Use this hint to guess the article: {} ".format(article.get_clue()[-1]),article.get_clue()[-1]]
 
 
-    def next_task(self, previous_clue):
-        index= self.clues.index(previous_clue)
-        return ["Use this new hint to guess the article: {}".format(self.clues[index-1]), self.clues[index-1]]
+    def next_task(self,article:Article,previous_clue):
+        index= article.get_clue().index(previous_clue)
+        return ["Use this new hint to guess the article: {}".format(article.get_clue()[index-1]), article.get_clue()[index-1]]
     
     
     

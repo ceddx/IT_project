@@ -44,6 +44,8 @@ class Article(object):
 
     def is_date_or_number(self, smth):
         """
+        Spécifie si une chaîne de caractères est une date ou un nombre.
+        
         Paramètres:
         --------------------------------
         smth: string

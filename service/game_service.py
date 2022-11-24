@@ -9,8 +9,6 @@ class GameService:
     def __init__(self,game = Game()):
         '''
         Initialisation des attributs.
-
-        
         '''
         self.game = game
         self.article = self.game.article
@@ -21,7 +19,6 @@ class GameService:
     def first_task(self):
        
         return ["Use this hint to guess the article: {} ".format(self.first_clue),self.first_clue]
-        ###### on ne voit pas comment instancier cette classe
 
 
     def next_task(self, previous_clue):

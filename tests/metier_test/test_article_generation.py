@@ -219,6 +219,18 @@ class Test_ArticleGeneration(unittest.TestCase):
         article.new_rdm()
         rd1 = article.num_article
         self.assertNotEqual(rd,rd1)
+    
+    def test_categories(self):
+
+        article = MockGenerator()
+        liste = article.get_content()
+        self.assertEqual(len(liste) == 0, False)
+        self.assertEqual(liste == None, False)
+    
+    def test_get_content(self):
+        article = MockGenerator()
+        txt = article.get_content
+        self.assertNotEqual(txt, None)
         
 
 

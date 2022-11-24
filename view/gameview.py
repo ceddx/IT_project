@@ -29,7 +29,8 @@ class Gameview(AbstractView):
         """
         if Session().player_name!=None:
             print(f"Hello {Session().player_name}")
-        print("Hello")
+        else:
+            print("Hello guest")
 
     def make_choice(self):
         """

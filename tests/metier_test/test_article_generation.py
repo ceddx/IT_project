@@ -5,7 +5,6 @@ import random
 
 class MockGenerator(object):
     iter = 0
-    random.seed(69)
     dico = [
         {'article': 'Cookie_(informatique)', 'views': 177667567, 'rank': 1}, 
         {'article': 'Wikipédia:Accueil_principal', 'views': 18276169, 'rank': 2}, 

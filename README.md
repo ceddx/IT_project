@@ -22,18 +22,13 @@ Ce qu'il est requis pour commencer avec votre projet...
 
 ### Installation
 
-Les étapes pour installer votre programme....
-
-Dites ce qu'il faut faire...
-
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+To install the application you have to copy text in init_dbase.sql and to past it in your posrgresql to create a public database.
+Then you have to put your id in the file .env in password, database, user.
+Your are ready to play!!
 
 ## Start
 
-You have to executated file main.py and everything will be done in command prompt
+You have to executated command ``python -m main`` main.py and everything will be done in the terminal
 
 ## Made with
 
@@ -41,8 +36,8 @@ You have to executated file main.py and everything will be done in command promp
 * [PostgreSQL](https://www.postgresql.org/) - service linking our programme and database
 
 ## Author
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Lorenzo MATHIEU** _pseudo_ [@Stenaxo](https://gitlab.com/Stenaxo)
 * **Mohamed ASSILI** _pseudo_ [@meda6li](https://gitlab.com/meda6li)
-* **Tissine PICHON** _pseudo_ [@Tissine](https://gitlab.com/Tissine)
+* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
 * **Wajih HAMMOUDA** _pseudo_ [@W_101001](https://gitlab.com/W_101001)
+* **Lorenzo MATHIEU** _pseudo_ [@Stenaxo](https://gitlab.com/Stenaxo)
+* **Tissine PICHON** _pseudo_ [@Tissine](https://gitlab.com/Tissine)

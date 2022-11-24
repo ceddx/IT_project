@@ -115,19 +115,22 @@ class ArticleGeneration(metaclass=Singleton):
         return page_content
 
     def new_rdm(self):
-
+        '''
+        Méthode renvoyant un nouveau nombre aléatoire.
+        '''
         nrdm = random.randint(0, 999)
         self.rdm = nrdm
 
     def normalize_string(self, string):
-        '''Enlève les accents et ç en les remplacants par les caractères associés
+        '''
+        Enlève les accents et ç en les remplaçant par les caractères associés.
     
-        Parameters
+        Parameter
         ----------
         string : str
             La chaîne à normaliser
         
-        Returns
+        Return
         -------
         string : str
             La chaîne de caractère normalisée.
@@ -140,14 +143,15 @@ class ArticleGeneration(metaclass=Singleton):
         return string
     
     def find_sql(string):
-        '''Repère les commandes SQL
+        '''
+        Repère les commandes SQL
     
-        Parameters
+        Parameter
         ----------
         string : str
             La chaîne à vérifier
         
-        Returns
+        Return
         -------
         string : str
             La chaîne de caractère normalisée.

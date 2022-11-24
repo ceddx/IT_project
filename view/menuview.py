@@ -28,11 +28,11 @@ class MenuView(AbstractView):
         answer = prompt(self.questions)
         if answer['menu'] == 'My history':
             next_view= "History"
-        if answer['menu'] == 'Play':
+        elif answer['menu'] == 'Play':
             next_view = "PlayGame"
-        if answer['menu'] == 'Quit':
+        elif answer['menu'] == 'Quit':
             next_view = "Quit"
-        if answer['menu']=='LogOut':
+        elif answer['menu']=='LogOut':
             Session().login_check = False
             Session().player_name = None
             next_view = "StartView"

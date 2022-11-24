@@ -12,6 +12,13 @@ class SignupView(AbstractView):
     def __init__(self):
         self.questions = [
             {
+                'type': 'confirm',
+                'name': 'quit',
+                'message': 'Turn Back ?',
+                'default': False
+
+            },
+            {
                 'type': 'input',
                 'name': 'PlayerName',
                 'message': 'What\'s your PlayerName',
@@ -28,13 +35,6 @@ class SignupView(AbstractView):
                 'name': 'password',
                 'message': 'What\'s your password.',
                 'when': lambda answers: not answers['quit']
-            },
-            {
-                'type': 'confirm',
-                'name': 'quit',
-                'message': 'Turn Back ?',
-                'default': False
-
             },
         ]
 

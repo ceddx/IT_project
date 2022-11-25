@@ -198,10 +198,7 @@ class Article(object):
                     list_clues))
         list_clues = list(filter(lambda x: self.name_article not in x,list_clues))
         list_clues = list(filter(filtrer, list_clues))
-<<<<<<< HEAD
-=======
         list_clues = list(dict.fromkeys(list_clues))
->>>>>>> f96607dde976e13fec32338da2467804ac623673
         random.shuffle(list_clues)
         return list_clues
 

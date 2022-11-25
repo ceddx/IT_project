@@ -1,4 +1,4 @@
-# Find the Wikipedia page
+# Guess the Wikipedia article
 
 ![forthebadge](https://img.shields.io/badge/Build%20by-%20ENSAIEN-blue?style=for-the-badge)
 ![forthebadge](https://img.shields.io/badge/Groupe%2017-green?style=for-the-badge)

@@ -1,8 +1,3 @@
-from metier.game import Game
-from metier.player import Player
-import random
-from metier.article import Article
-
 class GameService:
     '''
     Classe permettant de gérer le jeu.
@@ -13,10 +8,6 @@ class GameService:
 
         
         '''
-        #self.game = Game()
-        #self.article = self.game.article
-        #self.clues = self.game.clues
-        #self.first_clue= self.clues[-1]
         pass
 
 

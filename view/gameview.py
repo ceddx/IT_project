@@ -81,7 +81,6 @@ class Gameview(AbstractView):
             attempts+=1
         if reponse['help']=='no':
             score=0
-            print("Your score is 0")
         if score!=0 :
             if similar(guess, secret_article.name_article, seuil = 0.9):
                 print("You win with A Score Of ",score)

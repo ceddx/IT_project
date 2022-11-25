@@ -28,7 +28,7 @@ class HistoryView(AbstractView):
     def make_choice(self):
         answer=prompt(self.questions)
         player=PlayerDao().find_player_by_playername(Session().player_name)
-        if answer['history']=='history':
+        if answer['history']=='History':
             history=HistoryDao().find_player_history(player)
             if history==[]:
                 print("You don't have a history yet")
@@ -43,10 +43,10 @@ class HistoryView(AbstractView):
 
         if answer['history']=='Statistics':
             best_score= HistoryDao().get_best_score(player)
-            if best_score:
+            if best_score is not None:
                 print("Your best score is: ", best_score)
             lowest_number_of_attempts= HistoryDao().get_lowest_number_of_attempts(player)
-            if lowest_number_of_attempts:
+            if lowest_number_of_attempts is not None:
                 print("Your lowest number of attempts is: ", lowest_number_of_attempts)
         return "Menu"
                     

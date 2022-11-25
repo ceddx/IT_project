@@ -64,6 +64,7 @@ class Gameview(AbstractView):
                 first_clue = GameService().next_task(clue,first_clue)[1]
                 score-=10
                 if score==0:
+                    attempts+=1
                     break
                 print("your current score is ", score)
                 guess = input("Use this new hint to guess the article: {} \n".format(first_clue))
@@ -76,7 +77,6 @@ class Gameview(AbstractView):
                     break
             if reponse['help'] == 'give up':
                 score=0
-                print("Your score is 0")
                 break
             attempts+=1
         if reponse['help']=='no':
@@ -90,9 +90,10 @@ class Gameview(AbstractView):
         elif score==0 :
             print("Your score is 0")
             print('Game over, the right answer is {}'.format(secret_article.name_article))
-
+        print(attempts)
         Session().score=score
         Session().number_of_attempts = attempts
+        
         
 
 def similar(a, b, seuil = 0.9):

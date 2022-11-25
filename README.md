@@ -3,14 +3,16 @@ _(juste en dessous des badges sympatiques à placer)_
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
-This application is Informatic project of groupe 17. This is a game called "cherche la page Wikipedia", it is a mix between two famous game : "Le phylosophe" and "La Pyramide".
-It is a simple game you choose the language and the difficulty you want played. Then you get a several clue to guess which is the title of the Wikipedia sheet randomly selected. You can ask other clue if you cannot find the title.
-You will obtain a score according to your number of try and number of clue you receive.
+
+This application is group 17's Python project. This is game is called "Guess the Wikipedia article", it is a mix between two famous game : "The Philosopher" and "The Pyramid".
+It is a simple game you get a clue each turn to guess which is the title of the Wikipedia article randomly selected. Your score starts at 100 and you will get -10 for each clue used 
+( which means you will lose after 10 clues)
 
 
 ## To start
 
-Entrez ici les instructions pour bien débuter avec votre projet...
+You have to fill in somes steps before playing this game.
+### Prerequisite 
 
 ### Pré-requis
 
@@ -33,7 +35,7 @@ Ensuite vous pouvez montrer ce que vous obtenez au final...
 
 ## Start
 
-You have to executated file main.py and everything will be done in command prompt
+You have to execute command ``python -m main`` main.py and everything will be done in the terminal
 
 ## Made with
 
@@ -41,8 +43,8 @@ You have to executated file main.py and everything will be done in command promp
 * [PostgreSQL](https://www.postgresql.org/) - mise en relation de base de données
 
 ## Author
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
+* *Mohamed ASSILI* pseudo [@meda6li](https://gitlab.com/meda6li)
+* *Cédric GRANDVAUX* pseudo [@ceddx](https://gitlab.com/ceddx)
+* *Wajih HAMMOUDA* pseudo [@W_101001](https://gitlab.com/W_101001)
+* *Lorenzo MATHIEU* pseudo [@Stenaxo](https://gitlab.com/Stenaxo)
+* *Tissine PICHON* pseudo [@Tissine](https://gitlab.com/Tissine)

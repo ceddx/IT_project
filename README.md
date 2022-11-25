@@ -1,17 +1,11 @@
-# Find the Wikipedia page
-
-![forthebadge](https://img.shields.io/badge/Build%20by-%20ENSAIEN-blue?style=for-the-badge)
-![forthebadge](https://img.shields.io/badge/Groupe%2017-green?style=for-the-badge)
-
-
-This application is Informatic project of groupe 17. This is a game called "Find the Wikipedia page", it is a mix between two famous game : "Le phylosophe" and "La Pyramide".
-It is a simple game you choose the language and the difficulty you want played. Then you get a several clue to guess which is the title of the Wikipedia sheet randomly selected. You can ask other clue if you cannot find the title.
-You will obtain a score according to your number of try and number of clue you receive.
+This application is group 17's Python project. This is game is called "Guess the Wikipedia article", it is a mix between two famous game : "The Philosopher" and "The Pyramid".
+It is a simple game you get a clue each turn to guess which is the title of the Wikipedia article randomly selected. Your score starts at 100 and you will get -10 for each clue used 
+( which means you will lose after 10 clues)
 
 
 ## To start
 
-You have to find somes steps before to play to this beautiful game.
+You have to fill in somes steps before playing this game.
 ### Prerequisite 
 
 You have to download these packages in this version
@@ -36,7 +30,7 @@ Your are ready to play!!
 
 ## Start
 
-You have to executated command ``python -m main`` main.py and everything will be done in the terminal
+You have to execute command ``python -m main`` main.py and everything will be done in the terminal
 
 ## Made with
 
@@ -44,8 +38,8 @@ You have to executated command ``python -m main`` main.py and everything will be
 * [PostgreSQL](https://www.postgresql.org/) - service linking our programme and database
 
 ## Author
-* **Mohamed ASSILI** _pseudo_ [@meda6li](https://gitlab.com/meda6li)
-* **Cédric GRANDVAUX** _pseudo_ [@ceddx](https://gitlab.com/ceddx)
-* **Wajih HAMMOUDA** _pseudo_ [@W_101001](https://gitlab.com/W_101001)
-* **Lorenzo MATHIEU** _pseudo_ [@Stenaxo](https://gitlab.com/Stenaxo)
-* **Tissine PICHON** _pseudo_ [@Tissine](https://gitlab.com/Tissine)
+* *Mohamed ASSILI* pseudo [@meda6li](https://gitlab.com/meda6li)
+* *Cédric GRANDVAUX* pseudo [@ceddx](https://gitlab.com/ceddx)
+* *Wajih HAMMOUDA* pseudo [@W_101001](https://gitlab.com/W_101001)
+* *Lorenzo MATHIEU* pseudo [@Stenaxo](https://gitlab.com/Stenaxo)
+* *Tissine PICHON* pseudo [@Tissine](https://gitlab.com/Tissine)

@@ -95,7 +95,7 @@ class Gameview(AbstractView):
         Session().number_of_attempts = attempts
         
 
-def similar(a, b, seuil = 0.7):
+def similar(a, b, seuil = 0.9):
     '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
     renvoie True, sinon False
     

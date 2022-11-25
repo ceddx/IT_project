@@ -101,7 +101,7 @@ class HistoryDao(metaclass=Singleton):
         list_of_scores=[]
         l=self.find_player_history(player)
         for x in l:
-            list_of_scores+=[x.score]
+            list_of_scores+=x.score
         if len(list_of_scores):
             return max(list_of_scores)
         else:
@@ -127,7 +127,7 @@ class HistoryDao(metaclass=Singleton):
         list_numbers=[]
         list=self.find_player_history(player)
         for history in list:
-            list_numbers+=[history.number_of_attempts]
+            list_numbers.append(history.number_of_attempts)
         if len(list_numbers):
             return min(list_numbers)
         else:

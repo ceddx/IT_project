@@ -3,8 +3,9 @@ _(juste en dessous des badges sympatiques à placer)_
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
-This application is group 17's Python project. It's a game called "Guess The Wikipedia Page", it is a mix of two famous game : "The Philosopher" and "The Pyramid".
-It is a simple game in which you choose the language and the difficulty you want. When the game starts, you get a clue in each turn to guess  the title of the Wikipedia article randomly selected. Your score will be decided based on the number of clues you used. You start with a score of 100 and with each clue used, you lose 10 points.
+This application is Informatic project of groupe 17. This is a game called "cherche la page Wikipedia", it is a mix between two famous game : "Le phylosophe" and "La Pyramide".
+It is a simple game you choose the language and the difficulty you want played. Then you get a several clue to guess which is the title of the Wikipedia sheet randomly selected. You can ask other clue if you cannot find the title.
+You will obtain a score according to your number of try and number of clue you receive.
 
 
 ## To start
@@ -32,7 +33,7 @@ Ensuite vous pouvez montrer ce que vous obtenez au final...
 
 ## Start
 
-You have to execute file main.py and the game will be played in command prompt.
+You have to executated file main.py and everything will be done in command prompt
 
 ## Made with
 

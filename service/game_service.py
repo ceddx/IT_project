@@ -1,6 +1,3 @@
-from metier.game import Game
-from metier.player import Player
-import random
 from metier.article import Article
 
 class GameService:

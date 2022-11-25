@@ -51,18 +51,19 @@ class Gameview(AbstractView):
         Méthode permettant de dérouler une partie.
         '''
         secret_article=Article()
+        clue = secret_article.get_clue()
         #game = GameService()
         #secret_article = game.article
         Session().article=secret_article.name_article
         attempts = 1 #le joueur est obligé à faire une première tentative
         hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
-        first_clue= GameService().first_task(secret_article)[1]
+        first_clue= GameService().first_task(clue)[1]
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
         while not (similar(guess, secret_article.name_article, seuil = 0.7)) and attempts<=10:
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
-                first_clue = GameService().next_task(secret_article,first_clue)[1]
+                first_clue = GameService().next_task(clue,first_clue)[1]
                 score-=10
                 print("your current score is ", score)
                 guess = input("Use this new hint to guess the article: {} \n".format(first_clue))

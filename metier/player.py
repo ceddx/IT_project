@@ -1,5 +1,3 @@
-from metier.game import Game
-from metier.history import History
 from typing import Text
 
 

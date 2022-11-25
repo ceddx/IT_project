@@ -18,7 +18,7 @@ class MenuView(AbstractView):
                     Separator(),
                     'Play',
                     Separator(),
-                    'Logout',
+                    'LogOut',
                     Separator(),
                     'Quit'
                 ]
@@ -39,6 +39,6 @@ class MenuView(AbstractView):
         elif answer['menu']=='LogOut':
             Session().login_check = False
             Session().player_name = None
-            next_view = "StartView"
+            next_view = "Start"
         return next_view
 

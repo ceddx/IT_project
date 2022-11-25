@@ -44,13 +44,12 @@ class UpdateView(AbstractView):
         if answer['PlayerName'] =="" or answer['password'] =="":
             print("Fill in all the fields")
             return "Update"
-        else:
-            player_updated=Player(player.id_player,player.name,player.email,generate_password_hash(player.password))
+        if (answer['PlayerName'] is not None) and (answer['password'] is not None):
+            player_updated=Player(player.id_player,player.name,player.email,generate_password_hash(answer['password']))
             if PlayerDao().update_player(player_updated):
                 print("Your password is updated")
-                
-        return "Login"
-        
+            return "Login"
+                        
     
         
         

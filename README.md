@@ -1,7 +1,7 @@
-# Find the Wikipedia page
+# Titre du projet
+_(juste en dessous des badges sympatiques à placer)_
 
-![forthebadge](https://img.shields.io/badge/Build%20by-%20ENSAIEN-blue?style=for-the-badge)
-![forthebadge](https://img.shields.io/badge/Groupe%2017-green?style=for-the-badge)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
 
 
 This application is group 17's Python project. This is game is called "Guess the Wikipedia article", it is a mix between two famous game : "The Philosopher" and "The Pyramid".
@@ -14,25 +14,24 @@ It is a simple game you get a clue each turn to guess which is the title of the 
 You have to fill in somes steps before playing this game.
 ### Prerequisite 
 
-You have to download these packages in this version
-- InquirerPy==0.3.4
-- prompt_toolkit==1.0.14
-- psycopg2==2.9.5
-- psycopg2_binary==2.9.4
-- PyInquirer==1.0.3
-- python-dotenv==0.21.0
-- regex==2022.9.13
-- requests==2.28.1
-- Unidecode==1.3.6
-- Werkzeug==2.2.2
-- Wikipedia_API==0.5.4
+### Pré-requis
 
+Ce qu'il est requis pour commencer avec votre projet...
+
+- Programme 1
+- Programme 2
+- etc...
 
 ### Installation
 
-To install the application you have to copy text in init_dbase.sql and to past it in your posrgresql to create a public database.
-Then you have to put your id in the file .env in password, database, user.
-Your are ready to play!!
+Les étapes pour installer votre programme....
+
+Dites ce qu'il faut faire...
+
+_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
+
+
+Ensuite vous pouvez montrer ce que vous obtenez au final...
 
 ## Start
 
@@ -41,7 +40,7 @@ You have to execute command ``python -m main`` main.py and everything will be do
 ## Made with
 
 * [Python](https://www.python.org/) - programming language
-* [PostgreSQL](https://www.postgresql.org/) - service linking our programme and database
+* [PostgreSQL](https://www.postgresql.org/) - mise en relation de base de données
 
 ## Author
 * *Mohamed ASSILI* pseudo [@meda6li](https://gitlab.com/meda6li)

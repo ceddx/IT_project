@@ -7,8 +7,7 @@ import unittest
 class TestHistoryDao(TestCase):
     def test_add_history(self):
         history_dao=HistoryDao()
-        history=History(1,60,3,'nom article')
-        print(history.article)
+        history=History(1,1,60,3,'nom article')
 
         created=history_dao.add_history(history)
         self.assertTrue(created)

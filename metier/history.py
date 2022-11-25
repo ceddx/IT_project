@@ -1,5 +1,4 @@
 from typing import Text
-
 class History:
     '''
     Classe permettant de définir l'historique d'un joueur sur une partie jouée.

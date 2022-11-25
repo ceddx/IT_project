@@ -49,7 +49,7 @@ class PlayerDao(metaclass=Singleton):
         list_of_players_name = []
         l=self.find_all_players()
         for x in l:
-            list_of_players_name+=[x.name]
+            list_of_players_name+=x.name
         return list_of_players_name
 
     def get_all_emails(self):
@@ -64,7 +64,7 @@ class PlayerDao(metaclass=Singleton):
         list_of_players_email = []
         l = self.find_all_players()
         for x in l:
-            list_of_players_email+=[x.email]
+            list_of_players_email+=x.email
         return list_of_players_email
         
 

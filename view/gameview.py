@@ -4,6 +4,7 @@ from PyInquirer import *
 from service.game_service import *
 from difflib import SequenceMatcher
 from metier.article import Article
+import unidecode
 
 class Gameview(AbstractView):
     '''
@@ -82,7 +83,7 @@ class Gameview(AbstractView):
         if reponse['help']=='no':#si il n'accepte pas d'avoir un indice dans la dernière tentative
             score=0
         if score!=0 :
-            if similar(guess, secret_article.name_article, seuil = 0.7):
+            if similar(normalize_string(guess), normalize_string(str(secret_article.name_article)), seuil = 0.7):
                 print("You win with A Score Of ",score)
             else:
                 score=0
@@ -119,3 +120,21 @@ def similar(a, b, seuil = 0.7):
 
     score =  SequenceMatcher(None, a, b).ratio()
     return score >= seuil
+
+def normalize_string(string):
+    '''Enlève les accents et ç en les remplacants par les caractères associés
+    
+        Parameters
+        ----------
+        string : str
+            La chaîne à normaliser
+        
+        Returns
+        -------
+        string : str
+            La chaîne de caractère normalisée.
+        
+    '''
+        
+    string = unidecode.unidecode(string)
+    string = string.lower()

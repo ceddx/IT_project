@@ -43,29 +43,6 @@ class Article(object):
         self.categories = article.get_categories()
         self.clue = clue
 
-    def is_date_or_number(self, smth):
-        """
-        Spécifie si une chaîne de caractères est une date ou un nombre.
-
-        Paramètres:
-        --------------------------------
-        smth: string
-            L'objet à tester
-
-        Returns:
-        --------------------------------
-        bool : True or False
-        """
-        # Utilisation d'expressions régulières pour faciliter la recherche
-        test = re.search(
-            "\\d+|janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre'",
-            smth,
-            re.IGNORECASE)
-        if test is not None:
-            return True
-        else:
-            return False
-
     def frequents_words(self):
         '''
         Méthode permettant de trouver les mots pertinents les plus fréquents d'un article. On ne retient pas
@@ -125,44 +102,12 @@ class Article(object):
                 'selon',
                 'ainsi',
                 '(ISBN',
-                'moins']
+                'moins',
+                'Image locale correspondant à celle de Wikidata']
             if (keys[j] in l):
                 del dico[keys[j]]
         return dico
 
-    def get_paragraph(self):
-        '''
-        Méthode permettant de retourner le premier paragraphe du résumé d'un article.
-
-        Returns :
-        -----------
-        pertinent : str
-            premier paragraphe de l'article
-        '''
-        summary = self.summary
-        pertinent = ' '
-        for i in summary:
-            pertinent = pertinent + summary
-
-            if i == '/n':
-                break
-        return pertinent
-
-    @staticmethod
-    def blanked_paragraph(paragraph, title):
-        '''
-        Méthode qui cache le titre de l'article dans le premier paragraphe.
-
-        Paramètres :
-        ------------
-        pargraph : str
-            le paragraphe où il faut masquer le titre
-        title : str
-            titre de l'article qui ne doit pas apparaître dans le paragraphe
-        '''
-        if title in paragraph:
-            paragraph = paragraph.replace(title, 'X' * len(title))
-        # return paragraph
 
     def get_clue(self):
         '''

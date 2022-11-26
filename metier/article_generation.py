@@ -20,7 +20,7 @@ class ArticleGeneration(metaclass=Singleton):
         'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/'+annee+'/0'+mois+'/all-days',
         headers=headers)
     resj = (res.json())['items'][0]['articles']
-    rdm = random.randint(0,len(resj)-1)
+    rdm = random.randint(0,99)
 
 
     def __init__(self, num_article=rdm, liste_article=resj):
@@ -124,47 +124,4 @@ class ArticleGeneration(metaclass=Singleton):
         while nrdm == self.num_article:
             nrdm = random.randint(0, 999)
         self.num_article = nrdm
-
-    def normalize_string(self, string):
-        '''
-        Enlève les accents et ç en les remplaçant par les caractères associés.
-    
-        Parameter
-        ----------
-        string : str
-            La chaîne à normaliser
-        
-        Return
-        -------
-        string : str
-            La chaîne de caractère normalisée.
-        
-        '''
-        
-        string = unidecode.unidecode(string)
-        string = string.lower()
-        
-        return string
-    
-    def find_sql(string):
-        '''
-        Repère les commandes SQL
-    
-        Parameter
-        ----------
-        string : str
-            La chaîne à vérifier
-        
-        Return
-        -------
-        string : str
-            La chaîne de caractère normalisée.
-        
-        '''
-        sql = []
-        for word in string.split():
-            if word.lower() == 'select' or word.lower() == 'from' or word.lower() == 'where' or word.lower() == 'drop':
-                sql.append(word)
-        return sql
-
     

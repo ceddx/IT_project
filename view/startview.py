@@ -28,7 +28,8 @@ class StartView(AbstractView):
 
     def make_choice(self):
         """
-        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+        En utilisant les flèches vous pouvez soit se créer un compte, se connecter, jouer en session invité ou 
+        bien de quitter.
 
         """
         answer = prompt(self.questions)

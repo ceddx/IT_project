@@ -25,7 +25,8 @@ class SaveHistoryView(AbstractView):
         pass
 
     def make_choice(self):
-        
+        '''On sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité).
+           On renitialise les parametres. Et lui propose soit de rejouer ou retourner au menu'''
         #on sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité)
         if Session().login_check==True:
             player= PlayerDao().find_player_by_playername(Session().player_name)

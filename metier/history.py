@@ -20,10 +20,6 @@ class History:
             score du joueur
         number_of_attempts : float
             vitesse du joueur pour trouver la bonne réponse
-        difficulty : int
-            difficulté de l'article à trouver
-        classement : int
-            rang du joueur dans le classement
         article : str
             titre de l'article cible
         '''

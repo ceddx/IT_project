@@ -103,6 +103,7 @@ class Article(object):
                 'ainsi',
                 '(ISBN',
                 'moins',
+                'elle-même',
                 'Image locale correspondant à celle de Wikidata']
             if (keys[j] in l):
                 del dico[keys[j]]

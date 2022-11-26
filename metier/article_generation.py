@@ -122,7 +122,7 @@ class ArticleGeneration(metaclass=Singleton):
         Méthode renvoyant un nouveau nombre aléatoire.
         '''
 
-        nrdm = rdm = random.randint(0, 99)
+        nrdm = random.randint(0, 99)
         while nrdm == self.num_article:
             nrdm = random.randint(0, 99)
         self.num_article = nrdm

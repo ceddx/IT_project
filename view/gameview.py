@@ -4,6 +4,7 @@ from PyInquirer import *
 from service.game_service import *
 from difflib import SequenceMatcher
 from metier.article import Article
+import unidecode
 
 class Gameview(AbstractView):
     '''
@@ -119,3 +120,21 @@ def similar(a, b, seuil = 0.7):
 
     score =  SequenceMatcher(None, a, b).ratio()
     return score >= seuil
+
+def normalize_string(string):
+    '''Enlève les accents et ç en les remplacants par les caractères associés
+    
+        Parameters
+        ----------
+        string : str
+            La chaîne à normaliser
+        
+        Returns
+        -------
+        string : str
+            La chaîne de caractère normalisée.
+        
+    '''
+        
+    string = unidecode.unidecode(string)
+    string = string.lower()

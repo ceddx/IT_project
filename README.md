@@ -38,8 +38,8 @@ Player can play without logging in or they can create an account to see their hy
 * [PostgreSQL](https://www.postgresql.org/) - service linking our programme and database
 
 ## Author
-* *Mohamed ASSILI* pseudo [@meda6li](https://gitlab.com/meda6li)
-* *Cédric GRANDVAUX* pseudo [@ceddx](https://gitlab.com/ceddx)
-* *Wajih HAMMOUDA* pseudo [@W_101001](https://gitlab.com/W_101001)
-* *Lorenzo MATHIEU* pseudo [@Stenaxo](https://gitlab.com/Stenaxo)
-* *Tissine PICHON* pseudo [@Tissine](https://gitlab.com/Tissine)
+* Mohamed ASSILI pseudo [@meda6li](https://gitlab.com/meda6li)
+* Cédric GRANDVAUX pseudo [@ceddx](https://gitlab.com/ceddx)
+* Wajih HAMMOUDA pseudo [@W_101001](https://gitlab.com/W_101001)
+* Lorenzo MATHIEU pseudo [@Stenaxo](https://gitlab.com/Stenaxo)
+* Tissine PICHON pseudo [@Tissine](https://gitlab.com/Tissine)

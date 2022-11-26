@@ -265,3 +265,4 @@ def normalize_string(string):
         
     string = unidecode.unidecode(string)
     string = string.lower()
+    

@@ -83,7 +83,7 @@ class Gameview(AbstractView):
         if reponse['help']=='no':#si il n'accepte pas d'avoir un indice dans la dernière tentative
             score=0
         if score!=0 :
-            if similar(normalize_string(guess), normalize_string(str(secret_article.name_article)), seuil = 0.7):
+            if similar(guess, secret_article.name_article, seuil = 0.7):
                 print("You win with A Score Of ",score)
             else:
                 score=0

@@ -10,8 +10,8 @@ class ArticleGeneration(metaclass=Singleton):
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """
-    mois = str(random.randint(1,10))
-    annee = str(random.randint(2016,2022))
+    mois = str(random.randint(1, 10))
+    annee = str(random.randint(2016, 2022))
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     res = requests.get(

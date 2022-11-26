@@ -4,10 +4,12 @@ from werkzeug.security import generate_password_hash
 from dao.PlayerDao import PlayerDao
 from metier.player import Player
 
+
 class UpdateView(AbstractView):
     '''
     Classe permettant à un joueur de modifier son mot de passe.
     '''
+
     def __init__(self):
         self.questions = [
             {
@@ -26,7 +28,7 @@ class UpdateView(AbstractView):
                 'type': 'password',
                 'name': 'password',
                 'message': 'Enter your new password.',
-                'when' : lambda answers: not answers['cancel']
+                'when': lambda answers: not answers['cancel']
             }
         ]
 
@@ -37,19 +39,21 @@ class UpdateView(AbstractView):
         """
         Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
         """
-        answer=prompt(self.questions)
+        answer = prompt(self.questions)
         player = PlayerDao().find_player_by_playername(answer['PlayerName'])
         if answer['cancel']:
             return "Start"
-        if answer['PlayerName'] =="" or answer['password'] =="":
+        if answer['PlayerName'] == "" or answer['password'] == "":
             print("Fill in all the fields")
             return "Update"
-        if (answer['PlayerName'] is not None) and (answer['password'] is not None):
-            player_updated=Player(player.id_player,player.name,player.email,generate_password_hash(answer['password']))
+        if (answer['PlayerName'] is not None) and (
+                answer['password'] is not None):
+            player_updated = Player(
+                player.id_player,
+                player.name,
+                player.email,
+                generate_password_hash(
+                    answer['password']))
             if PlayerDao().update_player(player_updated):
                 print("Your password is updated")
             return "Login"
-                        
-    
-        
-        

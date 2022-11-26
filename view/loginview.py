@@ -9,6 +9,7 @@ class LoginView(AbstractView):
     '''
     Classe permettant à un joueur enregistré de se connecter.
     '''
+
     def __init__(self):
         self.questions = [
             {
@@ -40,13 +41,17 @@ class LoginView(AbstractView):
         qu'il a saisi condorde avec ce lui se trouvant dans la bdd. Dans ce cas il se considère connecté.Sinon,
         il sera envoyé vers la view qui lui demande de refaire l'opération ou changer son mot de passe.
         """
-        answer= prompt(self.questions)
+        answer = prompt(self.questions)
         if answer['cancel']:
             return "Start"
-        player= PlayerDao().find_player_by_playername(answer['playername'])
-        if player and (answer['playername']==player.name) and (check_password_hash(player.password,answer['password'])):
-            Session().login_check=True
-            Session().player_name =answer['playername']
+        player = PlayerDao().find_player_by_playername(answer['playername'])
+        if player and (
+                answer['playername'] == player.name) and (
+                check_password_hash(
+                player.password,
+                answer['password'])):
+            Session().login_check = True
+            Session().player_name = answer['playername']
             next_view = "Menu"
         else:
             next_view = 'RetryOrChange'

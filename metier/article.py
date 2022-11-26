@@ -11,9 +11,8 @@ class Article(object):
     '''
     Classe permettant de générer les articles, les indices et leur validation.
     '''
-    
-    def __init__(self, clue = [], generator = ArticleGeneration()) :
 
+    def __init__(self, clue=[], generator=ArticleGeneration()):
         """
         Création de l'article.
 
@@ -47,7 +46,7 @@ class Article(object):
     def is_date_or_number(self, smth):
         """
         Spécifie si une chaîne de caractères est une date ou un nombre.
-        
+
         Paramètres:
         --------------------------------
         smth: string
@@ -163,7 +162,7 @@ class Article(object):
         '''
         if title in paragraph:
             paragraph = paragraph.replace(title, 'X' * len(title))
-        #return paragraph
+        # return paragraph
 
     def get_clue(self):
         '''
@@ -197,7 +196,10 @@ class Article(object):
                         article_name_list[0] not in x) and (
                         article_name_list[1] not in x),
                     list_clues))
-        list_clues = list(filter(lambda x: self.name_article not in x,list_clues))
+        list_clues = list(
+            filter(
+                lambda x: self.name_article not in x,
+                list_clues))
         list_clues = list(filter(filtrer, list_clues))
         list_clues = list(dict.fromkeys(list_clues))
         random.shuffle(list_clues)
@@ -219,14 +221,15 @@ def filtrer(s):
         "from".casefold(),
         "select".casefold(),
         "where".casefold()
-        ]
+    ]
     s = s.casefold()
     return all(del_w not in s for del_w in del_words)
 
-def similar(a, b, seuil = 0.85):
+
+def similar(a, b, seuil=0.85):
     '''Méthode qui prend en entrée deux chaînes de caractères et si la similarité est au dessus du seuil
     renvoie True, sinon False
-    
+
     Paramètres
     ----------
     a
@@ -235,34 +238,34 @@ def similar(a, b, seuil = 0.85):
         La seconde
     seuil
         Le minimum de score à atteindre.
-    
+
     Returns
     -------
-        True 
+        True
             si le score est plus élevé que le seuil.
-        False 
+        False
             sinon
-    
+
     '''
 
-    score =  SequenceMatcher(None, a, b).ratio()
+    score = SequenceMatcher(None, a, b).ratio()
     return score >= seuil
+
 
 def normalize_string(string):
     '''Enlève les accents et ç en les remplacants par les caractères associés
-    
+
         Parameters
         ----------
         string : str
             La chaîne à normaliser
-        
+
         Returns
         -------
         string : str
             La chaîne de caractère normalisée.
-        
+
     '''
-        
+
     string = unidecode.unidecode(string)
     string = string.lower()
-    

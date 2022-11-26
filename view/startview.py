@@ -14,31 +14,29 @@ class StartView(AbstractView):
                 'name': 'choices',
                 'message': 'Menu',
                 'choices': [
-                    'Sign Up'
-                    , 'Log In'
-                    , 'Play Without Logging In',
+                    'Sign Up', 'Log In', 'Play Without Logging In',
                     'Quit'
                 ]
             }
         ]
 
     def display_info(self):
-        
+
         print("Welcome to Pyramid and the Philosopher game")
 
     def make_choice(self):
         """
-        En utilisant les flèches vous pouvez soit se créer un compte, se connecter, jouer en session invité ou 
+        En utilisant les flèches vous pouvez soit se créer un compte, se connecter, jouer en session invité ou
         bien de quitter.
 
         """
         answer = prompt(self.questions)
         if answer['choices'] == 'Sign Up':
-            next_view="SignUp"
+            next_view = "SignUp"
         elif answer['choices'] == 'Log In':
-            next_view="Login"
+            next_view = "Login"
         elif answer['choices'] == 'Play Without Logging In':
-            next_view="PlayGame"
+            next_view = "PlayGame"
         elif answer['choices'] == 'Quit':
-            next_view="Quit"
+            next_view = "Quit"
         return next_view

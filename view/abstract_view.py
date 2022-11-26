@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-
 class AbstractView(ABC):
     """
     Classe abstraite qui permet de gérer toutes les vues.

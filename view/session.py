@@ -1,5 +1,6 @@
 from util.singleton import Singleton
 
+
 class Session(metaclass=Singleton):
     def __init__(self):
         """
@@ -9,8 +10,7 @@ class Session(metaclass=Singleton):
         permet de donner le type des variables. Utile pour l'autocompletion.
         """
         self.login_check = False
-        self.player_name= None
-        self.score=0
-        self.number_of_attempts= 0
-        self.article= None
-    
+        self.player_name = None
+        self.score = 0
+        self.number_of_attempts = 0
+        self.article = None

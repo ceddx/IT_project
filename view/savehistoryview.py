@@ -5,6 +5,7 @@ from view.session import Session
 from dao.PlayerDao import PlayerDao
 from dao.historydao import HistoryDao
 
+
 class SaveHistoryView(AbstractView):
     def __init__(self):
         self.questions = [
@@ -21,45 +22,42 @@ class SaveHistoryView(AbstractView):
                 ]
             }
         ]
+
     def display_info(self):
         pass
 
     def make_choice(self):
         '''On sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité).
            On renitialise les parametres. Et lui propose soit de rejouer ou retourner au menu'''
-        #on sauvegarde l'historique si le joueur est connecté ( càd qu'il n'est pas en session invité)
-        if Session().login_check==True:
-            player= PlayerDao().find_player_by_playername(Session().player_name)
-            history= History(player.id_player,Session().score,Session().number_of_attempts,Session().article)
+        # on sauvegarde l'historique si le joueur est connecté ( càd qu'il
+        # n'est pas en session invité)
+        if Session().login_check:
+            player = PlayerDao().find_player_by_playername(Session().player_name)
+            history = History(
+                player.id_player,
+                Session().score,
+                Session().number_of_attempts,
+                Session().article)
             HistoryDao().add_history(history)
 
-        #renitialisation des parametres 
-        Session().score=0
-        Session().number_of_attempts=0
-        Session().article= None
+        # renitialisation des parametres
+        Session().score = 0
+        Session().number_of_attempts = 0
+        Session().article = None
 
-        answer=prompt(self.questions)
-        if answer['saving']=='Replay':
-            next_view= "PlayGame"
-        elif answer['saving']=='Back to menu':
-            if Session().login_check==True:
-                next_view="Menu"
+        answer = prompt(self.questions)
+        if answer['saving'] == 'Replay':
+            next_view = "PlayGame"
+        elif answer['saving'] == 'Back to menu':
+            if Session().login_check:
+                next_view = "Menu"
             else:
-                next_view="Start"
-        elif answer['saving']=='Quit':
-            next_view="Quit"
+                next_view = "Start"
+        elif answer['saving'] == 'Quit':
+            next_view = "Quit"
         return next_view
+
 
 '''if __name__ == "__main__":
     history= History(2,40,10,"Session().article")
     HistoryDao().add_history(history)'''
-
-
-        
-
-
-
-        
-
-
-            

@@ -7,6 +7,7 @@ class PlayerDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant les informations relatives aux joueurs.
     '''
+
     def __init__(self):
         pass
 

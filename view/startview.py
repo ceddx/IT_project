@@ -21,8 +21,8 @@ class StartView(AbstractView):
         ]
 
     def display_info(self):
-
-        print("Welcome to Guess the Wikipedia article game")
+        with open('graphical_assets/banner.txt', 'r', encoding="utf-8") as asset:
+            print(asset.read())
 
     def make_choice(self):
         """

@@ -32,6 +32,7 @@ class SaveHistoryView(AbstractView):
             history= History(player.id_player,Session().score,Session().number_of_attempts,Session().article)
             HistoryDao().add_history(history)
 
+        #renitialisation des parametres 
         Session().score=0
         Session().number_of_attempts=0
         Session().article= None

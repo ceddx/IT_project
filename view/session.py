@@ -10,7 +10,6 @@ class Session(metaclass=Singleton):
         """
         self.login_check = False
         self.player_name= None
-        #self.language: str=None
         self.score=0
         self.number_of_attempts= 0
         self.article= None

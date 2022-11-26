@@ -90,7 +90,6 @@ class Gameview(AbstractView):
         elif score==0 :
             print("Your score is 0")
             print('Game over, the right answer is {}'.format(secret_article.name_article))
-        print(attempts)
         Session().score=score
         Session().number_of_attempts = attempts
         

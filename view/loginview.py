@@ -36,7 +36,9 @@ class LoginView(AbstractView):
 
     def make_choice(self):
         """
-        Méthode qui va gérer les choix de l'utilisateur et l'envoyer vers une autre page.
+        On s'assure tout d'abord que le joueur existe bien dans la bdd, ensuite on verifie si que le mot de passe
+        qu'il a saisi condorde avec ce lui se trouvant dans la bdd. Dans ce cas il se considère connecté.Sinon,
+        il sera envoyé vers la view qui lui demande de refaire l'opération ou changer son mot de passe.
         """
         answer= prompt(self.questions)
         if answer['cancel']:

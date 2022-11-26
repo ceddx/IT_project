@@ -46,6 +46,7 @@ class SignupView(AbstractView):
         """
         On vérifie que l'identifiant choisi et que l'adresse mail entrée sont uniques
         On oblige l'utilisateur à remplir tout les champs
+        Si c'est le cas on l'ajoute dans la bdd et il se considère connecté 
         """
         reponse = prompt(self.questions)
         if reponse['quit']:

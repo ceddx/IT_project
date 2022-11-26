@@ -50,7 +50,7 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        secret_article=Article()
+        secret_article=Article() #on stock l'article secret
         clue = secret_article.get_clue()
         Session().article=secret_article.name_article
         attempts = 1 #le joueur est obligé à faire une première tentative
@@ -58,7 +58,7 @@ class Gameview(AbstractView):
         first_clue= GameService().first_task(clue)[1]
         guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while not (similar(guess, secret_article.name_article, seuil = 0.9)) and attempts<=10:
+        while not (similar(guess, secret_article.name_article, seuil = 0.9)) and attempts<=10:#la méthode similar se trouve tout en bas
             reponse = prompt(hint_question)
             if reponse['help']== 'yes':
                 first_clue = GameService().next_task(clue,first_clue)[1]
@@ -79,7 +79,7 @@ class Gameview(AbstractView):
                 score=0
                 break
             attempts+=1
-        if reponse['help']=='no':
+        if reponse['help']=='no':#si il n'accepte pas d'avoir un indice dans la dernière tentative
             score=0
         if score!=0 :
             if similar(guess, secret_article.name_article, seuil = 0.9):

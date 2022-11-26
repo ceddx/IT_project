@@ -4,8 +4,6 @@ from PyInquirer import *
 from service.game_service import *
 from difflib import SequenceMatcher
 from metier.article import Article
-import unidecode
-
 
 class Gameview(AbstractView):
     '''
@@ -19,18 +17,18 @@ class Gameview(AbstractView):
                 'name': 'choix',
                 'message': 'Are you sure?',
                 'choices': [
-                    'play', 'return',
+                    'play'
+                    , 'return',
                     'instructions'
                 ]
             }
 
-        ]
-
+    ]
     def display_info(self):
         """
         Méthode qui va juste déterminer l'affichage en console.
         """
-        if Session().player_name is not None:
+        if Session().player_name!=None:
             print(f"Hello {Session().player_name}")
         else:
             print("Hello guest")
@@ -53,33 +51,25 @@ class Gameview(AbstractView):
         '''
         Méthode permettant de dérouler une partie.
         '''
-        secret_article = Article()  # on stock l'article secret
+        secret_article=Article() #on stock l'article secret
         clue = secret_article.get_clue()
-        Session().article = secret_article.name_article
-        attempts = 1  # le joueur est obligé à faire une première tentative
-        hint_question = [{'type': 'list',
-                          'name': 'help',
-                          'message': 'Get a hint?',
-                          'choices': ['yes',
-                                      'no',
-                                      'give up']}]
-        first_clue = GameService().first_task(clue)[1]
-        guess = input(
-            "Use this hint to guess the article: {} \n".format(first_clue))
+        Session().article=secret_article.name_article
+        attempts = 1 #le joueur est obligé à faire une première tentative
+        hint_question = [{'type': 'list','name': 'help','message': 'Get a hint?', 'choices' : ['yes','no', 'give up']}]
+        first_clue= GameService().first_task(clue)[1]
+        guess = input("Use this hint to guess the article: {} \n".format(first_clue))
         score = 100
-        while not (similar(guess, secret_article.name_article, seuil=0.7)
-                   ) and attempts <= 10:  # la méthode similar se trouve tout en bas
+        while not (similar(guess, secret_article.name_article, seuil = 0.7)) and attempts<=10:#la méthode similar se trouve tout en bas
             reponse = prompt(hint_question)
-            if reponse['help'] == 'yes':
-                first_clue = GameService().next_task(clue, first_clue)[1]
-                score -= 10
-                if score == 0:
-                    attempts += 1
+            if reponse['help']== 'yes':
+                first_clue = GameService().next_task(clue,first_clue)[1]
+                score-=10
+                if score==0:
+                    attempts+=1
                     break
                 print("your current score is ", score)
-                guess = input(
-                    "Use this new hint to guess the article: {} \n".format(first_clue))
-                if similar(guess, secret_article.name_article):
+                guess = input("Use this new hint to guess the article: {} \n".format(first_clue))
+                if similar(guess, secret_article.name_article) :
                     break
 
             if reponse['help'] == 'no':
@@ -87,33 +77,29 @@ class Gameview(AbstractView):
                 if similar(guess, secret_article.name_article):
                     break
             if reponse['help'] == 'give up':
-                score = 0
+                score=0
                 break
-            attempts += 1
-        # si il n'accepte pas d'avoir un indice dans la dernière tentative
-        if reponse['help'] == 'no':
-            score = 0
-        if score != 0:
-            if similar(guess, secret_article.name_article, seuil=0.7):
-                print("You win with A Score Of ", score)
+            attempts+=1
+        if reponse['help']=='no':#si il n'accepte pas d'avoir un indice dans la dernière tentative
+            score=0
+        if score!=0 :
+            if similar(guess, secret_article.name_article, seuil = 0.7):
+                print("You win with A Score Of ",score)
             else:
-                score = 0
-                print(
-                    'Game over, the right answer is {}'.format(
-                        secret_article.name_article))
-        elif score == 0:
+                score=0
+                print('Game over, the right answer is {}'.format(secret_article.name_article))
+        elif score==0 :
             print("Your score is 0")
-            print(
-                'Game over, the right answer is {}'.format(
-                    secret_article.name_article))
-        Session().score = score
+            print('Game over, the right answer is {}'.format(secret_article.name_article))
+        Session().score=score
         Session().number_of_attempts = attempts
+        
+        
 
-
-def similar(a, b, seuil=0.7):
+def similar(a, b, seuil = 0.7):
     '''Méthode qui prend en entrer deux chaînes de caractères et si la similarité est au dessus du seuil
     renvoie True, sinon False
-
+    
     Paramètres
     ----------
     a
@@ -122,34 +108,15 @@ def similar(a, b, seuil=0.7):
         La seconde
     seuil
         Le minimum de score à atteindre.
-
+    
     Returns
     -------
-        True
+        True 
             si le score est plus élevé que le seuil.
-        False
+        False 
             sinon
-
+    
     '''
 
-    score = SequenceMatcher(None, a, b).ratio()
+    score =  SequenceMatcher(None, a, b).ratio()
     return score >= seuil
-
-
-def normalize_string(string):
-    '''Enlève les accents et ç en les remplacants par les caractères associés
-
-        Parameters
-        ----------
-        string : str
-            La chaîne à normaliser
-
-        Returns
-        -------
-        string : str
-            La chaîne de caractère normalisée.
-
-    '''
-
-    string = unidecode.unidecode(string)
-    string = string.lower()

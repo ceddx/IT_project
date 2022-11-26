@@ -22,7 +22,7 @@ class StartView(AbstractView):
 
     def display_info(self):
 
-        print("Welcome to Pyramid and the Philosopher game")
+        print("Welcome to Guess the Wikipedia article game")
 
     def make_choice(self):
         """

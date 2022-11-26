@@ -6,7 +6,6 @@ from util.singleton import Singleton
 
 
 class DBConnection(metaclass=Singleton):
-
     """
     Classe technique permettant de n'ouvrir qu'une seule connection avec la base de données.
     """

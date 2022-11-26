@@ -6,22 +6,23 @@ from util.singleton import Singleton
 import unidecode
 
 
-
-
-class ArticleGeneration(metaclass=Singleton): 
+class ArticleGeneration(metaclass=Singleton):
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """
-    mois = str(random.randint(1,9))
-    annee = str(random.randint(2016,2022))
+    mois = str(random.randint(1, 9))
+    annee = str(random.randint(2016, 2022))
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     res = requests.get(
-        'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/'+annee+'/0'+mois+'/all-days',
+        'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/' +
+        annee +
+        '/0' +
+        mois +
+        '/all-days',
         headers=headers)
     resj = (res.json())['items'][0]['articles']
-    rdm = random.randint(0,len(resj)-1)
-
+    rdm = random.randint(0, len(resj) - 1)
 
     def __init__(self, num_article=rdm, liste_article=resj):
         '''
@@ -61,7 +62,7 @@ class ArticleGeneration(metaclass=Singleton):
         nb_vues : int
         Le nombre de vue de la page
         '''
-        
+
         nb_vues = self.liste_article[self.num_article]['views']
         return nb_vues
 
@@ -120,7 +121,7 @@ class ArticleGeneration(metaclass=Singleton):
         Méthode renvoyant un nouveau nombre aléatoire.
         '''
 
-        nrdm = rdm = random.randint(0,999)
+        nrdm = rdm = random.randint(0, 999)
         while nrdm == self.num_article:
             nrdm = random.randint(0, 999)
         self.num_article = nrdm
@@ -128,43 +129,42 @@ class ArticleGeneration(metaclass=Singleton):
     def normalize_string(self, string):
         '''
         Enlève les accents et ç en les remplaçant par les caractères associés.
-    
+
         Parameter
         ----------
         string : str
             La chaîne à normaliser
-        
+
         Return
         -------
         string : str
             La chaîne de caractère normalisée.
-        
+
         '''
-        
+
         string = unidecode.unidecode(string)
         string = string.lower()
-        
+
         return string
-    
+
     def find_sql(string):
         '''
         Repère les commandes SQL
-    
+
         Parameter
         ----------
         string : str
             La chaîne à vérifier
-        
+
         Return
         -------
         string : str
             La chaîne de caractère normalisée.
-        
+
         '''
         sql = []
         for word in string.split():
-            if word.lower() == 'select' or word.lower() == 'from' or word.lower() == 'where' or word.lower() == 'drop':
+            if word.lower() == 'select' or word.lower(
+            ) == 'from' or word.lower() == 'where' or word.lower() == 'drop':
                 sql.append(word)
         return sql
-
-    

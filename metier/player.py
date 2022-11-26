@@ -38,4 +38,3 @@ class Player:
                 self.email = args[1]
             if isinstance(args[2], Text):
                 self.password = args[2]
-

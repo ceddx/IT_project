@@ -3,12 +3,10 @@ from metier.player import Player
 from util.singleton import Singleton
 
 
-
 class PlayerDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant les informations relatives aux joueurs.
     '''
-
     def __init__(self):
         pass
 
@@ -47,9 +45,9 @@ class PlayerDao(metaclass=Singleton):
             liste de noms
         '''
         list_of_players_name = []
-        l=self.find_all_players()
+        l = self.find_all_players()
         for x in l:
-            list_of_players_name+=[x.name]
+            list_of_players_name += [x.name]
         return list_of_players_name
 
     def get_all_emails(self):
@@ -64,9 +62,8 @@ class PlayerDao(metaclass=Singleton):
         list_of_players_email = []
         l = self.find_all_players()
         for x in l:
-            list_of_players_email+=[x.email]
+            list_of_players_email += [x.email]
         return list_of_players_email
-        
 
     def find_player_by_id(self, id):
         '''
@@ -95,8 +92,8 @@ class PlayerDao(metaclass=Singleton):
                 observation["email"],
                 observation['pass_word'])
         return player
-    
-    def find_player_by_playername(self, player_name :str):
+
+    def find_player_by_playername(self, player_name: str):
         '''
         Méthode renvoyant la liste des informations d'un joueur enregistré à partir de son nom.
 
@@ -111,21 +108,20 @@ class PlayerDao(metaclass=Singleton):
             joueur correspondant au nom donné
         '''
         with DBConnection().connection as connection:
-            with connection.cursor() as cursor :
+            with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * from Players WHERE player_name=%(player_name)s ;"
-                , {"player_name" : player_name})
+                    "SELECT * from Players WHERE player_name=%(player_name)s ;", {"player_name": player_name})
                 res = cursor.fetchone()
-       
-        player1=None
-        
-        if res :
-            
-            player1=Player(res["id_player"],
-            res["player_name"],
-            res["email"],
-            res['pass_word'])
-           
+
+        player1 = None
+
+        if res:
+
+            player1 = Player(res["id_player"],
+                             res["player_name"],
+                             res["email"],
+                             res['pass_word'])
+
         return player1
 
     def update_player(self, player: Player) -> bool:
@@ -149,11 +145,11 @@ class PlayerDao(metaclass=Singleton):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute("UPDATE Players SET"
-                            " player_name = %(player_name)s"
-                            ",email = %(email)s"
-                            ",pass_word = %(password)s"
-                            " WHERE id_player = %(id_player)s;",
-                            {"player_name": player.name,
+                               " player_name = %(player_name)s"
+                               ",email = %(email)s"
+                               ",pass_word = %(password)s"
+                               " WHERE id_player = %(id_player)s;",
+                               {"player_name": player.name,
                                 "email": player.email,
                                 "password": player.password,
                                 "id_player": player.id_player})
@@ -173,15 +169,15 @@ class PlayerDao(metaclass=Singleton):
         Return :
         ---------
         created : bool
-            booléen valant Tru si le joueur a bien été créé 
+            booléen valant Tru si le joueur a bien été créé
 
         '''
         created = False
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT into Players(player_name,email,pass_word)"\
-                    "VALUES (%(player_name)s, %(email)s,%(password)s)"\
+                    "INSERT into Players(player_name,email,pass_word)"
+                    "VALUES (%(player_name)s, %(email)s,%(password)s)"
                     "RETURNING id_player", {
                         "player_name": player.name, "email": player.email, "password": player.password})
                 res = cursor.fetchone()

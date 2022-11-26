@@ -17,6 +17,7 @@ class Article(object):
         """
         Création de l'article.
 
+
         Paramètres:
         --------------------------------
         name_article : string

@@ -5,7 +5,6 @@ from dao.PlayerDao import PlayerDao
 from util.singleton import Singleton
 
 
-
 class HistoryDao(metaclass=Singleton):
     '''
     Classe qui gère le lien avec la base de données stockant l'historique des joueurs.
@@ -45,7 +44,7 @@ class HistoryDao(metaclass=Singleton):
                 history.append(history1)
         return history
 
-    def add_history(self,history: History):
+    def add_history(self, history: History):
         '''
         Méthode qui ajoute un historique.
 
@@ -82,8 +81,7 @@ class HistoryDao(metaclass=Singleton):
             created = True
         return created
 
-
-    def get_best_score(self, player:Player):
+    def get_best_score(self, player: Player):
         '''
         Méthode permettant d'obtenir le meilleur score d'un joueur. Si le joueur n'a jamais joué et n'a donc
         pas d'historique, un message d'erreur est envoyé.
@@ -98,19 +96,18 @@ class HistoryDao(metaclass=Singleton):
         best_score : int
             score maximal parmi tous les scores du joeueur
         '''
-        list_of_scores=[]
-        l=self.find_player_history(player)
+        list_of_scores = []
+        l = self.find_player_history(player)
         for x in l:
-            list_of_scores+=[x.score]
+            list_of_scores += [x.score]
         if len(list_of_scores):
             return max(list_of_scores)
         else:
             print("You don't have a history yet")
 
-
-    def get_lowest_number_of_attempts(self, player:Player):
+    def get_lowest_number_of_attempts(self, player: Player):
         '''
-        Méthode permettant de récupérer le nombre minimal d'essais qui ont été réalisés par un joueur avant de 
+        Méthode permettant de récupérer le nombre minimal d'essais qui ont été réalisés par un joueur avant de
         gagner une partie. Si le joueur n'a jamais joué et n'a donc pas d'historique, un message d'erreur
         est envoyé.
 
@@ -124,13 +121,11 @@ class HistoryDao(metaclass=Singleton):
         lowest_number_of_attempts : int
             Minimum parmi les nombres d'essais qu'a effectués un joueur
         '''
-        list_numbers=[]
-        list=self.find_player_history(player)
+        list_numbers = []
+        list = self.find_player_history(player)
         for history in list:
-            list_numbers+=[history.number_of_attempts]
+            list_numbers += [history.number_of_attempts]
         if len(list_numbers):
             return min(list_numbers)
         else:
             print("You don't have a history yet")
-
-        

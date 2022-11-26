@@ -6,9 +6,7 @@ from util.singleton import Singleton
 import unidecode
 
 
-
-
-class ArticleGeneration(metaclass=Singleton): 
+class ArticleGeneration(metaclass=Singleton):
     """
     Classe qui permet de générer un article, de récupérer ses propriétés et de le valider
     """
@@ -17,7 +15,11 @@ class ArticleGeneration(metaclass=Singleton):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     res = requests.get(
-        'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/'+annee+'/0'+mois+'/all-days',
+        'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/fr.wikipedia/all-access/' +
+        annee +
+        '/0' +
+        mois +
+        '/all-days',
         headers=headers)
     resj = (res.json())['items'][0]['articles']
     rdm = random.randint(0,99)
@@ -61,7 +63,7 @@ class ArticleGeneration(metaclass=Singleton):
         nb_vues : int
         Le nombre de vue de la page
         '''
-        
+
         nb_vues = self.liste_article[self.num_article]['views']
         return nb_vues
 
@@ -120,7 +122,7 @@ class ArticleGeneration(metaclass=Singleton):
         Méthode renvoyant un nouveau nombre aléatoire.
         '''
 
-        nrdm = rdm = random.randint(0,999)
+        nrdm = rdm = random.randint(0, 999)
         while nrdm == self.num_article:
             nrdm = random.randint(0, 999)
         self.num_article = nrdm

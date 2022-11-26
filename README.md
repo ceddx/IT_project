@@ -4,16 +4,16 @@
 ![forthebadge](https://img.shields.io/badge/Groupe%2017-green?style=for-the-badge)
 
 
-This application is group 17's Python project. This is game is called "Guess the Wikipedia article", it is a mix between two famous game : "The Philosopher" and "The Pyramid".
+This application is group 17's Python project. This game is called "Guess the Wikipedia article", it is a mix between two famous games : "The Philosopher" and "The Pyramid".
 It is a simple game you get a clue each turn to guess which is the title of the Wikipedia article randomly selected. Your score starts at 100 and you will get -10 for each clue used 
 
 
 ## To start
 
-You need an internet connection and you have to fill in somes steps before playing this game.
+You need an internet connection and you have to fill in some steps before playing this game.
 ### Prerequisite 
 
-You have to download these packages in this version
+You have to download these packages in these versions
 - InquirerPy==0.3.4
 - prompt_toolkit==1.0.14
 - psycopg2==2.9.5

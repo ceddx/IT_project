@@ -10,17 +10,17 @@ class GameService:
         pass
 
     def first_task(self, clue: list):
-        """_summary_
+        """permet de générer le premier indice
 
         Parameters
         ----------
         clue : list
-            _description_
+            liste d'indice
 
         Returns
         -------
-        _type_
-            _description_
+        liste
+            avec comme premier élément une phrase destiné à l'utilisateur et comme deuxième élément un nouvel index pour la liste d'indice
         """
 
         return ["Use this hint to guess the article: {} ".format(
@@ -39,7 +39,7 @@ class GameService:
         Returns
         -------
         liste
-            avec comme premier element
+            avec comme premier élément une phrase destiné à l'utilisateur et comme deuxième élément un nouvel index pour la liste d'indice
         """
         index = clue.index(previous_clue)
         return ["Use this new hint to guess the article: {}".format(

@@ -1,6 +1,6 @@
 from view.abstract_view import AbstractView
 from view.session import Session
-from PyInquirer import *
+from InquirerPy import *
 from service.game_service import *
 from difflib import SequenceMatcher
 from metier.article import Article

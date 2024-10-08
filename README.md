@@ -8,29 +8,45 @@ This application is group 17's Python project. This game is called "Guess the Wi
 It is a simple game you get a clue each turn to guess which is the title of the Wikipedia article randomly selected. Your score starts at 100 and you will get -10 for each clue used 
 
 
-## To start
+## Installation
 
-You need an internet connection and you have to fill in some steps before playing this game.
-### Prerequisite 
+You need an internet connection and access to the PostgreSQL database before playing.
 
-You have to download these packages in these versions
-- InquirerPy==0.3.4
-- prompt_toolkit==1.0.14
-- psycopg2==2.9.5
-- psycopg2_binary==2.9.4
-- PyInquirer==1.0.3
-- python-dotenv==0.21.0
-- regex==2022.9.13
-- requests==2.28.1
-- Unidecode==1.3.6
-- Werkzeug==2.2.2
-- Wikipedia_API==0.5.4
+Python 3.13 is recommended. From the project directory, create and activate a virtual environment:
+
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+The dependencies are listed in [requirements.txt](requirements.txt).
+
+### Database configuration
+
+Copy the database configuration into a `.env` file at the project root:
+
+```text
+HOST=...
+PORT=...
+DATABASE=...
+USER=...
+PASSWORD=...
+```
+
+The PostgreSQL server must be reachable from your network or VPN. The database tables can be created with [init_dbase.sql](init_dbase.sql).
 
 
 ## Start
 
-You have to execute command ``python -m main`` and everything will be done in the terminal.
-Player can play without logging in or they can create an account to see their hystorics and their statistics.
+Run the game from the activated virtual environment:
+
+```powershell
+python main.py
+```
+
+Players can play without logging in, or create an account to view their history and statistics.
 
 ## Made with
 

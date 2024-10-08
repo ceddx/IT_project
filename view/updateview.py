@@ -1,5 +1,5 @@
 from view.abstract_view import AbstractView
-from PyInquirer import *
+from InquirerPy import *
 from werkzeug.security import generate_password_hash
 from dao.PlayerDao import PlayerDao
 from metier.player import Player

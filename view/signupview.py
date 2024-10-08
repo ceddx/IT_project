@@ -1,4 +1,4 @@
-from PyInquirer import prompt
+from InquirerPy import prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 from dao.PlayerDao import PlayerDao

@@ -1,5 +1,6 @@
 from view.abstract_view import AbstractView
-from PyInquirer import *
+from InquirerPy import *
+from InquirerPy.separator import Separator
 from dao.historydao import HistoryDao
 from dao.PlayerDao import PlayerDao
 from view.session import Session
